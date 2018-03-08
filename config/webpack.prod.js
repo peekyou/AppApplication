@@ -140,12 +140,12 @@ module.exports = function (env) {
      */
     plugins: [
 
-      new SourceMapDevToolPlugin({
-        filename: '[file].map[query]',
-        moduleFilenameTemplate: '[resource-path]',
-        fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
-        sourceRoot: 'webpack:///'
-      }),
+      // new SourceMapDevToolPlugin({
+      //   filename: '[file].map[query]',
+      //   moduleFilenameTemplate: '[resource-path]',
+      //   fallbackModuleFilenameTemplate: '[resource-path]?[hash]',
+      //   sourceRoot: 'webpack:///'
+      // }),
 
 
       /**
