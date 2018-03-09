@@ -1,0 +1,149 @@
+@import '../styles/variables';
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    /* min-height is needed for pages that might scroll, ie they may contain _more_ than 100% of viewport height */
+    min-height: 100%;
+    /* needed to prevent unwanted scroll-bars */
+    margin: 0;
+    padding: 0;
+    /* This is just so we can tell the body block apart from the app container */
+    background-color: gray;
+}
+
+.app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.margin-top {
+    margin-top: 1em;
+}
+
+.line-breaker, .mat-checkbox-label {
+    white-space: pre-line;
+}
+
+.tile {
+    text-align: center;
+    cursor: pointer;
+    padding: 1.3em 0;
+
+    .tile-text {
+        text-transform: uppercase;
+        font-size: 2.7vh;
+    }
+
+    .tile-text-only {
+        text-transform: uppercase;
+        line-height: 5em;
+        font-size: 3vh;
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1em; /* <-- adjust this */
+        }
+    }
+
+    img {
+        width: 40%;
+        margin: -0.3em 0 0.3em 0;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .tile {
+        padding: 0.5em 0;
+
+        img {
+            width: 20%;
+            margin: 0;
+        }
+    }
+}
+
+// Hide the bottom bar with small height (means the keyboard is displayed)
+@media screen and (max-height: 450px) {
+    .bottom-toolbar {
+        display: none;
+    }
+}
+
+.panel {
+    padding: 1em 1.6em;
+}
+
+.with-toolbar-padding-bottom {
+    padding-bottom: 5em;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+// Override angular-star-rating style
+.rating {
+    outline: none;
+}
+
+// Accordion
+collapsible-list-item {
+    collapsible-body {
+        padding: 0 !important;
+
+        .collapsible-content {
+            padding: 0 .9em 1em .9em !important;
+        }
+    }
+
+    collapsible-header[class*='level-'] {
+        color: #fff !important;
+    }
+
+    .level-0 {
+        background-color: #aeaeae !important;
+    }
+
+    .level-1 {
+        background-color: #666 !important;
+    }
+
+    .level-2 {
+        background-color: #333 !important;
+    }
+
+    .header-icons {
+        margin: 0;
+        padding: 0;
+        float: right;
+
+        .fa {
+            padding-left: .7em;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .mat-toolbar-row {
+        height: 50px;
+    }
+}

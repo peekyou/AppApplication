@@ -1,13 +1,17 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
+import { AppComponent } from './app.component';
+import { NoContentComponent } from './components/no-content';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'home',  component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'detail', loadChildren: './+detail#DetailModule'},
-  { path: 'barrel', loadChildren: './+barrel#BarrelModule'},
-  { path: '**',    component: NoContentComponent },
+    { path: '', redirectTo: '/loyaltycard', pathMatch: 'full' },
+    { path: 'reg/:id', component: AppComponent },
+    { path: 'loyaltycard', loadChildren: './components/loyalty-card#LoyaltyCardModule' },
+    { path: 'concept', loadChildren: './components/concept#ConceptModule' },
+    { path: 'promotion', loadChildren: './components/promotion#PromotionModule' },
+    { path: 'call', loadChildren: './components/call#CallModule' },
+    { path: 'contact', loadChildren: './components/contact#ContactModule' },
+    { path: 'social', loadChildren: './components/social-media#SocialMediaModule' },
+    { path: 'review', loadChildren: './components/review#ReviewModule' },
+    { path: 'account', loadChildren: './components/account#AccountModule' },
+    { path: '**', component: NoContentComponent },
 ];

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Contact by email</h1>
+<div mat-dialog-content>
+    <div *ngIf="success === true">
+        Email sent successfully
+    </div>
+    <div *ngIf="success === false">
+        An error occured while sending the email. Please try later.
+    </div>
+    <form [formGroup]="form" (submit)="submitEmail()" *ngIf="success === null">
+        <mat-form-field class="full-width">
+            <input tabindex="1" matInput placeholder="Email" [formControl]="email" required>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea tabindex="2" matInput placeholder="Message" [formControl]="content" required>
+            </textarea>
+        </mat-form-field>
+        <br /><br />
+        <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
+            Submit
+        </button>
+        <button mat-raised-button type="button" (click)="close()">
+            Cancel
+        </button>
+    </form>
+</div>
+<div mat-dialog-actions *ngIf="success !== null">
+    <button mat-button (click)="close()">Ok</button>
+</div>

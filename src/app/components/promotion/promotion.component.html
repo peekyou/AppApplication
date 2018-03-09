@@ -1,0 +1,27 @@
+<app-top-toolbar title="Promotions"></app-top-toolbar>
+
+<app-spinner [loader]="loader"></app-spinner>
+
+<div *ngIf="!promotions || promotions.paging.totalCount === 0" class="panel with-toolbar-padding-bottom">
+    <div>
+        <h3>
+            No promotion as of now, stay tuned!
+        </h3>
+    </div>
+</div>
+
+<div *ngIf="promotions && promotions.data">
+    <mat-card *ngFor="let promotion of promotions.data">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <!--<i *ngIf="number % 2 == 0" class="fa fa-calendar fa-lg" aria-hidden="true"></i>-->
+                <i class="fa fa-percent fa-lg" aria-hidden="true"></i>
+            </div>
+            <mat-card-title>{{promotion.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{promotion.details}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+    

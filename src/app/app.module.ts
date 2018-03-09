@@ -4,75 +4,68 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StarRatingModule } from 'angular-star-rating';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
 import { environment } from 'environments/environment';
 import { ROUTES } from './app.routes';
-// App is our top level component
+
+import { SharedModule } from './core/shared/shared.module';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
-import { DevModuleModule } from './+dev-module';
+import { APP_PROVIDERS } from './app.providers';
+import { AuthModule } from './components/+auth/auth.module';
+import { LoyaltyCardModule } from './components/loyalty-card';
+import { ConceptModule } from './components/concept';
+import { PromotionModule } from './components/promotion';
+import { CallModule } from './components/call';
+import { ContactModule } from './components/contact';
+import { ReviewModule } from './components/review';
+import { SocialMediaModule } from './components/social-media';
+import { AccountModule } from './components/account';
+import { NoContentComponent } from './components/no-content';
+import { EmailDialogComponent } from './components/contact/email/email.component';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
-const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
-  AppState
+const PROVIDERS = [
+  ...APP_PROVIDERS
 ];
 
-interface StoreType {
-  state: InternalStateType;
-  restoreInputValues: () => void;
-  disposeOldHosts: () => void;
-}
-
-/**
- * `AppModule` is the main entry point into Angular2's bootstraping process
- */
 @NgModule({
-  bootstrap: [ AppComponent ],
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    HomeComponent,
-    NoContentComponent,
-    XLargeDirective
-  ],
-  /**
-   * Import Angular's modules.
-   */
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(ROUTES, {
-      useHash: Boolean(history.pushState) === false,
-      preloadingStrategy: PreloadAllModules
-    }),
-
+    bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        NoContentComponent
+    ],
     /**
-     * This section will import the `DevModuleModule` only in certain build types.
-     * When the module is not imported it will get tree shaked.
-     * This is a simple example, a big app should probably implement some logic
+     * Import Angular's modules.
      */
-    ...environment.showDevModule ? [ DevModuleModule ] : [],
-  ],
-  /**
-   * Expose our Services and Providers into Angular's dependency injection.
-   */
-  providers: [
-    environment.ENV_PROVIDERS,
-    APP_PROVIDERS
-  ]
+    imports: [
+        SharedModule.forRoot(),
+        StarRatingModule.forRoot(),
+        BrowserModule,
+        BrowserAnimationsModule,
+        AuthModule,
+        LoyaltyCardModule,
+        ConceptModule,
+        PromotionModule,
+        CallModule,
+        ContactModule,
+        ReviewModule,
+        SocialMediaModule,
+        AccountModule,
+        //AgmCoreModule.forRoot({ apiKey: 'AIzaSyBQkgT4ArGsST27EW2BESTmZfb9ujngarA' }),
+        RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
+    ],
+    entryComponents: [ EmailDialogComponent ],
+    providers: [
+        environment.ENV_PROVIDERS,
+        PROVIDERS
+    ]
 })
-export class AppModule {}
+export class AppModule { }

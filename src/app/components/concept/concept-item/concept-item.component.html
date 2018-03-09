@@ -1,0 +1,61 @@
+<!--<collapsible-list-item *ngIf="page">
+    <collapsible-header class="waves-effect" [ngClass]="'level-' + level" (click)="page.expanded = !page.expanded">
+        {{page.title}}
+        <div class="header-icons">
+            <i *ngIf="!page.expanded" class="fa fa-plus" title="Expand"></i>
+            <i *ngIf="page.expanded" class="fa fa-minus" title="Collapse"></i>
+        </div>
+    </collapsible-header>
+    <collapsible-body [expanded]="page.expanded">
+        <div class="collapsible-content">
+            <div *ngIf="page.content">
+                <p [innerHTML]="page.content | safeHtml"></p>
+            </div>
+            <div *ngIf="!page.content">
+                <ng-content></ng-content>
+            </div>
+            <div class="swiper-container" [swiper]="config" *ngIf="page.pictures && page.pictures.length > 0">
+                <div class="swiper-wrapper">
+                    <img class="swiper-slide" *ngFor="let file of page.pictures" [src]="file.src">
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div *ngIf="page">
+            <app-concept-item *ngFor="let childPage of page.children"
+                              [page]="childPage" [level]="level | increment">
+            </app-concept-item>
+        </div>
+    </collapsible-body>
+</collapsible-list-item>-->
+
+<div *ngIf="page" class="concept-item" (click)="page.expanded = !page.expanded">
+    <div [ngClass]="'level-' + level">
+        <span>{{page.title}}</span>
+        <div class="header-icons">
+            <i *ngIf="!page.expanded" class="fa fa-plus" title="Expand"></i>
+            <i *ngIf="page.expanded" class="fa fa-minus" title="Collapse"></i>
+        </div>
+    </div>
+    <div class="concept-item-content" *ngIf="page.expanded">
+        <div *ngIf="page.content" [innerHTML]="page.content | safeHtml" class="page-content"></div>
+        <div *ngIf="!page.content">
+            <ng-content></ng-content>
+        </div>
+        <div class="swiper-container" [swiper]="config">
+            <div class="swiper-wrapper">
+                <img class="swiper-slide" *ngFor="let file of page.pictures" [src]="file.src">
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="page && page.expanded">
+    <app-concept-item *ngFor="let childPage of page.children"
+                      [page]="childPage" [level]="level | increment">
+    </app-concept-item>
+</div>

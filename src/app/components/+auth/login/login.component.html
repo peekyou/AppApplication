@@ -1,0 +1,32 @@
+<app-top-toolbar></app-top-toolbar>
+<div class="login-panel">
+    <h2 class="login-heading">Ask for your loyalty card</h2>
+
+    <form *ngIf="!isOtpStep" [formGroup]="form" (submit)="onSubmit()">
+        <mat-error *ngIf="error">
+            {{error}}
+        </mat-error>
+        <br />
+        <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstname" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastname" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput type="text" inputmode="numeric" placeholder="Mobile" formControlName="mobile" required>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
+            Get my card!
+        </button>
+    </form>
+
+    <form *ngIf="isOtpStep" [formGroup]="otpForm" (submit)="onOtpSubmit()">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Code" formControlName="otpCode" required>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid">
+            Submit
+        </button>
+    </form>
+</div>

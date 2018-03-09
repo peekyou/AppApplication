@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    z-index: 9999;
+    top: 0;
+    width: 100%;
+}
+
+/*mat-spinner {
+    margin: 45% auto;
+}*/
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,30 @@
+<app-top-toolbar title="Contact"></app-top-toolbar>
+
+<div class="with-toolbar-padding-bottom">
+    <div class="panel text-align-center">
+        <a mat-raised-button color="primary" href="tel:{{s?.config?.phoneNumber}}">
+            Call
+        </a>
+
+        <a mat-raised-button color="primary" *ngIf="s.config && s.config.email"
+           (click)="openEmailDialog()">
+            Email
+        </a>
+        <h2 *ngIf="s.config && s.config.contactPage && s.config.contactPage.timeTable && s.config.contactPage.timeTable.length > 0">Times</h2>
+    </div>
+
+    <table *ngIf="s.config && s.config.contactPage && s.config.contactPage.timeTable && s.config.contactPage.timeTable.length > 0" 
+           class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <tbody>
+            <tr *ngFor="let weekDay of s.weekDays; let i = index">
+                <td>{{weekDay.name}}</td>
+                <td [colSpan]="s.config.contactPage.timeTable[i].nonStop ? 2 : 1">
+                    {{applyMask(s.config.contactPage.timeTable[i].morningTime)}}
+                </td>
+                <td *ngIf="!s.config.contactPage.timeTable[i].nonStop">
+                    {{applyMask(s.config.contactPage.timeTable[i].afternoonTime)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

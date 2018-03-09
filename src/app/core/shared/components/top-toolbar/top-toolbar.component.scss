@@ -1,0 +1,17 @@
+:host {
+    display: block;
+    z-index: 999;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.back-button {
+    cursor: pointer;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+}

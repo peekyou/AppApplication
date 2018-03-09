@@ -1,0 +1,56 @@
+<app-top-toolbar title="Reviews"></app-top-toolbar>
+
+<div class="panel with-toolbar-padding-bottom">
+
+    <div *ngIf="(!reviews || reviews.length === 0) && !user.isAuthenticated()">
+        <h3>
+            Get your loyalty card and be first to post a review!
+        </h3>
+        <div class="text-align-center">
+            <a routerLink="/login">
+                <button mat-raised-button type="submit" color="primary">
+                    Get my card
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="user.isAuthenticated() && s.config">
+        <h2 class="heading">Write your review</h2>
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="full-width rev-rating">
+                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating1ResourceKey" [starType]="'svg'" formControlName="rating1"></star-rating-comp>
+            </div>
+            <div class="full-width rev-rating">
+                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating2ResourceKey" [starType]="'svg'" formControlName="rating2"></star-rating-comp>
+            </div>
+            <div class="full-width rev-rating">
+                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating3ResourceKey" [starType]="'svg'" formControlName="rating3"></star-rating-comp>
+            </div>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Comment" formControlName="comment" required></textarea>
+            </mat-form-field>
+            <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
+                Submit
+            </button>
+        </form>
+        <br />
+        <hr />
+    </div>
+    <app-spinner [loader]="loader"></app-spinner>
+
+    <mat-card *ngFor="let review of reviews">
+        <mat-card-header>
+            <mat-card-title>By <b>{{review.createdBy}}</b> - {{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="line-breaker">{{review.comment}}</p>
+            <label>Ambiance</label>
+            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating1"></star-rating-comp>
+            <label>Service</label>
+            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating2"></star-rating-comp>
+            <label>Quality</label>
+            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating3"></star-rating-comp>
+        </mat-card-content>
+    </mat-card>
+</div>
