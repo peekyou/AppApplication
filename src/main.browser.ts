@@ -10,6 +10,8 @@ import { environment } from 'environments/environment';
  */
 import { AppModule } from './app';
 
+import { registerSw } from './app/core/helpers/utils';
+
 /**
  * Bootstrap our Angular app with a top level NgModule
  */
@@ -17,6 +19,7 @@ export function main(): Promise<any> {
   return platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .then(environment.decorateModuleRef)
+    .then(registerSw)
     .catch((err) => console.error(err));
 }
 

@@ -4,7 +4,7 @@
 }
 
 export function registerSw() {
-    if ('production' === ENV && 'serviceWorker' in navigator) {
+    // if ('production' === ENV && 'serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -12,7 +12,7 @@ export function registerSw() {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
         });
-    }
+    //}
 }
 
 export function parseJwt(token) {
