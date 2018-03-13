@@ -12,14 +12,13 @@ body {
     /* needed to prevent unwanted scroll-bars */
     margin: 0;
     padding: 0;
-    /* This is just so we can tell the body block apart from the app container */
-    background-color: gray;
+    background-color: rgba(#333, .33) !important;
+    // background-image: url('https://static.cuisineaz.com/610x610/i99425-hamburger.jpg') !important;
 }
 
 .app-container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: white;
     min-height: 100%;
 }
 

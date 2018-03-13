@@ -7,10 +7,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QRCodeModule } from 'angular2-qrcode';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppMaterialModules } from './material.module';
-import { SpinnerComponent } from './components/spinner';
-import { QrCodeComponent } from './components/qr-code';
-import { TopToolbarComponent } from './components/top-toolbar';
-import { BottomToolbarComponent } from './components/bottom-toolbar';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { QrCodeComponent } from './components/qr-code/qr-code.component';
+import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import { BottomToolbarComponent } from './components/bottom-toolbar/bottom-toolbar.component';
+import { HeaderComponent } from './components/header/header.component';
 import { PipesModule } from '../../pipes';
 
 const IMPORTS = [
@@ -30,7 +31,8 @@ const DECLARATIONS = [
     SpinnerComponent,
     QrCodeComponent,
     TopToolbarComponent,
-    BottomToolbarComponent
+    BottomToolbarComponent,
+    HeaderComponent
 ];
 
 @NgModule({

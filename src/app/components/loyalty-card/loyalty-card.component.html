@@ -1,25 +1,47 @@
 <div class="with-toolbar-padding-bottom" *ngIf="s.config && service.user">
-    <mat-card>
+    <app-header></app-header>
+    <div class="points-container">
+        <div class="badge goal-badge">
+            GOAL<br/>
+            <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>
+        </div>
+        <circle-progress subtitle="POINTS OWNED" 
+            [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
+        </circle-progress>
+        <div class="badge to-goal-badge">
+            POINTS TO GOAL<br/><span class="sub-text">{{s.config.discountPointsThreshold - service?.user?.currentPoints }}
+            <span class="sup"> PTS</span></span>           
+        </div>
+        
+        <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
+            <div fxFlex="50" class="achieve-text">
+                Achieve {{ s.config.discountPointsThreshold }} pts and<br />
+                <span>win a voucher of</span>     
+            </div>
+            <div fxFlex="85px" class="badge voucher-badge">
+                <span class="sup">{{ s.config.discountCurrency }}</span>{{s.config.discountAmount}}       
+            </div>
+        </div>
+    </div>
+    <!-- <mat-card>
         <mat-card-header>
-            <!--<div mat-card-avatar>
+           <div mat-card-avatar>
                 <i class="fa fa-user-circle-o fa-2x"></i>
-            </div>-->
+            </div>
             <mat-card-title>{{ service?.user?.firstname }} {{ service?.user?.lastname }}</mat-card-title>
             <mat-card-subtitle>Card no: {{ service?.user?.cardNumber }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <circle-progress [percent]="85"></circle-progress>
             <div *ngFor="let number of s.config.discountPointsThresholdArray" class="loyalty-point"
                     [ngClass]="{'active': number <= service.user.currentPoints}">
                 {{number}}
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <!--<button mat-raised-button color="primary">REDEEM</button>-->
             <div fxFlex="85px" class="loyalty-point" [ngClass]="{'active': service.user.currentPoints >= s.config.discountPointsThreshold}">
                 {{s.config.discountAmount}} {{s.config.discountCurrency}}
             </div>
-        </mat-card-actions>
+        </mat-card-actions> 
         <mat-card-subtitle>
             <ng-template #discount>
                 <h2>You can get {{s.config.discountAmount}} {{s.config.discountCurrency}} discount!</h2>
@@ -28,5 +50,5 @@
                 {{s.config.discountPointsThreshold - service?.user?.currentPoints }} points to get {{s.config.discountAmount}} {{s.config.discountCurrency}} discount!
             </div>
         </mat-card-subtitle>
-    </mat-card>
+    </mat-card> -->
 </div>
