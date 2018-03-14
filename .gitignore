@@ -15,9 +15,6 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-# SonarQube sonar-scanner temp directory
-.scannerwork
-
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
@@ -41,9 +38,6 @@ npm-debug.log
 
 # Coverage #
 /coverage/
-
-# Generic Unit Sonar Reports #
-/reports/
 
 # Typing #
 /src/typings/tsd/

@@ -17,23 +17,24 @@ exports.config = {
   ],
   exclude: [],
 
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 110000,
 
   jasmineNodeOpts: {
     showTiming: true,
     showColors: true,
     isVerbose: false,
     includeStackTrace: false,
-    defaultTimeoutInterval: 40000
+    defaultTimeoutInterval: 400000
   },
-
   directConnect: true,
+
   capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      args: [ "--headless", "--disable-gpu", "--window-size=800x600", "--no-sandbox" ]
+    'browserName': 'chrome',
+    'chromeOptions': {
+      //'args': ["--headless", "--disable-gpu", "--window-size=1280x800",  "--no-sandbox"]
+      'args': ['show-fps-counter=true']
     }
   },
 

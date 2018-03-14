@@ -8,17 +8,31 @@
     height: 50px;
 }
 
+.bottom-toolbar {
+    background-color: rgba(#333, .33) !important;    
+}
+
 .container {
     width: 100%;
     text-align: center;
     height: 100%;
     line-height: 50px;
 
-    .fa {
-        color: #888;
+    div {
+        border: 0;
+        border-top: 1px solid white;
     }
 
-    a.active .fa {
-        color: black;
+    .fa {
+        color: #fefefe;
+    }
+    .active {
+        border: 0;
+        border-top: 1px solid gold;
+        transition: all 0.2s ease;
+
+        .fa {
+            color:gold;
+        }
     }
 }

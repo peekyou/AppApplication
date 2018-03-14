@@ -4,7 +4,7 @@ const fs = require('fs');
 const helpers = require('./helpers');
 
 const DEFAULT_METADATA = {
-  title: 'Angular Starter by @gdi2290 from @TipeIO',
+  title: 'Test Design - AppWards',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
@@ -75,7 +75,7 @@ function ngcWebpackSetup(prod, metadata) {
     metadata = DEFAULT_METADATA;
   }
 
-  const buildOptimizer = prod && metadata.AOT;
+  const buildOptimizer = prod;
   const sourceMap = true; // TODO: apply based on tsconfig value?
   const ngcWebpackPluginOptions = {
     skipCodeGeneration: !metadata.AOT,
@@ -106,7 +106,7 @@ function ngcWebpackSetup(prod, metadata) {
   const loaders = [
     {
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
+      use: metadata.AOT && buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
     },
     ...buildOptimizer
       ? [ { test: /\.js$/, use: [ buildOptimizerLoader ] } ]

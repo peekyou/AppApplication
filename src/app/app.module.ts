@@ -29,7 +29,6 @@ import { NoContentComponent } from './components/no-content';
 import { EmailDialogComponent } from './components/contact/email/email.component';
 
 import '../styles/styles.scss';
-import '../styles/headings.css';
 
 // Application wide providers
 const PROVIDERS = [

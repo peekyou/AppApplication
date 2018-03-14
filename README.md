@@ -42,9 +42,10 @@ This seed repo serves as an Angular starter for anyone looking to get up and run
 * [Webpack DLLs](https://robertknight.github.io/posts/webpack-dll-plugins/) dramatically speed your development builds.
 * Testing Angular code with Jasmine and Karma.
 * Coverage with Istanbul and Karma
-* End-to-end Angular app testing using Protractor.
+* End-to-end Angular code using Protractor.
 * Type manager with @types
 * Hot Module Replacement with Webpack and [@angularclass/hmr](https://github.com/angularclass/angular-hmr) and [@angularclass/hmr-loader](https://github.com/angularclass/angular-hmr-loader)
+* Angular 4 support via changing package.json and any future Angular versions
 
 ### Quick start
 **Make sure you have Node version >= 6.0 and NPM >= 3**
@@ -58,6 +59,9 @@ git clone --depth 1 https://github.com/AngularClass/angular-starter.git
 # change directory to our repo
 cd angular-starter
 
+# WINDOWS only. In terminal as administrator
+npm install -g node-pre-gyp
+
 # install the repo with npm
 npm install
 
@@ -70,7 +74,7 @@ npm run server:dev:hmr
 # if you're in China use cnpm
 # https://github.com/cnpm/cnpm
 ```
-go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http://localhost:3000) in your browser
+go to [http://0.0.0.0:3001](http://0.0.0.0:3001) or [http://localhost:3001](http://localhost:3001) in your browser
 
 # Table of Contents
 * [File Structure](#file-structure)
@@ -145,7 +149,6 @@ Once you have those, you should install these globals with `npm install --global
 * `karma` (`npm install --global karma-cli`)
 * `protractor` (`npm install --global protractor`)
 * `typescript` (`npm install --global typescript`)
-* `tslint` (`npm install --global tslint@4.5.1`)
 
 ## Installing
 * `fork` this repo
@@ -155,7 +158,7 @@ Once you have those, you should install these globals with `npm install --global
 * `npm run server` to start the dev server in another tab
 
 ## Running the app
-After you have installed all dependencies you can now run the app. Run `npm run server` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3000` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3000/`).
+After you have installed all dependencies you can now run the app. Run `npm run server` to start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://0.0.0.0:3001` (or if you prefer IPv6, if you're using `express` server, then it's `http://[::1]:3001/`).
 
 ### server
 ```bash
@@ -235,15 +238,13 @@ The following are some things that will make AoT compile fail.
 - Don’t use functions in your providers, routes or declarations, export a function and then reference that function name
 - @Inputs, @Outputs, View or Content Child(ren), Hostbindings, and any field you use from the template or annotate for Angular should be public
 
-For more detailed guide on AoT's Do's and Don'ts refer to https://github.com/rangle/angular-2-aot-sandbox
-
 # External Stylesheets
 Any stylesheets (Sass or CSS) placed in the `src/styles` directory and imported into your project will automatically be compiled into an external `.css` and embedded in your production builds.
 
 For example to use Bootstrap as an external stylesheet:
 1) Create a `styles.scss` file (name doesn't matter) in the `src/styles` directory.
 2) `npm install` the version of Boostrap you want.
-3) In `styles.scss` add `@import '~bootstrap/scss/bootstrap.scss';`
+3) In `styles.scss` add `@import 'bootstrap/scss/bootstrap.scss';`
 4) In `src/app/app.module.ts` add underneath the other import statements: `import '../styles/styles.scss';`
 
 # Contributing
@@ -253,7 +254,7 @@ You can include more examples as components but they must introduce a new concep
 > To take full advantage of TypeScript with autocomplete you would have to install it globally and use an editor with the correct TypeScript plugins.
 
 ## Use latest TypeScript compiler
-TypeScript 2.7.x includes everything you need. Make sure to upgrade, even if you installed TypeScript previously.
+TypeScript 2.1.x includes everything you need. Make sure to upgrade, even if you installed TypeScript previously.
 
 ```
 npm install --global typescript
@@ -270,7 +271,7 @@ We have good experience using these editors:
 ### Visual Studio Code + Debugger for Chrome
 > Install [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) and see docs for instructions to launch Chrome
 
-The included `.vscode` automatically connects to the webpack development server on port `3000`.
+The included `.vscode` automatically connects to the webpack development server on port `3001`.
 
 # Types
 > When you include a module that doesn't include Type Definitions inside of the module you can include external Type Definitions with @types
@@ -354,8 +355,7 @@ import * as _ from 'lodash';
 * If you're in China
   * check out https://github.com/cnpm/cnpm
 * node-pre-gyp ERR in npm install (Windows)
-  * often happens when you're behind proxy and proxy wasn't configured in the npm as it tries to download binary package from the github and if it fails to do so, it will try to compile node-sass from the source codes
-  * install Python x86 version 2.x and on windows see issue [#626](https://github.com/AngularClass/angular-starter/issues/626)
+  * install Python x86 version between 2.5 and 3.0 on windows see issue [#626](https://github.com/AngularClass/angular-starter/issues/626)
 * `Error:Error: Parse tsconfig error [{"messageText":"Unknown compiler option 'lib'.","category":1,"code":5023},{"messageText":"Unknown compiler option 'strictNullChecks'.","category":1,"code":5023},{"messageText":"Unknown compiler option 'baseUrl'.","category":1,"code":5023},{"messageText":"Unknown compiler option 'paths'.","category":1,"code":5023},{"messageText":"Unknown compiler option 'types'.","category":1,"code":5023}]`
   * remove `node_modules/typescript` and run `npm install typescript@beta`. This repo now uses ts 2.0
 * "There are multiple modules with names that only differ in casing"
@@ -393,7 +393,7 @@ sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial ma
 sudo apt-get update
 apt-cache policy docker-engine
 sudo apt-get install -y docker-engine
-sudo systemctl status docker  # test: should be ‘active’
+sudo systemctl status docker  # test:  shoud be ‘active’
 ```
 And add your user to docker group (to avoid `sudo` before using `docker` command in future):
 ```
@@ -406,9 +406,15 @@ and logout and login again.
 Because *node.js* is big memory consumer you need 1-2GB RAM or virtual memory to build docker image
 (it was successfully tested on machine with 512MB RAM + 2GB virtual memory - building process take 7min)
 
-Go to main project folder. To build image type:
+Go to main project folder. To build big (~280MB) image which has cached data and is able to **FAST** rebuild  
+(this is good for testing or staging environment) type:
 
 `docker build -t angular-starter .`
+
+To build **SMALL** (~20MB) image without cache (so each rebuild will take the same amount of time as first build)
+(this is good for production environment) type:
+
+`docker build --squash="true" -t angular-starter .`
 
 The **angular-starter** name used in above commands is only example image name.
 To remove intermediate images created by docker on build process, type:
@@ -427,16 +433,18 @@ And that's all, you can open browser and go to [localhost:8080](localhost:8080).
 
 To create and run docker image on [localhost:8080](localhost:8080) as part of large project you may use **docker-compose**. Type 
 
-`docker-compose up`
+`docker-compose up &`
 
 And that's all, you can open browser and go to [localhost:8080](localhost:8080).
 
 
 ### Run image on sub-domain
 
-If you want to run image as virtual-host on sub-domain you must setup [proxy](https://github.com/jwilder/nginx-proxy). You should install proxy and set sub-domain in this way:
+If you want to run image as virtual-host on sub-domain you must setup [proxy](https://github.com/jwilder/nginx-proxy)
+. You should install proxy and set sub-domain in this way:
 
  ```
+ docker pull jwilder/nginx-proxy:alpine
  docker run -d -p 80:80 --name nginx-proxy -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy:alpine
  ```
 
@@ -467,38 +475,6 @@ starter kit in production on [Netlify](https://www.netlify.com/):
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/AngularClass/angular-starter)
 
-### Optional Integration with SonarQube (for continous code quality)
-Assuming you have SonarQube 5.5.6 (LTS) installed
-* Setup SonarQube with the [Sonar Typescript plugin](https://github.com/Pablissimo/SonarTsPlugin#installation) and the Generic Test Coverage plugin https://docs.sonarqube.org/display/PLUG/Generic+Test+Coverage
-* Install sonar-scanner globally 
-```bash
-npm install --global sonar-scanner
-```
-* Install the [Karma plugin for sonarqube](https://www.npmjs.com/package/karma-sonarqube-unit-reporter) as a dev dependency 
-```bash
-npm install karma-sonarqube-unit-reporter --save-dev
-```
-* Sonar Host URL configuration:
-Update [`sonar-project.properties`](sonar-project.properties) file for the property `sonar.host.url` to point to your SonarQube server. By default this assumes that the SonarQube server is running locally using the default port
-```
-sonar.host.url=<Sonar Host URL and Port>
-```
-* Run the unit tests with sonar reporter enabled
-```bash
-npm run test:sonar
-```
-* The test results collected in the results folder in the sonar compatible format
-* Push results to SonarCube
-```bash
-sonar-scanner
-``` 
-* If working with SonarQube 6.x it supports [Generic Test Data](https://docs.sonarqube.org/display/SONAR/Generic+Test+Data)
-* Modify the [karma.conf.js](config/karma.config.js) to set the appropriate version of the sonarQube
-```es6
-sonarQubeUnitReporter: {
-  sonarQubeVersion: '6.x',
-}
-```
 ___
 
 enjoy — [**PatrickJS**](https://twitter.com/gdi2290)

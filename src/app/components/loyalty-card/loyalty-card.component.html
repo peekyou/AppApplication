@@ -5,7 +5,7 @@
             GOAL<br/>
             <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>
         </div>
-        <circle-progress subtitle="POINTS OWNED" 
+        <circle-progress subtitle="POINTS OWNED" [title]="service.user.currentPoints"
             [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
         </circle-progress>
         <div class="badge to-goal-badge">
