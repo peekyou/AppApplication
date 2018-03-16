@@ -10,8 +10,8 @@ import { User } from '../../core/models/user';
     selector: 'loyalty-card',
     templateUrl: './loyalty-card.component.html',
     styleUrls: ['./loyalty-card.component.scss'],
-    animations: [slideInAnimation],
-    host: { '[@slideInAnimation]': '' }
+    // animations: [slideInAnimation],
+    // host: { '[@slideInAnimation]': '' }
 })
 export class LoyaltyCardComponent {
     

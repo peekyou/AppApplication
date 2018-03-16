@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ConfigurationService } from '../../core/services/configuration.service';
+import { AuthService } from '../+auth/auth.service';
+import { NewReviewDialogComponent } from './new-review/new-review.component';
 import { ReviewService } from './review.service';
 import { Review } from './review';
-import { AuthService } from '../+auth/auth.service';
+import { PagingResponse } from '../../core/models/paging';
 
 @Component({
     selector: 'review',
@@ -16,23 +18,16 @@ import { AuthService } from '../+auth/auth.service';
 export class ReviewComponent {
     loader: Subscription;
     loading = false;
-    reviews: Review[] = [];
-    comment = this.fb.control(null, Validators.required);
-    rating1 = this.fb.control('', Validators.required);
-    rating2 = this.fb.control('', Validators.required);
-    rating3 = this.fb.control('', Validators.required);
-
-    form = this.fb.group({
-        comment: this.comment,
-        rating1: this.rating1,
-        rating2: this.rating2,
-        rating3: this.rating3
-    });
-    
+    reviews: PagingResponse<Review>;
+    averageAllRatings: number = 0;
+    averageRating1: number = 0;
+    averageRating2: number = 0;
+    averageRating3: number = 0;
+        
     constructor(
         private service: ReviewService,
-        private fb: FormBuilder,
         private router: Router,
+        private dialog: MatDialog,
         public user: AuthService,
         public s: ConfigurationService) {
         this.getReviews();
@@ -42,32 +37,36 @@ export class ReviewComponent {
         this.loader = this.service
             .getAll(null, null)
             .subscribe(
-                reviews => { this.reviews = reviews.data },
+                reviews => { 
+                    this.reviews = reviews;
+                    this.calculateAverage();
+                },
                 err => { console.log(err); }
             );
     }
 
-    onSubmit() {
-        let review: Review = {
-            comment: this.comment.value,
-            createdDate: new Date(),
-            createdBy: this.user.getUserId(),
-            rating1: this.rating1.value,
-            rating2: this.rating2.value,
-            rating3: this.rating3.value
-        };
-        this.loading = true;
-        this.service
-            .create(review)
-            .subscribe(
-                id => {
-                    this.getReviews();
-                    this.loading = false;
-                },
-                err => {
-                    console.log(err);
-                    this.loading = false;
-                }
-            );
+    openNewReviewDialog() {
+        let dialogRef = this.dialog.open(NewReviewDialogComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.getReviews();
+            }
+        });
+    }
+    
+    private calculateAverage() {
+        this.averageRating1 = this.averageRating2 = this.averageRating3 = 0;
+        if (this.reviews.paging.itemsCount > 0) {
+            this.reviews.data.forEach(r => {
+                this.averageRating1 += r.rating1;
+                this.averageRating2 += r.rating2;
+                this.averageRating3 += r.rating3;
+            });
+            this.averageRating1 /= this.reviews.paging.totalCount;
+            this.averageRating2 /= this.reviews.paging.totalCount;
+            this.averageRating3 /= this.reviews.paging.totalCount;
+            this.averageAllRatings = (this.averageRating1 + this.averageRating2 + this.averageRating3) / 3;
+        }
     }
 }

@@ -1,0 +1,22 @@
+<div *ngIf="page" class="concept-item" (click)="page.expanded = !page.expanded">
+    <h3 *ngIf="page.typeId == 5 || page.typeId == 4" [ngClass]="'level-' + level">{{page.title}}</h3>
+    <div class="concept-item-content">
+        <div *ngIf="page.content" [innerHTML]="page.content | safeHtml" class="page-content"></div>
+        <div *ngIf="!page.content">
+            <ng-content></ng-content>
+        </div>
+        <div class="swiper-container" [swiper]="config">
+            <div class="swiper-wrapper">
+                <img class="swiper-slide" *ngFor="let file of page.pictures" [src]="file.src">
+            </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="page">
+    <app-shop-page *ngFor="let childPage of page.children"
+                        [page]="childPage" [level]="level | increment">
+    </app-shop-page>
+</div>

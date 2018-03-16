@@ -1,0 +1,36 @@
+:host {
+    display: block;
+}
+
+app-concept-item {
+    margin-bottom: .5em;
+}
+
+.concept-item {
+    div[class*='level-'] {
+        padding: 0 1em;
+        line-height: 3em;
+        color: #fff;
+    }
+
+    .level-0 {
+        color: black;
+        font-size: 1.25rem;
+    }
+
+    .level-1 {
+        color: gray;
+        font-size: 1.15rem;
+    }
+
+    .level-2 {
+        color: #ccc;
+        font-size: 1rem;
+    }
+
+    .page-content {
+        display: block;
+        padding-bottom: 1rem;
+        text-align: justify;
+    }
+}

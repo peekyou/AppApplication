@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingModule } from 'angular-star-rating';
+import { AgmCoreModule } from '@agm/core';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -18,7 +19,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { APP_PROVIDERS } from './app.providers';
 import { AuthModule } from './components/+auth/auth.module';
 import { LoyaltyCardModule } from './components/loyalty-card';
-import { ConceptModule } from './components/concept';
+import { ShopModule } from './components/shop';
 import { PromotionModule } from './components/promotion';
 import { CallModule } from './components/call';
 import { ContactModule } from './components/contact';
@@ -26,7 +27,10 @@ import { ReviewModule } from './components/review';
 import { SocialMediaModule } from './components/social-media';
 import { AccountModule } from './components/account';
 import { NoContentComponent } from './components/no-content';
+
+// Modals
 import { EmailDialogComponent } from './components/contact/email/email.component';
+import { NewReviewDialogComponent } from './components/review/new-review/new-review.component';
 
 import '../styles/styles.scss';
 
@@ -51,17 +55,20 @@ const PROVIDERS = [
         BrowserAnimationsModule,
         AuthModule,
         LoyaltyCardModule,
-        ConceptModule,
+        ShopModule,
         PromotionModule,
         CallModule,
         ContactModule,
         ReviewModule,
         SocialMediaModule,
         AccountModule,
-        //AgmCoreModule.forRoot({ apiKey: 'AIzaSyBQkgT4ArGsST27EW2BESTmZfb9ujngarA' }),
+        AgmCoreModule.forRoot({ apiKey: 'AIzaSyBQkgT4ArGsST27EW2BESTmZfb9ujngarA' }),
         RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
     ],
-    entryComponents: [ EmailDialogComponent ],
+    entryComponents: [ 
+        EmailDialogComponent,
+        NewReviewDialogComponent
+    ],
     providers: [
         environment.ENV_PROVIDERS,
         PROVIDERS

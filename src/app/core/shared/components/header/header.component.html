@@ -1,6 +1,6 @@
-<div class="header">
-    <div class="header-title">Rewards program</div>
-    <div class="logo">
-        <img src="assets/icon/Godiva_Header.png" />
+<div class="header" [ngClass]="{'fixed-height': fixedHeight}">
+    <h2 *ngIf="title" class="header-title">{{ title }}</h2>
+    <div *ngIf="!title" class="picture">
+        <img src="http://static.uberoom.com/images/user/products/add_ons/food/truffles_L.jpg" />
     </div>
 </div>

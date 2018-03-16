@@ -5,12 +5,11 @@ import { toggleAnimation } from '../../../animations';
 import { Page } from '../../../core/models/page';
 
 @Component({
-    selector: 'app-concept-item',
-    templateUrl: './concept-item.component.html',
-    styleUrls: ['./concept-item.component.scss'],
-    animations: [toggleAnimation]
+    selector: 'app-shop-page',
+    templateUrl: './shop-page.component.html',
+    styleUrls: ['./shop-page.component.scss'],
 })
-export class ConceptItemComponent implements OnInit {
+export class ShopPageComponent implements OnInit {
     @Input() page: Page;
     @Input() level: number;
 

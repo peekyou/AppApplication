@@ -1,0 +1,18 @@
+:host {
+    display: block;
+}
+
+.logo {
+    position: absolute;
+    top: 6rem;
+    left: 50%;
+    text-align: center;
+    z-index: 999;
+
+    img {
+        position: relative;
+        left: -50%;
+        max-width: 150px;
+        opacity: 1;
+    }
+}

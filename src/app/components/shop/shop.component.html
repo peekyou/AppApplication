@@ -1,0 +1,40 @@
+<app-header fixedHeight="true"></app-header>
+<app-logo></app-logo>
+
+<div *ngIf="s.config" class="with-toolbar-padding-bottom margin-top panel after-logo-padding-top-1">
+    <div class="text-align-center">
+        <button mat-raised-button [ngClass]="{'mat-primary': !isLocation, 'inactive': isLocation}" 
+           (click)="isLocation = false">
+            The shop
+        </button>
+        <button mat-raised-button [ngClass]="{'mat-primary': isLocation, 'inactive': !isLocation}"
+           (click)="isLocation = true">
+            Our location
+        </button>
+    </div>
+    <div *ngIf="!isLocation">
+        <app-shop-page *ngFor="let page of s.config.customPages" [page]="page"></app-shop-page>    
+    </div>
+    <app-shop-page [page]="s.config.locationPage" *ngIf="isLocation">
+            <div class="text-align-center">
+                <p *ngIf="s.config.locationPage && s.config.locationPage.address" class="line-breaker">
+                    <span *ngIf="s.config.locationPage.address.addressLine1">{{ s.config.locationPage.address.addressLine1 }}</span>
+                    <span *ngIf="s.config.locationPage.address.addressLine2">{{ s.config.locationPage.address.addressLine2 }}</span>
+                    <span *ngIf="s.config.locationPage.address.city">{{ s.config.locationPage.address.city }}</span>
+                    <span *ngIf="s.config.locationPage.address.countryName">{{ s.config.locationPage.address.countryName }}</span>
+                </p>
+                <a href="tel:{{s?.config?.phoneNumber}}">
+                    <i class="fa fa-phone fa-lg" aria-hidden="true"></i> {{s?.config?.phoneNumber}}
+                </a>
+                <br />
+                <br />
+                <a routerLink="/contact" mat-raised-button color="primary">Contact</a>
+    
+                <br />
+                <br />
+                <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+            </div>
+        </app-shop-page>
+</div>

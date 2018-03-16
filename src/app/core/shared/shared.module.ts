@@ -12,6 +12,7 @@ import { QrCodeComponent } from './components/qr-code/qr-code.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { BottomToolbarComponent } from './components/bottom-toolbar/bottom-toolbar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LogoComponent } from './components/logo/logo.component';
 import { PipesModule } from '../../pipes';
 
 const IMPORTS = [
@@ -32,7 +33,8 @@ const DECLARATIONS = [
     QrCodeComponent,
     TopToolbarComponent,
     BottomToolbarComponent,
-    HeaderComponent
+    HeaderComponent,
+    LogoComponent
 ];
 
 @NgModule({

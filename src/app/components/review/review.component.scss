@@ -1,11 +1,89 @@
+@import '../../../styles/variables';
+
 :host {
     display: block;
+    height: 100vh;
+    background-color: #fff;
 }
 
-.rev-rating {
-    margin-top: 1em;
+.reviews-container {
+    background-color: #fff;
+}
+
+.average-rating {
+    background-color: #303030;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: .8rem;
+    color: #c8c8c8;
+
+    .total-average {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+
+label {
+    word-break: break-word;
+    line-height: 1.4rem;
+    margin-left: .3rem;
 }
 
 mat-card {
-    margin-top: .7em;
+    margin-top: .7rem;
+    margin-left: 1.4rem;
+    margin-right: 1.4rem;
+
+    p {
+        margin-left: 0.5rem;
+        font-size: 1rem;
+    }
 }
+
+.review-card {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    background-color: #fff;
+    // position: relative;
+    padding: 0 1.9rem 2rem 1.9rem;
+    text-align: justify;
+
+    .review-text {
+        padding-left: .4rem;
+
+        p {
+            margin: 0;
+            margin-top: .4rem;
+        }
+    }
+}
+
+.triangle-theme {
+    // border-style: solid;
+    // border-width: 40px 100vw 0 0;
+    // border-color: white gold transparent transparent;
+    // transform: scale(1.0001);    
+}
+
+.triangle-theme-reverse {
+    border-style: solid;
+    border-width: 40px 100vw 0 0;
+    border-color: gold white transparent transparent;
+    transform: scale(1.0001);    
+}
+
+.triangle-theme:after{
+    content: "";
+    position: absolute;
+    border-top: 2px solid gold;
+    width: 100%;
+    transform: rotate(-3.5deg);
+    transform-origin: 0% 0%;
+}
+
+.send-review-btn {
+    position: fixed;
+    z-index: 999;
+    right: 1rem;
+    bottom: $bottom-toolbar-height + 10px;
+  }

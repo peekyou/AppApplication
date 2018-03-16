@@ -13,13 +13,31 @@ body {
     margin: 0;
     padding: 0;
     background-color: rgba(#333, .33) !important;
-    // background-image: url('https://static.cuisineaz.com/610x610/i99425-hamburger.jpg') !important;
 }
 
+// body::after {
+//     content: "";
+//     opacity: 0.5;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     position: absolute;
+//     z-index: -1;   
+//     // background-image: url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
+//     background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
+// }
+
 .app-container {
-    max-width: 800px;
     margin: 0 auto;
     min-height: 100%;
+}
+
+h2 {
+    color: gold;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 
 a {
@@ -36,36 +54,20 @@ a {
     margin-top: 1em;
 }
 
+.error {
+    color: red;
+}
+
 .line-breaker, .mat-checkbox-label {
     white-space: pre-line;
 }
 
-.tile {
-    text-align: center;
-    cursor: pointer;
-    padding: 1.3em 0;
+.mat-raised-button.inactive {
+    color: gray !important;
+}
 
-    .tile-text {
-        text-transform: uppercase;
-        font-size: 2.7vh;
-    }
-
-    .tile-text-only {
-        text-transform: uppercase;
-        line-height: 5em;
-        font-size: 3vh;
-
-        span {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1em; /* <-- adjust this */
-        }
-    }
-
-    img {
-        width: 40%;
-        margin: -0.3em 0 0.3em 0;
-    }
+.mat-raised-button.mat-primary, .mat-fab.mat-primary {
+    background-color: gold !important;
 }
 
 @media screen and (orientation:landscape) {
@@ -87,11 +89,36 @@ a {
 }
 
 .panel {
-    padding: 1em 1.6em;
+    padding: 0 1.4rem;
+    background-color: #fff;
 }
 
 .with-toolbar-padding-bottom {
-    padding-bottom: 5em;
+    padding-bottom: $bottom-toolbar-height;
+}
+
+.after-logo-padding-top-1 {
+    padding-top: 1rem !important;
+}
+
+.after-logo-padding-top-3 {
+    padding-top: 3rem !important;
+}
+
+.after-logo-padding-top-5 {
+    padding-top: 5rem !important;
+}
+
+.after-logo-padding-top-8 {
+    padding-top: 8rem !important;
+}
+
+.theme-color {
+    color: gold;
+}
+
+.theme-background {
+    background-color: gold !important;
 }
 
 .text-align-center {
@@ -101,48 +128,14 @@ a {
 // Override angular-star-rating style
 .rating {
     outline: none;
-}
 
-// Accordion
-collapsible-list-item {
-    collapsible-body {
-        padding: 0 !important;
-
-        .collapsible-content {
-            padding: 0 .9em 1em .9em !important;
-        }
-    }
-
-    collapsible-header[class*='level-'] {
-        color: #fff !important;
-    }
-
-    .level-0 {
-        background-color: #aeaeae !important;
-    }
-
-    .level-1 {
-        background-color: #666 !important;
-    }
-
-    .level-2 {
-        background-color: #333 !important;
-    }
-
-    .header-icons {
-        margin: 0;
-        padding: 0;
-        float: right;
-
-        .fa {
-            padding-left: .7em;
-            cursor: pointer;
-        }
+    .label-value {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 600px) {
     .mat-toolbar-row {
-        height: 50px;
+        height: $bottom-toolbar-height;
     }
 }

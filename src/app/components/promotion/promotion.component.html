@@ -1,27 +1,36 @@
-<app-top-toolbar title="Promotions"></app-top-toolbar>
+<app-header fixedHeight="true"></app-header>
+<app-logo></app-logo>
 
 <app-spinner [loader]="loader"></app-spinner>
 
-<div *ngIf="!promotions || promotions.paging.totalCount === 0" class="panel with-toolbar-padding-bottom">
-    <div>
-        <h3>
-            No promotion as of now, stay tuned!
-        </h3>
+<div class="with-toolbar-padding-bottom">
+    <h2 class="after-logo-padding-top-3">Special offers</h2>
+    <div *ngIf="!promotions || promotions.paging.totalCount === 0">
+        <div>
+            <h3>
+                No promotion as of now, stay tuned!
+            </h3>
+        </div>
     </div>
-</div>
 
-<div *ngIf="promotions && promotions.data">
-    <mat-card *ngFor="let promotion of promotions.data">
-        <mat-card-header>
-            <div mat-card-avatar>
-                <!--<i *ngIf="number % 2 == 0" class="fa fa-calendar fa-lg" aria-hidden="true"></i>-->
-                <i class="fa fa-percent fa-lg" aria-hidden="true"></i>
+    <div *ngIf="promotions && promotions.data">
+        <div *ngFor="let promotion of promotions.data; let i = index">
+            <div class="triangle-theme" *ngIf="i % 2 == 1">
             </div>
-            <mat-card-title>{{promotion.name}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <p>{{promotion.details}}</p>
-        </mat-card-content>
-    </mat-card>
+            <div class="promotion-card" [ngClass]="{'theme-background': i % 2 == 1}">
+                <div class="promotion-title">
+                    {{promotion.name}}
+                </div>
+                <div class="promotion-date" [ngClass]="{'theme-color': i % 2 == 0, 'white': i % 2 == 1}">
+                    Until 15/03/18
+                </div>
+                <div class="promotion-details">
+                    {{promotion.details}}
+                </div>
+            </div>
+            <div class="triangle-theme-reverse" *ngIf="i % 2 == 1">
+            </div>
+        </div>
+    </div>
 </div>
     

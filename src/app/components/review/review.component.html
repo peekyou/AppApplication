@@ -1,8 +1,9 @@
-<app-top-toolbar title="Reviews"></app-top-toolbar>
+<app-header fixedHeight="true"></app-header>
+<app-logo></app-logo>
 
-<div class="panel with-toolbar-padding-bottom">
-
-    <div *ngIf="(!reviews || reviews.length === 0) && !user.isAuthenticated()">
+<div class="with-toolbar-padding-bottom reviews-container">
+    <h2 class="after-logo-padding-top-3">Reviews</h2>        
+    <div *ngIf="(!reviews || reviews.paging.itemsCount === 0) && !user.isAuthenticated()">
         <h3>
             Get your loyalty card and be first to post a review!
         </h3>
@@ -14,43 +15,80 @@
             </a>
         </div>
     </div>
-
-    <div *ngIf="user.isAuthenticated() && s.config">
-        <h2 class="heading">Write your review</h2>
-        <form [formGroup]="form" (submit)="onSubmit()">
-            <div class="full-width rev-rating">
-                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating1ResourceKey" [starType]="'svg'" formControlName="rating1"></star-rating-comp>
-            </div>
-            <div class="full-width rev-rating">
-                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating2ResourceKey" [starType]="'svg'" formControlName="rating2"></star-rating-comp>
-            </div>
-            <div class="full-width rev-rating">
-                <star-rating-comp [labelPosition]="'top'" [labelText]="s.config.rating3ResourceKey" [starType]="'svg'" formControlName="rating3"></star-rating-comp>
-            </div>
-            <mat-form-field class="full-width">
-                <textarea matInput placeholder="Comment" formControlName="comment" required></textarea>
-            </mat-form-field>
-            <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
-                Submit
-            </button>
-        </form>
-        <br />
-        <hr />
-    </div>
+    
     <app-spinner [loader]="loader"></app-spinner>
 
-    <mat-card *ngFor="let review of reviews">
-        <mat-card-header>
-            <mat-card-title>By <b>{{review.createdBy}}</b> - {{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <p class="line-breaker">{{review.comment}}</p>
-            <label>Ambiance</label>
-            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating1"></star-rating-comp>
-            <label>Service</label>
-            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating2"></star-rating-comp>
-            <label>Quality</label>
-            <star-rating-comp [disabled]="true" [starType]="'svg'" [rating]="review.rating3"></star-rating-comp>
-        </mat-card-content>
-    </mat-card>
+    <div *ngIf="reviews && reviews.paging.itemsCount > 0">
+        <div class="average-rating">
+            <div class="total-average">
+                <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageAllRatings"></star-rating-comp>
+                {{ reviews.paging.totalCount }} reviews
+            </div>
+
+            <div fxLayout="row">
+                <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating1"></star-rating-comp>
+                <label>{{ s.config.rating1ResourceKey }}</label>
+            </div>
+            <div fxLayout="row">
+                <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating2"></star-rating-comp>
+                <label>{{ s.config.rating2ResourceKey }}</label>
+            </div>
+            <div fxLayout="row">
+                <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating3"></star-rating-comp>
+                <label>{{ s.config.rating3ResourceKey }}</label>
+            </div>
+        </div>
+
+        <div *ngFor="let review of reviews.data; let i = index">
+            <div class="review-card" fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="50%" class="review-text line-breaker">
+                    <small>{{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</small>
+                    <p>{{review.comment}}</p>
+                </div>
+                <div fxFlex="50%">
+                    <div fxLayout="row">
+                        <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating1"></star-rating-comp>
+                        <label>{{ s.config.rating1ResourceKey }}</label>
+                    </div>
+                    <div fxLayout="row">
+                        <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating2"></star-rating-comp>
+                        <label>{{ s.config.rating2ResourceKey }}</label>
+                    </div>
+                    <div fxLayout="row">
+                        <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating3"></star-rating-comp>
+                        <label>{{ s.config.rating3ResourceKey }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="triangle-theme">
+            </div>
+        </div>
+
+        <!-- <mat-card *ngFor="let review of reviews.data">
+            <mat-card-header>
+                <mat-card-title>{{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p class="line-breaker">{{review.comment}}</p>
+                <div fxLayout="row">
+                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating1"></star-rating-comp>
+                    <label>{{ s.config.rating1ResourceKey }}</label>
+                </div>
+                <div fxLayout="row">
+                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating2"></star-rating-comp>
+                    <label>{{ s.config.rating2ResourceKey }}</label>
+                </div>
+                <div fxLayout="row">
+                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating3"></star-rating-comp>
+                    <label>{{ s.config.rating3ResourceKey }}</label>
+                </div>
+            </mat-card-content>
+        </mat-card> -->
+    </div>
+
+    <div *ngIf="user.isAuthenticated() && s.config">
+        <button mat-fab color="primary" class="send-review-btn" (click)="openNewReviewDialog()">
+            <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+        </button>
+    </div>
 </div>

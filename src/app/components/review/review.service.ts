@@ -11,7 +11,7 @@ export class ReviewService {
     private api: string;
     
         constructor(@Inject(APP_CONFIG) appConfig: AppConfig, private http: AuthHttpService) { 
-            this.api = appConfig.ApiEndpoint  + '/promotions';
+            this.api = appConfig.ApiEndpoint  + '/reviews';
         }
 
     getAll(page: number, count: number): Observable<PagingResponse<Review>> {

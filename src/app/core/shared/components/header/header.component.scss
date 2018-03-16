@@ -2,16 +2,18 @@
     display: block;
 }
 
+.fixed-height {
+    height: 10rem;
+    overflow: hidden;
+}
+
 .header-title {
-    padding-top: 2em;
+    padding-top: 1.3em;
     text-align: center;
 }
 
-.logo {
-    padding: 2rem 0;
-    text-align: center;
-
+.picture {
     img {
-        max-width: 150px;
+        width: 100%
     }
 }

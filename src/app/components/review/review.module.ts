@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { ReviewComponent } from './review.component';
+import { NewReviewDialogComponent } from './new-review/new-review.component';
 import { routes } from './review.routes';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { routes } from './review.routes';
         RouterModule.forChild(routes)
     ],
     declarations: [
-        ReviewComponent
+        ReviewComponent,
+        NewReviewDialogComponent
     ]
 })
 export class ReviewModule { }

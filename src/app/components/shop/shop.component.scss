@@ -1,13 +1,11 @@
 :host {
     display: block;
+    height: 100vh;
+    background-color: #fff;
 }
 
 agm-map {
     height: 300px;
-}
-
-app-concept-item {
-    margin-bottom: .5em;
 }
 
 .text-align-center {
