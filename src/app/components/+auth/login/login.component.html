@@ -1,23 +1,24 @@
-<app-top-toolbar></app-top-toolbar>
-<div class="login-panel">
-    <h2 class="login-heading">Ask for your loyalty card</h2>
+<app-header title="Log in"></app-header>
+<app-logo></app-logo>
 
-    <form *ngIf="!isOtpStep" [formGroup]="form" (submit)="onSubmit()">
+<div class="login-panel">
+    <form class="login-form" *ngIf="!isOtpStep" [formGroup]="form" (submit)="onSubmit()">
         <mat-error *ngIf="error">
             {{error}}
         </mat-error>
         <br />
-        <mat-form-field class="full-width">
+        <!-- <mat-form-field class="full-width">
             <input matInput placeholder="First name" formControlName="firstname" required>
         </mat-form-field>
         <mat-form-field class="full-width">
             <input matInput placeholder="Last name" formControlName="lastname" required>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field class="full-width">
-            <input matInput type="text" inputmode="numeric" placeholder="Mobile" formControlName="mobile" required>
+            <input matInput type="text" inputmode="numeric" placeholder="Your phone number" 
+                   formControlName="mobile">
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
-            Get my card!
+            Log in
         </button>
     </form>
 

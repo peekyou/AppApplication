@@ -1,7 +1,7 @@
-<div class="with-toolbar-padding-bottom" *ngIf="s.config && service.user">
+<div *ngIf="s.config">
     <app-header title="Rewards program"></app-header>
     <app-logo></app-logo>
-    <div class="points-container after-logo-padding-top-8">
+    <div class="points-container after-logo-padding-top-8" *ngIf="service.user">
         <div class="badge goal-badge">
             GOAL<br/>
             <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>

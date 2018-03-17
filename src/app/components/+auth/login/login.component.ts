@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
     otpCode = this.fb.control(null, Validators.required);
 
     form = this.fb.group({
-        firstname: this.firstname,
-        lastname: this.lastname,
+        // firstname: this.firstname,
+        // lastname: this.lastname,
         mobile: this.mobile,
     });
 

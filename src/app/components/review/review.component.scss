@@ -6,6 +6,10 @@
     background-color: #fff;
 }
 
+h3 {
+    padding: 0.7rem 1.4rem; 
+}
+
 .reviews-container {
     background-color: #fff;
 }
@@ -86,4 +90,4 @@ mat-card {
     z-index: 999;
     right: 1rem;
     bottom: $bottom-toolbar-height + 10px;
-  }
+}

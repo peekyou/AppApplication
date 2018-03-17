@@ -3,16 +3,23 @@
 
 <div class="with-toolbar-padding-bottom reviews-container">
     <h2 class="after-logo-padding-top-3">Reviews</h2>        
-    <div *ngIf="(!reviews || reviews.paging.itemsCount === 0) && !user.isAuthenticated()">
-        <h3>
-            Get your loyalty card and be first to post a review!
-        </h3>
-        <div class="text-align-center">
-            <a routerLink="/login">
-                <button mat-raised-button type="submit" color="primary">
-                    Get my card
-                </button>
-            </a>
+    <div *ngIf="(!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
+        <div *ngIf="user.isAuthenticated()">
+            <h3>
+                Be the first to post a review!
+            </h3>
+        </div>
+        <div *ngIf="!user.isAuthenticated()">
+            <h3>
+                Get your loyalty card and be first to post a review!
+            </h3>
+            <div>
+                <a routerLink="/login">
+                    <button mat-raised-button type="submit" color="primary">
+                        Get my card
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
     

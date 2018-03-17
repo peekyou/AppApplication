@@ -30,6 +30,7 @@ import { NoContentComponent } from './components/no-content';
 
 // Modals
 import { EmailDialogComponent } from './components/contact/email/email.component';
+import { SocialShareDialogComponent } from './core/shared/components/social-share/social-share.component';
 import { NewReviewDialogComponent } from './components/review/new-review/new-review.component';
 
 import '../styles/styles.scss';
@@ -67,6 +68,7 @@ const PROVIDERS = [
     ],
     entryComponents: [ 
         EmailDialogComponent,
+        SocialShareDialogComponent,
         NewReviewDialogComponent
     ],
     providers: [

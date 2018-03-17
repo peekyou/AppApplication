@@ -1,16 +1,27 @@
 :host {
     display:block;
-    height: 100%;
+}
+
+:host::after {
+    content: "";
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+    // background-image: url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
 }
 
 .login-panel {
-	background-color: white;
-    padding: 25px;
-    height: 100%;
-
-	.login-heading {
-		font-size: 1.3em;
-		color: rgba(53, 53, 53, 1);
-		margin-bottom: 22px;
+	padding: 0 3rem;
+    margin-top: 20rem;
+	
+	.login-form {
+		button {
+			width: 100%;
+		}
 	}
 }

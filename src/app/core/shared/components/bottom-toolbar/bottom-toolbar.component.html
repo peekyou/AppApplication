@@ -3,17 +3,20 @@
         <div fxLayout="row" fxLayoutAlign="center" class="container">
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="loyaltycard">
-                    <i class="fa fa-vcard-o fa-lg" aria-hidden="true"></i>
+                    <img src="assets/images/loyalty.png" width="32"/>                        
+                    <!-- <i class="fa fa-vcard-o fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="promotion">
-                    <i class="fa fa-percent fa-lg" aria-hidden="true"></i>
+                    <img src="assets/images/promotion.png" width="32"/>
+                    <!-- <i class="fa fa-percent fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a routerLink="shop">
-                    <i class="fa fa-align-justify fa-lg" aria-hidden="true"></i>
+                    <img src="assets/images/shop.png" width="32"/>
+                    <!-- <i class="fa fa-align-justify fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -26,8 +29,8 @@
                     <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
                 </a>
             </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="social">
+            <div fxFlex>
+                <a (click)="openSocialShareDialog()">
                     <i class="fa fa-share-alt fa-lg" aria-hidden="true"></i>
                 </a>
             </div>
