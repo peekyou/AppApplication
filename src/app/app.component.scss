@@ -67,7 +67,7 @@ a {
 }
 
 .mat-raised-button.mat-primary, .mat-fab.mat-primary, .social-share-dialog .mat-dialog-container {
-    background-color: gold !important;
+    background-color: gold;
 }
 
 @media screen and (orientation:landscape) {
@@ -94,7 +94,7 @@ a {
 }
 
 .with-toolbar-padding-bottom {
-    padding-bottom: $bottom-toolbar-height;
+    padding-bottom: $bottom-toolbar-height + 20px;
 }
 
 .after-logo-padding-top-1 {
@@ -118,7 +118,7 @@ a {
 }
 
 .theme-background {
-    background-color: gold !important;
+    background-color: gold;
 }
 
 .text-align-center {

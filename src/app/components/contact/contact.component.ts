@@ -19,7 +19,7 @@ export class ContactComponent {
 
     openEmailDialog() {
         let dialogRef = this.dialog.open(EmailDialogComponent, {
-            width: '250px'
+            //width: '250px'
         });
 
         dialogRef.afterClosed().subscribe(result => {

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -12,7 +12,7 @@ import { Review } from '../review';
     templateUrl: './social-share.component.html',
     styleUrls: ['./social-share.component.scss']
 })
-export class SocialShareDialogComponent {
+export class SocialShareDialogComponent implements OnInit {
     
     facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=';
     twitterUrl = 'https://twitter.com/intent/tweet/?url=';
@@ -20,10 +20,14 @@ export class SocialShareDialogComponent {
 
     constructor(
         public s: ConfigurationService,
-        public dialogRef: MatDialogRef<SocialShareDialogComponent>) { 
+        public dialogRef: MatDialogRef<SocialShareDialogComponent>) {
             this.s.config.url = 'http://godiva.app-wards.com';
             this.facebookUrl += this.s.config.url
             this.twitterUrl += this.s.config.url
             this.googlePlusUrl += this.s.config.url
         }
+
+    ngOnInit() {
+        (<any>this.dialogRef._containerInstance)._elementRef.nativeElement.style.backgroundColor = this.s.config.themeColor1;
+    }
 }

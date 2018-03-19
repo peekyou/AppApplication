@@ -1,22 +1,60 @@
-<app-top-toolbar title="Account"></app-top-toolbar>
+<app-header fixedHeight="true"></app-header>
+<app-logo></app-logo>
 
 <div class="panel with-toolbar-padding-bottom">
-    <h2 class="heading">My information</h2>
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.themeColor1">My account</h2>        
     <div class="text-align-center">
-        <b>{{ service?.user?.firstname }} {{ service?.user?.lastname }}</b><br />
-        Card no: <b>{{ service?.user?.cardNumber }}</b>
-
         <app-qr-code style="margin-top:1em"></app-qr-code>
 
-        <div *ngIf="!editing && service.user != null">            
-            <span *ngIf="service.user.mobile">{{ service?.user?.mobile }}<br /></span>
-            <span *ngIf="service.user.email">{{ service?.user?.email }}<br /></span>
-            <span *ngIf="service.user.birthdate">Born {{ service?.user?.birthdate | date: 'dd-MM-yyyy' }}<br /></span>
-            <span *ngIf="service.user.address"><br />
-                <span *ngIf="service.user.address.city">{{ service?.user?.address.city }}<br /></span>
-                <span *ngIf="service.user.address.addressLine1">{{ service?.user?.address.addressLine1 }}<br /></span>
-                <span *ngIf="service.user.address.addressLine2">{{ service?.user?.address.addressLine2 }}<br /></span>
-            </span>
+        
+        <div class="user-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
+        <div [style.color]="s.config.themeColor1">
+            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+            Card no <b>{{ service?.user?.cardNumber }}</b>
+        </div> 
+        <div *ngIf="service.user && service.user.mobileNumber" [style.color]="s.config.themeColor1">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <b>{{ service?.user?.mobileNumber }}</b>
+        </div>
+    </div>
+
+        <div *ngIf="!editing">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="label">First name</td>
+                        <td class="user-value">{{ service?.user?.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Last name</td>
+                        <td class="user-value">{{ service?.user?.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Phone no</td>
+                        <td class="user-value">{{ service?.user?.mobileNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Email</td>
+                        <td class="user-value">{{ service?.user?.email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Birth date</td>
+                        <td class="user-value">{{ service?.user?.birthdate | date: 'dd-MM-yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Address 1</td>
+                        <td class="user-value">{{ service?.user?.address?.addressLine1 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Address 2</td>
+                        <td class="user-value">{{ service?.user?.address?.addressLine2 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">City</td>
+                        <td class="user-value">{{ service?.user?.address?.city }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <form *ngIf="editing" [formGroup]="form" (submit)="saveUser()">
@@ -47,23 +85,25 @@
                 <input matInput placeholder="City" [formControl]="city">
             </mat-form-field>
             <br /><br />
-            <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
+            <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
+                    [style.backgroundColor]="s.config.themeColor1" style="width:50%">
                 Submit
             </button>
-            <button mat-raised-button type="button" (click)="cancelEdit()">
+            <button mat-raised-button type="button" (click)="cancelEdit()" style="width:50%">
                 Cancel
             </button>
         </form>
         
         <br /><br />
-        <button *ngIf="!editing" mat-raised-button color="basic" (click)="editing = !editing">
-            <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit
+        <button *ngIf="!editing" mat-raised-button color="primary" (click)="editing = !editing"
+                class="full-width" [style.backgroundColor]="s.config.themeColor1">
+            Edit my account
         </button>
 
         <br /><br />
         <hr />
-        <button mat-raised-button color="accent" (click)="logout()">
+        <br />
+        <button mat-raised-button (click)="logout()" class="full-width">
             <i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;Logout
         </button>
-    </div>
 </div>

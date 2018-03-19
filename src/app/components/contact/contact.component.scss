@@ -2,8 +2,24 @@
     display: block;
 }
 
-h2 {
-    margin-bottom: 0;
+.contact-panel {
+    background-color: #fff;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    
+    h3 {
+        text-align: left;
+        margin: 1rem auto;
+        width: 94%;
+    }
+
+    a, button {
+      margin: .5rem 1rem;
+    }
+
+    .fa {
+        line-height: 1rem;
+    }
 }
 
 .mdl-shadow--2dp {
@@ -59,6 +75,18 @@ h2 {
     box-sizing: border-box;
 }
 
-.mdl-data-table td {
-    text-align: center;
+.mdl-data-table {
+    td {
+        text-align: center;
+    }
+    td.day {
+        text-align: left;
+    }
+
+    .time-bg {
+        background-color: #333;
+        color: #dedede;
+        height: 30px;
+        line-height: 30px;
+    }
 }

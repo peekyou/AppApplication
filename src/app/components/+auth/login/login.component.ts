@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { ConfigurationService } from '../../../core/services/configuration.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../../core/services/user.service';
 
@@ -28,8 +29,12 @@ export class LoginComponent implements OnInit {
         otpCode: this.otpCode
     });
      
-    constructor(private fb: FormBuilder, private authService: AuthService,
-        private router: Router, private userService: UserService) { }
+    constructor(
+        private fb: FormBuilder, 
+        private authService: AuthService,
+        private router: Router, 
+        private userService: UserService,
+        public s: ConfigurationService) { }
 
     ngOnInit() {
         //this.authService.logout();

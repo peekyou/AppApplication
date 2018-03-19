@@ -18,4 +18,11 @@ export class MerchantConfiguration {
     locationPage: Page;
     contactPage: Page;
     customPages: Page[];
+    themeColor1?: string;
+    themeColor2?: string;
+    facebook?: string;
+    twitter?: string;
+    linkedIn?: string;
+    instagram?: string;
+    whatsApp?: string;
 }

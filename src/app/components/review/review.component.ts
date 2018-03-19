@@ -46,7 +46,9 @@ export class ReviewComponent {
     }
 
     openNewReviewDialog() {
-        let dialogRef = this.dialog.open(NewReviewDialogComponent);
+        let dialogRef = this.dialog.open(NewReviewDialogComponent, {
+            autoFocus: false
+        });
 
         dialogRef.afterClosed().subscribe(result => {
             if (result === true) {

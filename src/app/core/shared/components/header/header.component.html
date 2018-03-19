@@ -1,5 +1,5 @@
 <div class="header" [ngClass]="{'fixed-height': fixedHeight}">
-    <h2 *ngIf="title" class="header-title">{{ title }}</h2>
+    <h2 *ngIf="title" class="header-title" [style.color]="s.config.themeColor1">{{ title }}</h2>
     <div *ngIf="!title" class="picture">
         <img src="http://static.uberoom.com/images/user/products/add_ons/food/truffles_L.jpg" />
     </div>

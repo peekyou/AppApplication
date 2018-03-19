@@ -7,7 +7,8 @@ import { UserService } from '../../../core/services/user.service';
 
 @Component({
     selector: 'app-email-dialog',
-    templateUrl: './email.component.html'
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.scss'],
 })
 export class EmailDialogComponent {
     loading = false;
@@ -24,7 +25,12 @@ export class EmailDialogComponent {
         private userService: UserService,
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<EmailDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any) {
+
+            if (userService.user.email) {
+                this.email.patchValue(userService.user.email);
+            }
+        }
 
     submitEmail(): void {
         this.loading = true;

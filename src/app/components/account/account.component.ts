@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
+import { ConfigurationService } from '../../core/services/configuration.service';
 import { UserService } from '../../core/services/user.service';
 import { User } from '../../core/models/user';
 
@@ -35,9 +36,13 @@ export class AccountComponent {
         receiveSms: this.receiveSms
     });
     
-    constructor(public service: UserService, private router: Router, private fb: FormBuilder) {
-        service
-            .getUser()
+    constructor(
+        public service: UserService, 
+        public s: ConfigurationService,
+        private router: Router, 
+        private fb: FormBuilder) {
+
+        service.getUser()
             .subscribe(
                 user => this.init(user),
                 err => { console.log(err); }

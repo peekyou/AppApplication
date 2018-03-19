@@ -1,7 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 
-import { APP_CONFIG, AppConfig } from '../../../../app.config';
-// import { UserService } from '../user/user.service';
+import { ConfigurationService } from '../../../services/configuration.service';
 
 @Component({
     selector: 'app-header',
@@ -12,7 +11,6 @@ export class HeaderComponent {
     @Input() title: string;
     @Input() fixedHeight: boolean = false;
 
-    constructor(
-        @Inject(APP_CONFIG) config: AppConfig) { 
+    constructor(public s: ConfigurationService) { 
     }
 }

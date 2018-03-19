@@ -14,7 +14,8 @@ import { BottomToolbarComponent } from './components/bottom-toolbar/bottom-toolb
 import { HeaderComponent } from './components/header/header.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SocialShareDialogComponent } from './components/social-share/social-share.component';
-import { PipesModule } from '../../pipes';
+import { PipesModule } from '../../pipes'
+import { DirectivesModule } from '../../directives';
 
 const IMPORTS = [
     CommonModule,
@@ -26,7 +27,8 @@ const IMPORTS = [
     QRCodeModule,
     SwiperModule,
     AppMaterialModules,
-    PipesModule
+    PipesModule,
+    DirectivesModule
 ];
 
 const DECLARATIONS = [

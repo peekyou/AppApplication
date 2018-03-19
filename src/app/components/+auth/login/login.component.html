@@ -17,16 +17,18 @@
             <input matInput type="text" inputmode="numeric" placeholder="Your phone number" 
                    formControlName="mobile">
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid">
+        <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
+                [style.backgroundColor]="s.config.themeColor1">
             Log in
         </button>
     </form>
 
-    <form *ngIf="isOtpStep" [formGroup]="otpForm" (submit)="onOtpSubmit()">
+    <form class="login-form" *ngIf="isOtpStep" [formGroup]="otpForm" (submit)="onOtpSubmit()">
         <mat-form-field class="full-width">
-            <input matInput placeholder="Code" formControlName="otpCode" required>
+            <input matInput placeholder="Code" formControlName="otpCode">
         </mat-form-field>
-        <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid">
+        <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid"
+                [style.backgroundColor]="s.config.themeColor1">
             Submit
         </button>
     </form>

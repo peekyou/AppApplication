@@ -11,7 +11,6 @@ import { routes } from './loyalty-card.routes';
         SharedModule,
         RouterModule.forChild(routes),
         NgCircleProgressModule.forRoot({
-            "backgroundColor": "#FDB900",
             "backgroundOpacity": 1,
             "backgroundStroke": "#000000",
             "backgroundPadding": 14,

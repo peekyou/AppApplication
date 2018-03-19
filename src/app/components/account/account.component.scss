@@ -1,1 +1,30 @@
-/*styles for home content only*/
+:host {
+    display: block;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.text-align-center div {
+    margin-bottom: .5rem;
+}
+
+.user-name {
+    font-size: 1.15rem;
+}
+
+table {
+    width: 100%;
+    
+    td {
+        padding: .4rem 0;
+    }
+    
+    .label {
+        color: gray;
+        text-align: left;
+    }
+
+    .user-value {
+        text-align: right;
+    }
+}
