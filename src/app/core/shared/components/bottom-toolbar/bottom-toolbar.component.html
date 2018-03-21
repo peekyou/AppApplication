@@ -1,44 +1,38 @@
 <div class="bottom-toolbar">
     <div>
         <div fxLayout="row" fxLayoutAlign="center" class="container">
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
                 <a routerLink="loyaltycard">
-                    <img src="assets/images/loyalty.png" width="32"/>                        
+                    <img *ngIf="router.url !== '/loyaltycard'" src="assets/images/loyalty.png" width="32"/>
+                    <img *ngIf="router.url === '/loyaltycard'" src="assets/images/loyalty-active.png" width="32"/>
                     <!-- <i class="fa fa-vcard-o fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
                 <a routerLink="promotion">
-                    <img src="assets/images/promotion.png" width="32"/>
+                    <img *ngIf="router.url !== '/promotion'" src="assets/images/promotion.png" width="32"/>
+                    <img *ngIf="router.url === '/promotion'" src="assets/images/promotion-active.png" width="32"/>                    
                     <!-- <i class="fa fa-percent fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
                 <a routerLink="shop">
-                    <img src="assets/images/shop.png" width="32"/>
+                    <img *ngIf="router.url !== '/shop'" src="assets/images/shop.png" width="32"/>
+                    <img *ngIf="router.url === '/shop'" src="assets/images/shop-active.png" width="32"/>
                     <!-- <i class="fa fa-align-justify fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
                 <a routerLink="contact">
-                    <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                    <img *ngIf="router.url !== '/contact'" src="assets/images/contact.png" width="32"/>
+                    <img *ngIf="router.url === '/contact'" src="assets/images/contact-active.png" width="32"/>                    
                 </a>
             </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="review">
-                    <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
-                </a>
+            <div fxFlex (click)="showSubMenu = !showSubMenu">
+                <img *ngIf="!showSubMenu" src="assets/images/menu.png" width="32"/>
+                <img *ngIf="showSubMenu" src="assets/images/menu-active.png" width="32"/> 
             </div>
-            <div fxFlex>
-                <a (click)="openSocialShareDialog()">
-                    <i class="fa fa-share-alt fa-lg" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a routerLink="account">
-                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
-                </a>
-            </div>
+            <app-submenu *ngIf="showSubMenu" (closeEvent)="showSubMenu = false"></app-submenu>
         </div>
     </div>
 </div>

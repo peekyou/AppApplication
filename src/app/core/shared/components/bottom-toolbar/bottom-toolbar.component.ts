@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ConfigurationService } from '../../../services/configuration.service';
-import { SocialShareDialogComponent } from '../social-share/social-share.component';
 
 @Component({
     selector: 'app-bottom-toolbar',
@@ -10,17 +10,10 @@ import { SocialShareDialogComponent } from '../social-share/social-share.compone
     styleUrls: ['./bottom-toolbar.component.scss'],
 })
 export class BottomToolbarComponent implements OnInit {
+    showSubMenu: boolean = false;
 
-    constructor(private dialog: MatDialog, public s: ConfigurationService) {}
+    constructor(private dialog: MatDialog, public s: ConfigurationService, public router: Router) { }
 
     public ngOnInit() {
-    }
-
-    openSocialShareDialog() {
-        this.dialog.open(SocialShareDialogComponent, {
-            width: "250px",
-            autoFocus: false,
-            panelClass: 'social-share-dialog'
-        });
     }
 }

@@ -34,12 +34,14 @@ export class ReviewComponent {
     }
 
     getReviews() {
+        this. loading = true;
         this.loader = this.service
             .getAll(null, null)
             .subscribe(
                 reviews => { 
                     this.reviews = reviews;
                     this.calculateAverage();
+                    this.loading = false;
                 },
                 err => { console.log(err); }
             );

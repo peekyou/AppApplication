@@ -6,9 +6,27 @@
             GOAL<br/>
             <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>
         </div>
-        <circle-progress subtitle="POINTS OWNED" [title]="service.user.currentPoints" [backgroundColor]="s.config.themeColor1"
+        <app-circle-progress subtitle="POINTS OWNED" [title]="service.user.currentPoints" 
+            backgroundColor="#FDB900"
+            backgroundOpacity=1
+            backgroundStroke="#000000"
+            backgroundPadding="14"
+            radius=87
+            space=-9
+            maxPercent=100
+            unitsColor="#ffffff"
+            outerStrokeWidth=9
+            outerStrokeColor="#ffffff"
+            innerStrokeColor="#ffdf72"
+            innerStrokeWidth=9
+            titleColor="#ffffff"
+            titleFontSize="45"
+            subtitleColor="#ffffff"
+            subtitleFontSize=17
+            animationDuration=500
+            [showUnits]=false
             [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
-        </circle-progress>
+        </app-circle-progress>
         <div class="badge to-goal-badge">
             POINTS TO GOAL<br/><span class="sub-text">{{s.config.discountPointsThreshold - service?.user?.currentPoints }}
             <span class="sup"> PTS</span></span>           

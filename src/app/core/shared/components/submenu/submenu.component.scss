@@ -1,0 +1,15 @@
+:host {
+    display: block;
+}
+
+.submenu {
+    position: absolute;
+    background-color: gold;
+    width: 60px;
+    bottom: 0;
+    right: 0;
+
+    .fa {
+        color: #fff;
+    }
+}

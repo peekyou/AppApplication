@@ -7,7 +7,7 @@ export class User {
     lastname?: string;
     email?: string;
     birthdate?: Date;
-    mobile: string;
+    mobileNumber: string;
     firstEntry?: Date;
     lastEntry?: Date;
     comment?: string;

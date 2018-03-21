@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit {
         private authService: AuthService,
         private router: Router, 
         private userService: UserService,
-        public s: ConfigurationService) { }
+        public s: ConfigurationService) { 
+            if (authService.isAuthenticated()) {
+                router.navigate(['/']);
+            }
+        }
 
     ngOnInit() {
         //this.authService.logout();

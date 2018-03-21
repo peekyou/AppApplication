@@ -12,6 +12,7 @@ import { QrCodeComponent } from './components/qr-code/qr-code.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { BottomToolbarComponent } from './components/bottom-toolbar/bottom-toolbar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SubMenuComponent } from './components/submenu/submenu.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SocialShareDialogComponent } from './components/social-share/social-share.component';
 import { PipesModule } from '../../pipes'
@@ -37,6 +38,7 @@ const DECLARATIONS = [
     TopToolbarComponent,
     BottomToolbarComponent,
     HeaderComponent,
+    SubMenuComponent,
     LogoComponent,
     SocialShareDialogComponent
 ];

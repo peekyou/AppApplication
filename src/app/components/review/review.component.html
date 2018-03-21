@@ -3,7 +3,7 @@
 
 <div class="with-toolbar-padding-bottom reviews-container">
     <h2 class="after-logo-padding-top-3" [style.color]="s.config.themeColor1">Reviews</h2>        
-    <div *ngIf="(!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
+    <div *ngIf="!loading && (!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
         <div *ngIf="user.isAuthenticated()">
             <h3>
                 Be the first to post a review!

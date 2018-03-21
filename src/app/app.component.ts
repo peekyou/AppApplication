@@ -26,22 +26,23 @@ export class AppComponent implements OnInit {
         public s: ConfigurationService) { }
 
     public ngOnInit() {
-        this.route.paramMap
-            .switchMap((params: ParamMap) => {
-                var param = params.get('id');
-                if (param) {
-                    var codeLength = parseInt(param.charAt(0));
-                    var customerId = param.slice(1, param.length - codeLength);
-                    var code = param.slice(-codeLength);
-                    return this.authService.login(null, null, null, code, customerId);
-                }
-                return Observable.of(null);
-            })
-            .subscribe(success => {
-                this.userService.launchTimer();
-                if (success) {
-                    this.router.navigate(['/']);
-                }
-            });
+        console.log('test5');
+        // this.route.paramMap
+        //     .switchMap((params: ParamMap) => {
+        //         var param = params.get('id');
+        //         if (param) {
+        //             var codeLength = parseInt(param.charAt(0));
+        //             var customerId = param.slice(1, param.length - codeLength);
+        //             var code = param.slice(-codeLength);
+        //             return this.authService.login(null, null, null, code, customerId);
+        //         }
+        //         return Observable.of(null);
+        //     })
+        //     .subscribe(success => {
+        //         this.userService.launchTimer();
+        //         if (success) {
+        //             this.router.navigate(['/']);
+        //         }
+        //     });
     }
 }

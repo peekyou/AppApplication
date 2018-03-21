@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { NoContentComponent } from './components/no-content';
 
 export const ROUTES: Routes = [
-    { path: '', redirectTo: '/contact', pathMatch: 'full' },
+    { path: '', redirectTo: '/loyaltycard', pathMatch: 'full' },
     { path: 'reg/:id', component: AppComponent },
     { path: 'loyaltycard', loadChildren: './components/loyalty-card#LoyaltyCardModule' },
     { path: 'shop', loadChildren: './components/shop#ShopModule' },

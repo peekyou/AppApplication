@@ -1,7 +1,7 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/observable/timer';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { AuthHttpService } from './auth-http.service';
 import { AuthService } from '../../components/+auth/auth.service';
@@ -12,6 +12,7 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 export class UserService {
     private api: string;
     public user: User;
+    private timerSubscription: Subscription;     
     private interval: number = 10000; // 10000 = 10 secs
 
     constructor(
@@ -34,8 +35,8 @@ export class UserService {
 
     launchTimer() {
         // Start after 0 second every interval
-        let timer = Observable.timer(0, this.interval);
-        timer.subscribe(t => {
+        let timer = TimerObservable.create(0, this.interval);
+        this.timerSubscription = timer.subscribe(t => {
             this.reloadUser();
         });
     }

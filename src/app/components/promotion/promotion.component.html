@@ -5,12 +5,10 @@
 
 <div class="with-toolbar-padding-bottom">
     <h2 class="after-logo-padding-top-3" [style.color]="s.config.themeColor1">Special offers</h2>
-    <div *ngIf="!promotions || promotions.paging.totalCount === 0">
-        <div>
-            <h3>
-                No promotion as of now, stay tuned!
-            </h3>
-        </div>
+    <div *ngIf="!promotions || promotions.paging.totalCount === 0" class="text-align-center">
+        <h3>
+            No promotion as of now, stay tuned!
+        </h3>
     </div>
 
     <div *ngIf="promotions && promotions.data">

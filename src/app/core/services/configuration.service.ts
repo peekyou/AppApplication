@@ -1,6 +1,7 @@
-﻿import { Injectable, EventEmitter, Inject } from '@angular/core';
+﻿import { Injectable, EventEmitter, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { HttpService } from './http.service';
 import { LocalForageService } from './local-forage.service';
@@ -17,6 +18,7 @@ export class ConfigurationService {
 
     public weekDays: WeekDay[];
     public loader: Subscription;
+    private timerSubscription: Subscription;        
     public configChanged: EventEmitter<MerchantConfiguration> = new EventEmitter();
 
     constructor(
@@ -34,10 +36,9 @@ export class ConfigurationService {
             { id: '6', name: 'Friday' },
             { id: '7', name: 'Saturday' }
         ];
-        
-        // Start after 0 second every interval
-        let timer = Observable.timer(0, this.interval);
-        timer.subscribe(t => {
+                
+        let timer = TimerObservable.create(0, this.interval);
+        this.timerSubscription = timer.subscribe(t => {
             this.loadConfiguration();
         });
     }
