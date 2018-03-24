@@ -21,10 +21,10 @@ export class SocialShareDialogComponent implements OnInit {
     constructor(
         public s: ConfigurationService,
         public dialogRef: MatDialogRef<SocialShareDialogComponent>) {
-            this.s.config.url = 'http://godiva.app-wards.com';
-            this.facebookUrl += this.s.config.url
-            this.twitterUrl += this.s.config.url
-            this.googlePlusUrl += this.s.config.url
+            this.s.config.appWardsApplicationUrl = 'http://godiva.app-wards.com';
+            this.facebookUrl += this.s.config.appWardsApplicationUrl
+            this.twitterUrl += this.s.config.appWardsApplicationUrl
+            this.googlePlusUrl += this.s.config.appWardsApplicationUrl
         }
 
     ngOnInit() {

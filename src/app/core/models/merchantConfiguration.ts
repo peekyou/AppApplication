@@ -12,7 +12,8 @@ export class MerchantConfiguration {
     callText: string;
     phoneNumber: string;
     email: string;
-    url: string;
+    appWardsApplicationUrl: string;
+    appWardsBackOfficeUrl: string;
     pages: Page[];
     homePage: Page;
     locationPage: Page;
