@@ -5,7 +5,7 @@ import { Loading } from '../../../interfaces/loading';
 @Component({
     selector: 'app-spinner',
     template: `<div class="progress-container">
-                    <mat-progress-bar mode="indeterminate" *ngIf="this.loader && !this.loader.closed">
+                    <mat-progress-bar mode="indeterminate" *ngIf="loader && !loader.closed">
                     </mat-progress-bar>
                </div>`,
     styleUrls: ['./spinner.component.scss'],

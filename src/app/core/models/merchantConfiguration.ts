@@ -19,11 +19,19 @@ export class MerchantConfiguration {
     locationPage: Page;
     contactPage: Page;
     customPages: Page[];
-    themeColor1?: string;
-    themeColor2?: string;
     facebook?: string;
     twitter?: string;
     linkedIn?: string;
     instagram?: string;
     whatsApp?: string;
+    design?: MerchantDesign;
+}
+
+export class MerchantDesign {
+    rewardsWheelColor?: string;
+    titlesColor?: string;
+    buttonsColor?: string;
+    menuBackgroundColor?: string;
+    fontFamily?: string;
+    logoSrc?: string;
 }

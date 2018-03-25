@@ -4,26 +4,26 @@
 <app-spinner [loader]="loader"></app-spinner>
 
 <div class="with-toolbar-padding-bottom">
-    <h2 class="after-logo-padding-top-3" [style.color]="s.config.themeColor1">Special offers</h2>
-    <div *ngIf="!promotions || promotions.paging.totalCount === 0" class="text-align-center">
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design.titlesColor">Special offers</h2>
+    <div *ngIf="loader.closed && (!promotions || promotions.length === 0)" class="text-align-center">
         <h3>
             No promotion as of now, stay tuned!
         </h3>
     </div>
 
-    <div *ngIf="promotions && promotions.data">
-        <div *ngFor="let promotion of promotions.data; let i = index">
+    <div *ngIf="promotions && promotions.length > 0">
+        <div *ngFor="let promotion of promotions; let i = index">
             <div class="triangle-theme" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor()">
             </div>
             <div class="promotion-card" [style.backgroundColor]="getColor(i, true)">
                 <div class="promotion-title">
-                    {{promotion.name}}
+                    {{ promotion.name }}
                 </div>
                 <div class="promotion-date" [style.color]="getColor(i)">
-                    Until 15/03/18
+                    Until {{ promotion.toDate | date: 'dd MMMM yyyy' }}
                 </div>
                 <div class="promotion-details">
-                    {{promotion.details}}
+                    {{ promotion.details }}
                 </div>
             </div>
             <div class="triangle-theme-reverse" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor(true)">

@@ -4,11 +4,11 @@
 <div *ngIf="s.config" class="with-toolbar-padding-bottom margin-top panel after-logo-padding-top-1">
     <div class="text-align-center">
         <button mat-raised-button [ngClass]="{'mat-primary': !isLocation, 'inactive': isLocation}" 
-           (click)="isLocation = false" [style.backgroundColor]="isLocation ? null : s.config.themeColor1">
+           (click)="isLocation = false" [style.backgroundColor]="isLocation ? null : s.config.design.buttonsColor">
             The shop
         </button>
         <button mat-raised-button [ngClass]="{'mat-primary': isLocation, 'inactive': !isLocation}"
-           (click)="isLocation = true" [style.backgroundColor]="isLocation ? s.config.themeColor1 : null">
+           (click)="isLocation = true" [style.backgroundColor]="isLocation ? s.config.design.buttonsColor : null">
             Our location
         </button>
     </div>
@@ -29,7 +29,7 @@
                 <br />
                 <br />
                 <a routerLink="/contact" mat-raised-button color="primary" 
-                   [style.backgroundColor]="isLocation ? s.config.themeColor1 : null">Contact
+                   [style.backgroundColor]="isLocation ? s.config.design.buttonsColor : null">Contact
                 </a>
     
                 <br />

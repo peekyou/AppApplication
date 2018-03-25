@@ -2,7 +2,7 @@
 <app-logo></app-logo>
 
 <div class="with-toolbar-padding-bottom reviews-container">
-    <h2 class="after-logo-padding-top-3" [style.color]="s.config.themeColor1">Reviews</h2>        
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design.titlesColor">Reviews</h2>        
     <div *ngIf="!loading && (!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
         <div *ngIf="user.isAuthenticated()">
             <h3>
@@ -16,7 +16,7 @@
             <div>
                 <a routerLink="/login">
                     <button mat-raised-button type="submit" color="primary"
-                            [style.backgroundColor]="s.config.themeColor1">
+                            [style.backgroundColor]="s.config.design.buttonsColor">
                         Get my card
                     </button>
                 </a>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="triangle-theme" [style.borderColor]="s.config.themeColor1">
+            <div class="triangle-theme" [style.borderColor]="s.config.design.titlesColor">
             </div>
         </div>
 
@@ -96,7 +96,7 @@
 
     <div *ngIf="user.isAuthenticated() && s.config">
         <button mat-fab color="primary" class="send-review-btn" (click)="openNewReviewDialog()"
-                [style.backgroundColor]="s.config.themeColor1">
+                [style.backgroundColor]="s.config.design.buttonsColor">
             <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
         </button>
     </div>

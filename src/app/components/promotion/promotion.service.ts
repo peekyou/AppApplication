@@ -14,8 +14,8 @@ export class PromotionService {
         this.api = appConfig.ApiEndpoint  + '/promotions';
     }
 
-    getAll(): Observable<PagingResponse<Promotion>> {
-        return this.http.get(this.api);
+    getAll(): Observable<Promotion[]> {
+        return this.http.get(this.api + '/current');
     }
 }
 

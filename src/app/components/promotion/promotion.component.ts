@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { PromotionService } from './promotion.service';
 import { Promotion } from './promotion';
-import { PagingResponse } from '../../core/models/paging';
 
 @Component({
     selector: 'promotion',
@@ -14,7 +13,7 @@ import { PagingResponse } from '../../core/models/paging';
 })
 export class PromotionComponent {
     loader: Subscription;
-    promotions: PagingResponse<Promotion>;
+    promotions: Promotion[];
     
     constructor(public s: ConfigurationService, service: PromotionService) {
         this.loader = service
@@ -27,13 +26,13 @@ export class PromotionComponent {
 
     getColor(index:number, even: boolean = false): string {
         var r = even === true ? 1 : 0;
-        return index % 2 == r ? this.s.config.themeColor1 : '#fff';
+        return index % 2 == r ? this.s.config.design.titlesColor : '#fff';
     }
 
     getBorderColor(reverse: boolean = false): string {
         return reverse ? 
-        this.s.config.themeColor1 + ' white transparent transparent'
+        this.s.config.design.titlesColor + ' white transparent transparent'
         :
-        'white ' + this.s.config.themeColor1 + ' transparent transparent'
+        'white ' + this.s.config.design.titlesColor + ' transparent transparent'
     }
 }

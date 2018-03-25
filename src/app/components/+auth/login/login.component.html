@@ -18,7 +18,7 @@
                    formControlName="mobile">
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
-                [style.backgroundColor]="s.config.themeColor1">
+                [style.backgroundColor]="s.config.design.buttonsColor">
             Log in
         </button>
     </form>
@@ -28,7 +28,7 @@
             <input matInput placeholder="Code" formControlName="otpCode">
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid"
-                [style.backgroundColor]="s.config.themeColor1">
+                [style.backgroundColor]="s.config.design.buttonsColor">
             Submit
         </button>
     </form>

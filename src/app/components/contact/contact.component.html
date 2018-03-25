@@ -3,11 +3,11 @@
 
 <div class="with-toolbar-padding-bottom text-align-center contact-panel after-logo-padding-top-3">
     <a mat-fab color="primary" href="tel:{{s?.config?.phoneNumber}}"
-        [style.backgroundColor]="s.config.themeColor1">
+        [style.backgroundColor]="s.config.design.buttonsColor">
         <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
     </a>
     <button *ngIf="s.config && s.config.email" mat-fab color="primary"
-            [style.backgroundColor]="s.config.themeColor1" (click)="openEmailDialog()">
+            [style.backgroundColor]="s.config.design.buttonsColor" (click)="openEmailDialog()">
         <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
     </button>
  

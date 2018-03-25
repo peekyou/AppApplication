@@ -28,6 +28,6 @@ export class SocialShareDialogComponent implements OnInit {
         }
 
     ngOnInit() {
-        (<any>this.dialogRef._containerInstance)._elementRef.nativeElement.style.backgroundColor = this.s.config.themeColor1;
+        (<any>this.dialogRef._containerInstance)._elementRef.nativeElement.style.backgroundColor = this.s.config.design.buttonsColor;
     }
 }
