@@ -3,5 +3,5 @@ export class Picture {
     name: string;
     size: number;
     createdDate: Date;
-    data: any;
+    src: any;
 }

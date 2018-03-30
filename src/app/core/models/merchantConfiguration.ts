@@ -1,10 +1,12 @@
-﻿import { Page } from './page'; 
+﻿import { Page } from './page';
+import { Picture } from './picture'; 
 
 export class MerchantConfiguration {
     timestamp?: number;
-    rating1ResourceKey: string;
-    rating2ResourceKey: string;
-    rating3ResourceKey: string;
+    currency?: string;
+    rating1ResourceKey?: string;
+    rating2ResourceKey?: string;
+    rating3ResourceKey?: string;
     discountAmount: number;
     discountCurrency: string;
     discountPointsThreshold: number;
@@ -29,9 +31,12 @@ export class MerchantConfiguration {
 
 export class MerchantDesign {
     rewardsWheelColor?: string;
+    rewardsWheelSecondaryColor?: string
     titlesColor?: string;
     buttonsColor?: string;
     menuBackgroundColor?: string;
     fontFamily?: string;
-    logoSrc?: string;
+    logo?: Picture;
+    backgroundImage?: Picture;
+    headerImage?: Picture;
 }

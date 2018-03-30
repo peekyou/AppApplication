@@ -63,7 +63,7 @@ const PROVIDERS = [
         ReviewModule,
         SocialMediaModule,
         AccountModule,
-        AgmCoreModule.forRoot({ apiKey: 'AIzaSyBQkgT4ArGsST27EW2BESTmZfb9ujngarA' }),
+        AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2tHPV7C3ehD5O6CFPryF94GJfwj9ARoc' }),
         RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
     ],
     entryComponents: [ 

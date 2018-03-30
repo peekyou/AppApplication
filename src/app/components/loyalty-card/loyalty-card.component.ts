@@ -14,7 +14,5 @@ import { User } from '../../core/models/user';
     // host: { '[@slideInAnimation]': '' }
 })
 export class LoyaltyCardComponent {
-    
-    constructor(public service: UserService, public s: ConfigurationService) {
-    }
+    constructor(public service: UserService, public s: ConfigurationService) { }
 }
