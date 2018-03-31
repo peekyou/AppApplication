@@ -34,7 +34,7 @@ body {
 }
 
 h2 {
-    color: gold;
+    color: $theme-color;
     text-align: center;
     font-weight: bold;
     font-size: 1.3rem;
@@ -67,7 +67,7 @@ a {
 }
 
 .mat-raised-button.mat-primary, .mat-fab.mat-primary, .social-share-dialog .mat-dialog-container {
-    background-color: gold;
+    background-color: $theme-color;
 }
 
 @media screen and (orientation:landscape) {
@@ -114,11 +114,11 @@ a {
 }
 
 .theme-color {
-    color: gold;
+    color: $theme-color;
 }
 
 .theme-background {
-    background-color: gold;
+    background-color: $theme-color;
 }
 
 .text-align-center {

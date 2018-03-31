@@ -1,10 +1,13 @@
+
+@import '../../../../../styles/variables';
+
 :host {
     display: block;
 }
 
 .submenu {
     position: absolute;
-    background-color: gold;
+    background-color: $theme-color;
     width: 60px;
     bottom: 0;
     right: 0;

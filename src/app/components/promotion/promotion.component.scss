@@ -1,3 +1,5 @@
+@import '../../../styles/variables';
+
 :host {
     display: block;
     height: 100vh;
@@ -28,13 +30,13 @@
 .triangle-theme {
     border-style: solid;
     border-width: 40px 100vw 0 0;
-    border-color: white gold transparent transparent;
+    border-color: white $theme-color transparent transparent;
     transform: scale(1.0001);    
 }
 
 .triangle-theme-reverse {
     border-style: solid;
     border-width: 40px 100vw 0 0;
-    border-color: gold white transparent transparent;
+    border-color: $theme-color white transparent transparent;
     transform: scale(1.0001);    
 }

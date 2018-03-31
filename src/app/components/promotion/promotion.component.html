@@ -13,20 +13,20 @@
 
     <div *ngIf="promotions && promotions.length > 0">
         <div *ngFor="let promotion of promotions; let i = index">
-            <div class="triangle-theme" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor()">
+            <div class="triangle-theme" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor() | safeStyle">
             </div>
-            <div class="promotion-card" [style.backgroundColor]="getColor(i, true)">
+            <div class="promotion-card" [style.backgroundColor]="getColor(i, true) | safeStyle">
                 <div class="promotion-title">
                     {{ promotion.name }}
                 </div>
-                <div class="promotion-date" [style.color]="getColor(i)">
+                <div class="promotion-date" [style.color]="getTitlesColor(i) | safeStyle">
                     Until {{ promotion.toDate | date: 'dd MMMM yyyy' }}
                 </div>
                 <div class="promotion-details">
                     {{ promotion.details }}
                 </div>
             </div>
-            <div class="triangle-theme-reverse" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor(true)">
+            <div class="triangle-theme-reverse" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor(true) | safeStyle">
             </div>
         </div>
     </div>

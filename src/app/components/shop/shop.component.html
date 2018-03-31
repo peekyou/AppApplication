@@ -17,13 +17,18 @@
     </div>
     <app-shop-page [page]="s.config.locationPage" *ngIf="isLocation">
             <div class="text-align-center">
-                <p *ngIf="s.config.locationPage && s.config.locationPage.address" class="line-breaker">
-                    <span *ngIf="s.config.locationPage.address.addressLine1">{{ s.config.locationPage.address.addressLine1 }}</span>
-                    <span *ngIf="s.config.locationPage.address.addressLine2">{{ s.config.locationPage.address.addressLine2 }}</span>
-                    <span *ngIf="s.config.locationPage.address.city">{{ s.config.locationPage.address.city }}</span>
-                    <span *ngIf="s.config.locationPage.address.countryName">{{ s.config.locationPage.address.countryName }}</span>
+                <p *ngIf="s.config.locationPage && s.config.locationPage.address">
+                    <span *ngIf="s.config.locationPage.address.country">{{ s.config.locationPage.address.country.name }}<br /></span>
+                    <span *ngIf="s.config.locationPage.address.state && s.config.locationPage.address.state != s.config.locationPage.address.city">
+                        {{ s.config.locationPage.address.state }}<br />
+                    </span>
+                    <span *ngIf="s.config.locationPage.address.city">{{ s.config.locationPage.address.city }}<br /></span>
+                    <span *ngIf="s.config.locationPage.address.zipCode">{{ s.config.locationPage.address.zipCode }}<br /></span>
+                    <span *ngIf="s.config.locationPage.address.area">{{ s.config.locationPage.address.area }}<br /></span>
+                    <span *ngIf="s.config.locationPage.address.addressLine1">{{ s.config.locationPage.address.addressLine1 }}<br /></span>
+                    <span *ngIf="s.config.locationPage.address.addressLine2">{{ s.config.locationPage.address.addressLine2 }}<br /></span>
                 </p>
-                <a href="tel:{{s?.config?.phoneNumber}}">
+                <a *ngIf="s.config.phoneNumber" href="tel:{{s.config.phoneNumber}}">
                     <i class="fa fa-phone fa-lg" aria-hidden="true"></i> {{s?.config?.phoneNumber}}
                 </a>
                 <br />
@@ -34,9 +39,12 @@
     
                 <br />
                 <br />
-                <agm-map [latitude]="lat" [longitude]="lng">
-                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                </agm-map>
+                <div *ngIf="s.config.locationPage && s.config.locationPage.address">
+                    <agm-map [latitude]="s.config.locationPage.address.latitude" [zoom]="17"
+                        [longitude]="s.config.locationPage.address.longitude">
+                        <agm-marker [latitude]="s.config.locationPage.address.latitude" [longitude]="s.config.locationPage.address.longitude"></agm-marker>
+                    </agm-map>
+                </div>
             </div>
         </app-shop-page>
 </div>

@@ -63,23 +63,7 @@ mat-card {
 }
 
 .triangle-theme {
-    // border-style: solid;
-    // border-width: 40px 100vw 0 0;
-    // border-color: white gold transparent transparent;
-    // transform: scale(1.0001);    
-}
-
-.triangle-theme-reverse {
-    border-style: solid;
-    border-width: 40px 100vw 0 0;
-    border-color: gold white transparent transparent;
-    transform: scale(1.0001);    
-}
-
-.triangle-theme:after{
-    content: "";
-    position: absolute;
-    border-top: 2px solid gold;
+    border-top: 2px solid $theme-color;
     width: 100%;
     transform: rotate(-3.5deg);
     transform-origin: 0% 0%;

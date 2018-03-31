@@ -24,15 +24,19 @@ export class PromotionComponent {
             );
     }
 
+    getTitlesColor(index:number): string {
+        return index % 2 == 0 ? this.s.config.design.titlesColor : '#fff';
+    }
+
     getColor(index:number, even: boolean = false): string {
         var r = even === true ? 1 : 0;
-        return index % 2 == r ? this.s.config.design.titlesColor : '#fff';
+        return index % 2 == r ? this.s.config.design.buttonsColor : '#fff';
     }
 
     getBorderColor(reverse: boolean = false): string {
         return reverse ? 
-        this.s.config.design.titlesColor + ' white transparent transparent'
+        this.s.config.design.buttonsColor + ' white transparent transparent'
         :
-        'white ' + this.s.config.design.titlesColor + ' transparent transparent'
+        'white ' + this.s.config.design.buttonsColor + ' transparent transparent'
     }
 }

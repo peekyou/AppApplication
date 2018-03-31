@@ -58,6 +58,10 @@ export class ReviewComponent {
             }
         });
     }
+
+    getBorderColor(): string {
+        return this.s.config.design.buttonsColor;
+    }
     
     private calculateAverage() {
         this.averageRating1 = this.averageRating2 = this.averageRating3 = 0;

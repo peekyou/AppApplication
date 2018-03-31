@@ -9,19 +9,10 @@ import { ConfigurationService } from '../../core/services/configuration.service'
     styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent {
-    //config: MerchantConfiguration;
     loader: Subscription;
-    lat: number = 51.678418;
-    lng: number = 7.809007;
+    lat: number = 25.080526700000000;
+    lng: number = 55.144296400000030;
     isLocation: boolean = false;
 
-    constructor(public s: ConfigurationService) {
-        //service
-        //    .getConfiguration()
-        //    .subscribe(configuration => {
-        //        this.config = configuration;
-        //    },
-        //    err => { console.log(err); }
-        //    );
-    }
+    constructor(public s: ConfigurationService) { }
 }

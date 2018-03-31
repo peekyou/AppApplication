@@ -99,7 +99,6 @@ export class ConfigurationService {
             if (this.config.design) {
                 this.config.design.rewardsWheelSecondaryColor = this.calculateSecondaryColor(this.config.design.rewardsWheelColor);
             }
-            console.log(this.config.design);
             this.localForage.save('merchant', {
                 'conf': this.config
             });

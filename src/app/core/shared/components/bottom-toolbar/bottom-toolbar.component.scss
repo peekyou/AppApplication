@@ -31,11 +31,11 @@
 
     .active {
         border: 0;
-        border-top: 1px solid gold;
+        border-top: 1px solid $theme-color;
         transition: all 0.2s ease;
 
         .fa {
-            color:gold;
+            color:$theme-color;
             transition: all 0.2s ease;
         }
     }

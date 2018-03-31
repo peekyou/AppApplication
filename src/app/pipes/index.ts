@@ -3,10 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { IncrementPipe } from './increment';
 import { SafeHtmlPipe } from './safe-html';
+import { SafeStylePipe } from './safe-style';
+
 
 const PIPES = [
     IncrementPipe,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SafeStylePipe
 ];
 
 @NgModule({
