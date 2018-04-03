@@ -21,7 +21,6 @@ import { AuthModule } from './components/+auth/auth.module';
 import { LoyaltyCardModule } from './components/loyalty-card';
 import { ShopModule } from './components/shop';
 import { PromotionModule } from './components/promotion';
-import { CallModule } from './components/call';
 import { ContactModule } from './components/contact';
 import { ReviewModule } from './components/review';
 import { SocialMediaModule } from './components/social-media';
@@ -58,7 +57,6 @@ const PROVIDERS = [
         LoyaltyCardModule,
         ShopModule,
         PromotionModule,
-        CallModule,
         ContactModule,
         ReviewModule,
         SocialMediaModule,

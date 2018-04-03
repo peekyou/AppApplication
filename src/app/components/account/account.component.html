@@ -2,17 +2,17 @@
 <app-logo></app-logo>
 
 <div class="panel with-toolbar-padding-bottom">
-    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design.titlesColor">My account</h2>        
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">My account</h2>        
     <div class="text-align-center">
         <app-qr-code style="margin-top:1em"></app-qr-code>
 
         
         <div class="user-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
-        <div [style.color]="s.config.design.titlesColor">
+        <div [style.color]="s.config.design ? s.config.design.titlesColor : null">
             <i class="fa fa-address-card-o" aria-hidden="true"></i>
             Card no <b>{{ service?.user?.cardNumber }}</b>
         </div> 
-        <div *ngIf="service.user && service.user.mobileNumber" [style.color]="s.config.design.titlesColor">
+        <div *ngIf="service.user && service.user.mobileNumber" [style.color]="s.config.design ? s.config.design.titlesColor : null">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <b>{{ service?.user?.mobileNumber }}</b>
         </div>
@@ -86,7 +86,7 @@
             </mat-form-field>
             <br /><br />
             <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
-                    [style.backgroundColor]="s.config.design.buttonsColor" style="width:50%">
+                    [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" style="width:50%">
                 Submit
             </button>
             <button mat-raised-button type="button" (click)="cancelEdit()" style="width:50%">
@@ -96,7 +96,7 @@
         
         <br /><br />
         <button *ngIf="!editing" mat-raised-button color="primary" (click)="editing = !editing"
-                class="full-width" [style.backgroundColor]="s.config.design.buttonsColor">
+                class="full-width" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
             Edit my account
         </button>
 

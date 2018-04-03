@@ -60,7 +60,7 @@ export class ReviewComponent {
     }
 
     getBorderColor(): string {
-        return this.s.config.design.buttonsColor;
+        return this.s.config.design ? this.s.config.design.buttonsColor : null;
     }
     
     private calculateAverage() {

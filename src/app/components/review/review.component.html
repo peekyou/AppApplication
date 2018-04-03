@@ -2,7 +2,7 @@
 <app-logo></app-logo>
 
 <div class="with-toolbar-padding-bottom reviews-container">
-    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design.titlesColor">Reviews</h2>        
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">Reviews</h2>        
     <div *ngIf="!loading && (!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
         <div *ngIf="user.isAuthenticated()">
             <h3>
@@ -16,7 +16,7 @@
             <div>
                 <a routerLink="/login">
                     <button mat-raised-button type="submit" color="primary"
-                            [style.backgroundColor]="s.config.design.buttonsColor">
+                            [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
                         Get my card
                     </button>
                 </a>
@@ -71,32 +71,11 @@
             <div class="triangle-theme" [style.border-top]="getBorderColor() | safeStyle">
             </div>
         </div>
-
-        <!-- <mat-card *ngFor="let review of reviews.data">
-            <mat-card-header>
-                <mat-card-title>{{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p class="line-breaker">{{review.comment}}</p>
-                <div fxLayout="row">
-                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating1"></star-rating-comp>
-                    <label>{{ s.config.rating1ResourceKey }}</label>
-                </div>
-                <div fxLayout="row">
-                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating2"></star-rating-comp>
-                    <label>{{ s.config.rating2ResourceKey }}</label>
-                </div>
-                <div fxLayout="row">
-                    <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating3"></star-rating-comp>
-                    <label>{{ s.config.rating3ResourceKey }}</label>
-                </div>
-            </mat-card-content>
-        </mat-card> -->
     </div>
 
     <div *ngIf="user.isAuthenticated() && s.config">
         <button mat-fab color="primary" class="send-review-btn" (click)="openNewReviewDialog()"
-                [style.backgroundColor]="s.config.design.buttonsColor">
+                [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
             <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
         </button>
     </div>

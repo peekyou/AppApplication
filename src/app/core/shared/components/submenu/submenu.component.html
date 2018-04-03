@@ -1,4 +1,4 @@
-<div class="submenu" [style.backgroundColor]="s.config.design.buttonsColor">
+<div class="submenu" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
     <div fxLayout="column" fxLayoutAlign="space-around center">
         <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
              style="padding-top:12px">

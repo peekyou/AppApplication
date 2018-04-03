@@ -2,12 +2,12 @@
 <app-logo></app-logo>
 
 <div class="with-toolbar-padding-bottom text-align-center contact-panel after-logo-padding-top-3">
-    <a mat-fab color="primary" href="tel:{{s?.config?.phoneNumber}}"
-        [style.backgroundColor]="s.config.design.buttonsColor">
+    <a mat-fab color="primary" href="tel:{{s.config.contactPage.data1}}"
+        [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
         <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
     </a>
     <button *ngIf="s.config && s.config.email" mat-fab color="primary"
-            [style.backgroundColor]="s.config.design.buttonsColor" (click)="openEmailDialog()">
+            [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" (click)="openEmailDialog()">
         <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
     </button>
  

@@ -25,18 +25,25 @@ export class PromotionComponent {
     }
 
     getTitlesColor(index:number): string {
-        return index % 2 == 0 ? this.s.config.design.titlesColor : '#fff';
+        if (index % 2 == 0) {
+            return this.s.config.design ? this.s.config.design.titlesColor : null;
+        }
+        return '#fff';
     }
 
     getColor(index:number, even: boolean = false): string {
         var r = even === true ? 1 : 0;
-        return index % 2 == r ? this.s.config.design.buttonsColor : '#fff';
+        if (index % 2 == r) {
+            return this.s.config.design ? this.s.config.design.buttonsColor : '#fdbc00';
+        }
+        return '#fff';
     }
 
     getBorderColor(reverse: boolean = false): string {
-        return reverse ? 
-        this.s.config.design.buttonsColor + ' white transparent transparent'
-        :
-        'white ' + this.s.config.design.buttonsColor + ' transparent transparent'
+        var color = this.s.config.design ? this.s.config.design.buttonsColor : null;
+        if (reverse) {
+            return color + ' white transparent transparent';
+        }
+        return 'white ' + color + ' transparent transparent';
     }
 }

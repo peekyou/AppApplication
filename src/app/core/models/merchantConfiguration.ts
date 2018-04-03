@@ -12,7 +12,6 @@ export class MerchantConfiguration {
     discountPointsThreshold: number;
     discountPointsThresholdArray: number[];
     callText: string;
-    phoneNumber: string;
     email: string;
     appWardsApplicationUrl: string;
     appWardsBackOfficeUrl: string;

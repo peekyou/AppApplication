@@ -1,15 +1,15 @@
 <div *ngIf="s.config" class="loyalty-container">
-    <div class="background" [ngStyle]="{'background': 'linear-gradient(rgba(100, 100, 100, .5), rgba(100, 100, 100, .5)), url(' + s.config.design.backgroundImage.src + ')'}"></div>
+    <div class="background" [ngStyle]="s.config.design && s.config.design.backgroundImage && {'background': 'linear-gradient(rgba(100, 100, 100, .5), rgba(100, 100, 100, .5)), url(' + s.config.design.backgroundImage.src + ')'}"></div>
     <div class="content">
         <app-header title="Rewards program"></app-header>
         <app-logo></app-logo>
         <div class="points-container after-logo-padding-top-8" *ngIf="service.user">
-            <div class="badge goal-badge" [style.color]="s.config.design.titlesColor">
+            <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">
                 GOAL<br/>
                 <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>
             </div>
             <app-circle-progress subtitle="POINTS OWNED" [title]="service.user.currentPoints" 
-                [backgroundColor]="s.config.design.rewardsWheelColor"
+                [backgroundColor]="s.config.design ? s.config.design.rewardsWheelColor : '#FDB900'"
                 backgroundOpacity=1
                 backgroundStroke="#000000"
                 backgroundPadding="14"
@@ -19,7 +19,7 @@
                 unitsColor="#ffffff"
                 outerStrokeWidth=9
                 outerStrokeColor="#ffffff"
-                [innerStrokeColor]="s.config.design.rewardsWheelSecondaryColor"
+                [innerStrokeColor]="s.config.design ? s.config.design.rewardsWheelSecondaryColor : '#ffdf72'"
                 innerStrokeWidth=9
                 titleColor="#ffffff"
                 titleFontSize="45"
@@ -35,7 +35,7 @@
             </div>
             
             <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
-                <div fxFlex="50" class="achieve-text">
+                <div fxFlex="50" class="achieve-text" [style.color]="s.config.design ? s.config.design.titlesColor : null">
                     Achieve {{ s.config.discountPointsThreshold }} pts and<br />
                     <span>win a voucher of</span>     
                 </div>
@@ -44,33 +44,5 @@
                 </div>
             </div>
         </div>
-        <!-- <mat-card>
-            <mat-card-header>
-            <div mat-card-avatar>
-                    <i class="fa fa-user-circle-o fa-2x"></i>
-                </div>
-                <mat-card-title>{{ service?.user?.firstname }} {{ service?.user?.lastname }}</mat-card-title>
-                <mat-card-subtitle>Card no: {{ service?.user?.cardNumber }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <div *ngFor="let number of s.config.discountPointsThresholdArray" class="loyalty-point"
-                        [ngClass]="{'active': number <= service.user.currentPoints}">
-                    {{number}}
-                </div>
-            </mat-card-content>
-            <mat-card-actions>
-                <div fxFlex="85px" class="loyalty-point" [ngClass]="{'active': service.user.currentPoints >= s.config.discountPointsThreshold}">
-                    {{s.config.discountAmount}} {{s.config.discountCurrency}}
-                </div>
-            </mat-card-actions> 
-            <mat-card-subtitle>
-                <ng-template #discount>
-                    <h2>You can get {{s.config.discountAmount}} {{s.config.discountCurrency}} discount!</h2>
-                </ng-template>
-                <div *ngIf="s.config.discountPointsThreshold - service.user.currentPoints > 0;else discount;">
-                    {{s.config.discountPointsThreshold - service?.user?.currentPoints }} points to get {{s.config.discountAmount}} {{s.config.discountCurrency}} discount!
-                </div>
-            </mat-card-subtitle>
-        </mat-card> -->
     </div>
 </div>

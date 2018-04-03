@@ -21,13 +21,14 @@ export class SocialShareDialogComponent implements OnInit {
     constructor(
         public s: ConfigurationService,
         public dialogRef: MatDialogRef<SocialShareDialogComponent>) {
-            this.s.config.appWardsApplicationUrl = 'http://godiva.app-wards.com';
             this.facebookUrl += this.s.config.appWardsApplicationUrl
             this.twitterUrl += this.s.config.appWardsApplicationUrl
             this.googlePlusUrl += this.s.config.appWardsApplicationUrl
         }
 
     ngOnInit() {
-        (<any>this.dialogRef._containerInstance)._elementRef.nativeElement.style.backgroundColor = this.s.config.design.buttonsColor;
+        if (this.s.config && this.s.config.design) {
+            (<any>this.dialogRef._containerInstance)._elementRef.nativeElement.style.backgroundColor = this.s.config.design.buttonsColor;            
+        }
     }
 }

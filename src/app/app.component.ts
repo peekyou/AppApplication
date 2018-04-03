@@ -28,8 +28,12 @@ export class AppComponent implements OnInit {
     public ngOnInit() {
         this.route.paramMap
             .switchMap((params: ParamMap) => {
+                console.log(this.authService.isAuthenticated());
                 var param = params.get('id');
                 if (param) {
+                    if (this.authService.isAuthenticated()) {
+                        return Observable.of(true);
+                    }
                     var codeLength = parseInt(param.charAt(0));
                     var customerId = param.slice(1, param.length - codeLength);
                     var code = param.slice(-codeLength);

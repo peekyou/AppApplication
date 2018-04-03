@@ -6,15 +6,15 @@
     <form [formGroup]="form" (submit)="onSubmit()">
         <div fxLayout="row">            
             <label fxFlex>{{ s.config.rating1ResourceKey }}</label>
-            <star-rating-comp fxFlex starType="svg" formControlName="rating1"></star-rating-comp>
+            <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating1"></star-rating-comp>
         </div>
         <div fxLayout="row">
             <label fxFlex>{{ s.config.rating2ResourceKey }}</label>
-            <star-rating-comp fxFlex starType="svg" formControlName="rating2"></star-rating-comp>
+            <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating2"></star-rating-comp>
         </div>
         <div fxLayout="row">
             <label fxFlex>{{ s.config.rating3ResourceKey }}</label>
-            <star-rating-comp fxFlex starType="svg" formControlName="rating3"></star-rating-comp>
+            <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating3"></star-rating-comp>
         </div>
         <!-- <div class="full-width rev-rating">
             <star-rating-comp labelPosition="left" [labelText]="s.config.rating1ResourceKey" starType="svg" formControlName="rating1"></star-rating-comp>
@@ -29,7 +29,7 @@
             <textarea matInput placeholder="Comment" rows="4" formControlName="comment" required></textarea>
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
-                [style.backgroundColor]="s.config.design.buttonsColor">
+                [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
             Submit
         </button>
         <button mat-raised-button type="button" (click)="close()">

@@ -1,4 +1,4 @@
 <div class="logo">
     <!-- <img src="assets/images/Godiva_Header.png" /> -->
-    <img *ngIf="s.config.design.logo" [src]="s.config.design.logo.src" />
+    <img *ngIf="s.config.design && s.config.design.logo" [src]="s.config.design.logo.src" height="90" />
 </div>

@@ -1,7 +1,7 @@
 <div class="header" [ngClass]="{'fixed-height': fixedHeight}">
-    <h2 *ngIf="title" class="header-title" [style.color]="s.config.design.titlesColor">{{ title }}</h2>
+    <h2 *ngIf="title" class="header-title" [style.color]="s.config.design ? s.config.design.titlesColor : null">{{ title }}</h2>
     <div *ngIf="!title" class="picture">
         <!-- <img src="http://static.uberoom.com/images/user/products/add_ons/food/truffles_L.jpg" /> -->
-        <img *ngIf="s.config.design.headerImage" [src]="s.config.design.headerImage.src" />
+        <img *ngIf="s.config.design && s.config.design.headerImage" [src]="s.config.design.headerImage.src" />
     </div>
 </div>

@@ -8,7 +8,6 @@ export const ROUTES: Routes = [
     { path: 'loyaltycard', loadChildren: './components/loyalty-card#LoyaltyCardModule' },
     { path: 'shop', loadChildren: './components/shop#ShopModule' },
     { path: 'promotion', loadChildren: './components/promotion#PromotionModule' },
-    { path: 'call', loadChildren: './components/call#CallModule' },
     { path: 'contact', loadChildren: './components/contact#ContactModule' },
     // { path: 'social', loadChildren: './components/social-media#SocialMediaModule' },
     { path: 'review', loadChildren: './components/review#ReviewModule' },

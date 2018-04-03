@@ -14,7 +14,7 @@ export class QrCodeComponent {
 
     constructor(private authService: AuthService, public conf: ConfigurationService) {
         if (this.authService.isAuthenticated()) {
-            this.url = conf.config.appWardsApplicationUrl + "/merchant/customers/" + authService.getUserId();
+            this.url = conf.config.appWardsBackOfficeUrl + "/customers/" + authService.getUserId();
         }
     }
 }
