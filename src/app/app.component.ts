@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
     public ngOnInit() {
         this.route.paramMap
             .switchMap((params: ParamMap) => {
-                console.log(this.authService.isAuthenticated());
                 var param = params.get('id');
                 if (param) {
                     if (this.authService.isAuthenticated()) {
@@ -46,6 +45,7 @@ export class AppComponent implements OnInit {
                 if (success) {
                     this.router.navigate(['/']);
                 }
-            });
+            },
+            err => this.router.navigate(['/']));
     }
 }

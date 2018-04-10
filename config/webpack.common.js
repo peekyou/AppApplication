@@ -17,6 +17,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
 
 const buildUtils = require('./build-utils');
@@ -217,7 +218,7 @@ module.exports = function (options) {
        */
       new CopyWebpackPlugin([
         { from: 'src/assets', to: 'assets' },
-        { from: 'src/customer-assets', to: 'customer/assets' },
+        { from: 'src/customer-assets', to:  METADATA.merchant + '/assets' },
         { from: 'src/meta'}
       ],
         isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined
@@ -233,7 +234,7 @@ module.exports = function (options) {
       */
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        filename: isProd ? 'customer/index.html' : 'index.html',        
+        filename: isProd ? METADATA.merchant + '/index.html' : 'index.html',        
         title: METADATA.title,
         chunksSortMode: function (a, b) {
           const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
@@ -305,6 +306,33 @@ module.exports = function (options) {
        * https://github.com/szrenwei/inline-manifest-webpack-plugin
        */
       new InlineManifestWebpackPlugin(),
+
+      // Generate a service worker script that will precache, and keep up to date,
+      // the HTML & assets that are part of the Webpack build.
+      new SWPrecacheWebpackPlugin({
+        // By default, a cache-busting query parameter is appended to requests
+        // used to populate the caches, to ensure the responses are fresh.
+        // If a URL is already hashed by Webpack, then there is no concern
+        // about it being stale, and the cache-busting can be skipped.
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: 'service-worker.js',
+        logger(message) {
+            if (message.indexOf('Total precache size is') === 0) {
+                // This message occurs for every build and is a bit too noisy.
+                return;
+            }
+            console.log(message);
+        },
+        minify: false,
+        cacheId: 'AppWardsApp',
+        // For unknown URLs, fallback to the index page
+        // navigateFallback: helpers.publicUrl + '/index.html',
+        // Ignores URLs starting from /__ (useful for Firebase):
+        // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
+        navigateFallbackWhitelist: [/^(?!\/__).*/],
+        // Don't precache sourcemaps (they're large) and build asset manifest:
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+      }),
     ],
 
     /**

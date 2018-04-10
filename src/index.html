@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" id="viewport" />
-  <meta name="apple-mobile-web-app-title" content="GODIVA" />
+  <meta name="apple-mobile-web-app-title" content="<%= htmlWebpackPlugin.options.metadata.merchant %>" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -85,7 +85,7 @@
 
       ApiEndpoint: 'http://localhost/SoApp/SoAppService.svc/json',
       MerchantId: 'F255903E542547A597B324E3160E606E',
-    //   ApiEndpoint: 'http://api.app-wards.com/v2/SoAppService.svc/json',
+    //   ApiEndpoint: 'https://api.app-wards.com/SoAppService.svc/json',
     //   MerchantId: '64E521827F7C46568B5EFD71F4E76550'
     }
 </script>
