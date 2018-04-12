@@ -5,15 +5,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ConfigurationService } from '../../../core/services/configuration.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../../core/services/user.service';
+import { styleBackgoundImage } from '../../../core/helpers/utils';
 
 @Component({
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    styleBackgoundImage: any;
     loading = false;
     isOtpStep = false;
-    error: string = null;
+    mobileError: boolean = false;
+    codeError: boolean = false;
     firstname = this.fb.control(null, Validators.required);
     lastname = this.fb.control(null, Validators.required);
     mobile = this.fb.control(null, Validators.required);
@@ -35,6 +38,8 @@ export class LoginComponent implements OnInit {
         private router: Router, 
         private userService: UserService,
         public s: ConfigurationService) { 
+
+            this.styleBackgoundImage = styleBackgoundImage;
             if (authService.isAuthenticated()) {
                 router.navigate(['/']);
             }
@@ -44,7 +49,8 @@ export class LoginComponent implements OnInit {
         //this.authService.logout();
     }
     
-    onSubmit() {
+    sendOptCode() {
+        this.mobileError = false;
         this.loading = true;
         this.authService
             .sendOtpCode(this.mobile.value)
@@ -52,16 +58,20 @@ export class LoginComponent implements OnInit {
                 this.loading = false;
                 this.isOtpStep = true;
             },
-            err => this.loading = false);
+            err => {
+                this.loading = false;
+                this.mobileError = true;
+            });
     }
 
     onOtpSubmit() {
+        this.codeError = false;
         this.authService.login(this.firstname.value, this.lastname.value, this.mobile.value, this.otpCode.value)
             .subscribe(
             res => {
                 this.userService.launchTimer();
                 this.router.navigate(['/']);
             },
-            err => this.error = 'Wrong code');
+            err => this.codeError = true);
     }
 }

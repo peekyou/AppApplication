@@ -38,4 +38,5 @@ export class MerchantDesign {
     logo?: Picture;
     backgroundImage?: Picture;
     headerImage?: Picture;
+    backgroundImageSize?: string;
 }

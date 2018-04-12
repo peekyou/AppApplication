@@ -15,18 +15,15 @@ body {
     background-color: rgba(#333, .33) !important;
 }
 
-// body::after {
-//     content: "";
-//     opacity: 0.5;
-//     top: 0;
-//     left: 0;
-//     bottom: 0;
-//     right: 0;
-//     position: absolute;
-//     z-index: -1;   
-//     // background-image: url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
-//     background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('https://pbs.twimg.com/media/DWAXG6aXUAA4Shc.jpg') !important;    
-// }
+#installdiv {
+    text-align: center;
+    width: 100%;
+    top: 2rem;
+    position: absolute;
+    background-color: #fff;
+    padding: 1rem;
+    z-index: 1111111111;   
+}
 
 .app-container {
     margin: 0 auto;

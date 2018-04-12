@@ -1,5 +1,5 @@
 <div *ngIf="s.config" class="loyalty-container">
-    <div class="background" [ngStyle]="s.config.design && s.config.design.backgroundImage && {'background': 'linear-gradient(rgba(100, 100, 100, .5), rgba(100, 100, 100, .5)), url(' + s.config.design.backgroundImage.src + ')'}"></div>
+    <div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>
     <div class="content">
         <app-header title="Rewards program"></app-header>
         <app-logo></app-logo>
@@ -30,7 +30,7 @@
                 [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
             </app-circle-progress>
             <div class="badge to-goal-badge">
-                POINTS TO GOAL<br/><span class="sub-text">{{s.config.discountPointsThreshold - service?.user?.currentPoints }}
+                POINTS TO GOAL<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
                 <span class="sup"> PTS</span></span>           
             </div>
             

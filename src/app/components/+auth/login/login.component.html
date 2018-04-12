@@ -1,15 +1,11 @@
-<div class="background" [ngStyle]="s.config.design && s.config.design.backgroundImage && {'background': 'linear-gradient(rgba(100, 100, 100, .5), rgba(100, 100, 100, .5)), url(' + s.config.design.backgroundImage.src + ')'}"></div>        
+<div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>        
 
 <app-header title="Log in"></app-header>
 <app-logo></app-logo>
 
 <div class="content">
     <div class="login-container">
-        <form class="login-form" *ngIf="!isOtpStep" [formGroup]="form" (submit)="onSubmit()">
-            <mat-error *ngIf="error">
-                {{error}}
-            </mat-error>
-            <br />
+        <form class="login-form" *ngIf="!isOtpStep" [formGroup]="form" (submit)="sendOptCode()">
             <!-- <mat-form-field class="full-width">
                 <input matInput placeholder="First name" formControlName="firstname" required>
             </mat-form-field>
@@ -20,6 +16,9 @@
                 <input matInput type="text" inputmode="numeric" placeholder="Your phone number" 
                         formControlName="mobile">
             </mat-form-field>
+            <mat-error *ngIf="mobileError">
+                Wrong mobile number
+            </mat-error>
             <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
                     [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
                 Log in
@@ -30,9 +29,17 @@
             <mat-form-field class="full-width">
                 <input matInput placeholder="Code" formControlName="otpCode">
             </mat-form-field>
+            <mat-error *ngIf="codeError">
+                Wrong code
+            </mat-error>
             <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid"
                     [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
                 Submit
+            </button>
+            <button mat-raised-button type="button" color="primary" (click)="sendOptCode()" 
+                    [disabled]="loading" style="margin-top:1rem;"
+                    [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
+                Resend code
             </button>
         </form>
     </div>

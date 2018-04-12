@@ -48,4 +48,12 @@ export class AppComponent implements OnInit {
             },
             err => this.router.navigate(['/']));
     }
+
+    public iOSNotStandalone () { 
+        //return true;
+        if (window.navigator.userAgent.indexOf('iPhone') != -1 && !(<any>window.navigator).standalone) {
+           return true; 
+        }
+        return false;
+    }
 }

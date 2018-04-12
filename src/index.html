@@ -12,11 +12,27 @@
   <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
   <!-- base url -->
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-  <% if (webpackConfig.htmlElements.headTags) { %>
-  <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
-
+  
+  <link rel="apple-touch-icon" sizes="57x57" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/favicon-16x16.png">
+  <link rel="manifest" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/manifest.json">
+  
+  <meta name="msapplication-TileColor" content="#00bcd4">
+  <meta name="msapplication-TileImage" content="/<%= htmlWebpackPlugin.options.metadata.merchant %>/assets/icon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#00bcd4">
+  
+  
 
   <%= htmlWebpackPlugin.files.webpackManifest %>
 
@@ -77,19 +93,18 @@
         Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
     </app>
 
-  <script>
-    window.AppConfig = {
-      PermissionsClaim: 'http://appwards.com/claims/permissions',
-      ProfileClaim: 'http://appwards.com/claims/profile',
-      UserIdClaim: 'http://appwards.com/claims/profile/UserId',
+    <script>
+        window.AppConfig = {
+        PermissionsClaim: 'http://appwards.com/claims/permissions',
+        ProfileClaim: 'http://appwards.com/claims/profile',
+        UserIdClaim: 'http://appwards.com/claims/profile/UserId',
 
-      ApiEndpoint: 'http://localhost/SoApp/SoAppService.svc/json',
-      MerchantId: 'F255903E542547A597B324E3160E606E',
-    //   ApiEndpoint: 'https://api.app-wards.com/SoAppService.svc/json',
-    //   MerchantId: '64E521827F7C46568B5EFD71F4E76550'
-    }
-</script>
-
+        ApiEndpoint: 'http://localhost/SoApp/SoAppService.svc/json',
+        MerchantId: '7D280115C08D468B988E4D9A15344214',
+        //   ApiEndpoint: 'https://api.app-wards.com/SoAppService.svc/json',
+        //   MerchantId: '113885EF208D49CE8B58789AC54F8C22'
+        }
+    </script>
   <!-- Scripts will be injected by webpack here -->
 </body>
 </html>

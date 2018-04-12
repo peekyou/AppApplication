@@ -5,6 +5,7 @@ import { slideInAnimation } from '../../animations';
 import { UserService } from '../../core/services/user.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { User } from '../../core/models/user';
+import { styleBackgoundImage } from '../../core/helpers/utils';
 
 @Component({
     selector: 'loyalty-card',
@@ -14,5 +15,11 @@ import { User } from '../../core/models/user';
     // host: { '[@slideInAnimation]': '' }
 })
 export class LoyaltyCardComponent {
-    constructor(public service: UserService, public s: ConfigurationService) { }
+    Math: any;
+    styleBackgoundImage: any;
+
+    constructor(public service: UserService, public s: ConfigurationService) {
+        this.Math = Math;
+        this.styleBackgoundImage = styleBackgoundImage;
+    }
 }
