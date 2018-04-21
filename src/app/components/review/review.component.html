@@ -2,22 +2,18 @@
 <app-logo></app-logo>
 
 <div class="with-toolbar-padding-bottom reviews-container">
-    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">Reviews</h2>        
+    <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">{{ 'REVIEWS.TITLE' | translate }}</h2>        
     <div *ngIf="!loading && (!reviews || reviews.paging.itemsCount === 0)" class="text-align-center">
         <div *ngIf="user.isAuthenticated()">
-            <h3>
-                Be the first to post a review!
-            </h3>
+            <h3>{{ 'REVIEWS.SUBMIT_FIRST' | translate }}</h3>
         </div>
         <div *ngIf="!user.isAuthenticated()">
-            <h3>
-                Get your loyalty card and be first to post a review!
-            </h3>
+            <h3>{{ 'REVIEWS.LOGIN_SUBMIT_FIRST' | translate }}</h3>
             <div>
                 <a routerLink="/login">
                     <button mat-raised-button type="submit" color="primary"
                             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
-                        Get my card
+                        {{ 'COMMON.GET_CARD' | translate }}
                     </button>
                 </a>
             </div>
@@ -30,7 +26,7 @@
         <div class="average-rating">
             <div class="total-average">
                 <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageAllRatings"></star-rating-comp>
-                {{ reviews.paging.totalCount }} reviews
+                {{ reviews.paging.totalCount }} {{ 'REVIEWS.TITLE' | translate }}
             </div>
 
             <div fxLayout="row">

@@ -50,7 +50,7 @@ module.exports = function (env) {
   const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, {
     merchant: env.merchant,
     baseUrl: '/' + env.merchant,
-    title: env.merchant,
+    title: env.displayname,
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || 8080,
     ENV: ENV,

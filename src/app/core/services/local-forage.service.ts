@@ -1,16 +1,21 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Inject } from '@angular/core';
 import * as localForage from "localforage";
+import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Injectable()
 export class LocalForageService {
 
-    constructor() {
+    constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {
+        var cacheSuffix = '';
+        if  (appConfig.MerchantId) {
+            cacheSuffix = appConfig.MerchantId
+        }
         localForage.config({
             //driver: localForage.INDEXEDDB,
-            name: 'soApp',
+            name: 'AppWards-' + cacheSuffix,
             version: 1.0,
             size: 4980736,
-            storeName: 'soAppStore'
+            storeName: 'AppWardsStore-' + cacheSuffix
         });
     }
 

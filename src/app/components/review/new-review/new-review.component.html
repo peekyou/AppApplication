@@ -1,7 +1,7 @@
-<div mat-dialog-title>Your rate</div>
+<div mat-dialog-title>{{ 'REVIEWS.RATE' | translate }}</div>
 <div mat-dialog-content>
     <div *ngIf="success === false" class="error">
-        An error occured while sending the review. Please try later.
+        {{ 'REVIEWS.SUBMIT_ERROR' | translate }}
     </div>
     <form [formGroup]="form" (submit)="onSubmit()">
         <div fxLayout="row">            
@@ -26,14 +26,12 @@
             <star-rating-comp labelPosition="left" [labelText]="s.config.rating3ResourceKey" starType="svg" formControlName="rating3"></star-rating-comp>
         </div> -->
         <mat-form-field class="full-width">
-            <textarea matInput placeholder="Comment" rows="4" formControlName="comment" required></textarea>
+            <textarea matInput placeholder="{{ 'REVIEWS.COMMENT' | translate }}" rows="4" formControlName="comment" required></textarea>
         </mat-form-field>
         <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
                 [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
-            Submit
+            {{ 'COMMON.SUBMIT' | translate }}
         </button>
-        <button mat-raised-button type="button" (click)="close()">
-            Cancel
-        </button>
+        <button mat-raised-button type="button" (click)="close()">{{ 'COMMON.CANCEL' | translate }}</button>
     </form>
 </div>

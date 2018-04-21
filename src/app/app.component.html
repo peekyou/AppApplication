@@ -52,8 +52,10 @@
 </div>
 
 <div id="installdiv" *ngIf="iOSNotStandalone()">
-    Press &nbsp;
-    <img src="assets/images/iOS_home.jpg" width="30"/><br />
-    And add to the screen &nbsp;
-    <img src="assets/images/iOS_add_home_screen.jpg" width="30"/>
+    <div>
+        {{ 'INSTALLATION_TUTO.PRESS' | translate }}&nbsp;
+        <img src="assets/images/iOS_home.jpg" width="30"/> {{ 'INSTALLATION_TUTO.BELOW' | translate }}<br />
+        {{ 'INSTALLATION_TUTO.ADD_HOME_SCREEN' | translate }}&nbsp;
+        <img src="assets/images/iOS_add_home_screen.jpg" width="30"/>
+    </div>
 </div>

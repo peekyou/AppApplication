@@ -35,3 +35,10 @@ export function styleBackgoundImage(config: MerchantConfiguration): any {
     }
     return { }
 }
+
+export function formatPhone(phoneNumber: string): string {
+    if (phoneNumber.startsWith('00')) {
+        return '+' + phoneNumber.substring(2)
+    }
+    return phoneNumber;
+}

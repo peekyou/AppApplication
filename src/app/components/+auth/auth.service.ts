@@ -8,11 +8,16 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Injectable()
 export class AuthService {
-    public token: string = null;
     private permissions: string[];
+    private tokenKey = 'cus_token';
+    public token: string = null;
+    public mobile: string;
 
     constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpService) {
-        this.token = localStorage.getItem('cus_token');
+        if (appConfig.MerchantId) {
+            this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId; 
+        }
+        this.token = localStorage.getItem(this.tokenKey);
         this.setPermissions();
     }
 
@@ -34,7 +39,7 @@ export class AuthService {
             })
             .map(token => {
                 this.token = token;
-                localStorage.setItem('cus_token', token);
+                localStorage.setItem(this.tokenKey, token);
                 this.setPermissions();
                 return true;
             });
@@ -42,7 +47,9 @@ export class AuthService {
 
     logout(): void {
         this.token = null;
-        localStorage.removeItem('cus_token');
+        this.mobile = null;
+        this.permissions = [];
+        localStorage.removeItem(this.tokenKey);
     }
 
     isAuthenticated(): boolean {

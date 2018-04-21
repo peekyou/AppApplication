@@ -218,7 +218,7 @@ module.exports = function (options) {
        */
       new CopyWebpackPlugin([
         { from: 'src/assets', to: 'assets' },
-        { from: 'src/customer-assets', to:  METADATA.merchant + '/assets' },
+        { from: 'src/customer-assets', to:  METADATA.merchant },
         { from: 'src/meta'}
       ],
         isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined

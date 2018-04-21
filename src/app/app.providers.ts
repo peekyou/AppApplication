@@ -1,5 +1,6 @@
 import { HttpService } from './core/services/http.service';
 import { AuthHttpService } from './core/services/auth-http.service';
+import { TranslationService } from './core/services/translation.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { UserService } from './core/services/user.service';
 import { LocalForageService } from './core/services/local-forage.service';
@@ -22,6 +23,7 @@ export const APP_PROVIDERS = [
     AuthHttpService,
     AuthService,
     AuthGuard,
+    TranslationService,
     ConfigurationService,
     UserService,
     LocalForageService,

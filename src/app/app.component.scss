@@ -17,12 +17,23 @@ body {
 
 #installdiv {
     text-align: center;
-    width: 100%;
-    top: 2rem;
+    width: 70%;
+    bottom: $bottom-toolbar-height;
     position: absolute;
-    background-color: #fff;
-    padding: 1rem;
-    z-index: 1111111111;   
+    z-index: 1111111111;
+
+    div {
+        background-color: #fff;
+        padding: 1rem;
+        position: relative;
+        left: 25%;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: .1em .1em .4em rgba(0, 0, 0, 0.4);
+        -mox-box-shadow: .1em .1em .1em .4em rgba(0, 0, 0, 0.4);
+        box-shadow: .1em .1em .4em rbga(0, 0, 0, 0.4);
+    }
 }
 
 .app-container {

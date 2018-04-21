@@ -1,0 +1,78 @@
+{
+    "INSTALLATION_TUTO": {
+        "PRESS": "Press",
+        "BELOW": "below",
+        "ADD_HOME_SCREEN": "And add to the screen"
+    },
+    "COMMON": {
+        "SUBMIT": "Envoyer",
+        "FIRSTNAME": "Prénom",
+        "LASTNAME": "Nom",
+        "GENDER": "Sexe",
+        "AGE": "Age",
+        "EMAIL": "Email",
+        "PHONE": "Téléphone",
+        "BIRTHDATE": "Date de naissance",
+        "COUNTRY": "Pays",
+        "EMIRATE": "Emirat",
+        "AREA": "Quartier",
+        "STATE": "Etat",
+        "CITY": "Ville",
+        "ZIP_CODE": "Code postal",
+        "ADDRESS_LINE_1": "Adresse",
+        "ADDRESS_LINE_2": "Adresse 2",
+        "LANGUAGES": "Langues",
+        "GENDER_F": "Femme",
+        "GENDER_M": "Homme",
+        "ADDRESS": "Adresse",
+        "GET_CARD": "Obtenir ma carte"
+    },
+    "AUTH": {
+        "LOGIN": "Se connecter",
+        "LOGOUT": "Déconnecter",
+        "MOBILE_PLACEHOLDER": "Numéro de tél",
+        "MOBILE_ERROR": "Numéro incorrect",
+        "CODE_ERROR": "Code incorrect",
+        "RESEND_CODE": "Renvoyer le code"
+    },
+    "ACCOUNT": {
+        "CARD_NUMBER": "No carte",
+        "INVALID_EMAIL": "Adresse email incorrecte",
+        "EDIT": "Modofier mon compte"
+    },
+    "CONTACT": {
+        "TIMINGS": "Heures d'ouverture",
+        "CLOSED": "Fermé",
+        "BY_EMAIL": "Contacter par email",
+        "EMAIL_SUCCESS": "Email envoyé",
+        "EMAIL_ERROR": "Une erreur est survenue lors de l'envoi. Merci d'essayer ultérieuremennt."
+    },
+    "LOYALTY": {
+        "GOAL": "GOAL",
+        "PTS": "PTS",
+        "POINTS_TO_GOAL": "POINTS TO GOAL",
+        "POINTS_OWNED": "POINTS OBTENUS",
+        "ACHIEVEMENT": "Atteignez {{points}} pts et",
+        "VOUCHER": "gagnez un bon de"
+    },
+    "REVIEWS": {
+        "TITLE": "Avis",
+        "SUBMIT_FIRST": "Soyez le premier à poster un avis !",
+        "LOGIN_SUBMIT_FIRST": "Obtenez votre carte de fidélité et soyez le premier à poster un avis !",
+        "RATE": "Votre note",
+        "COMMENT": "Commentaire",
+        "SUBMIT_ERROR": "Une erreur est survenue lors de l'envoi de votre avis. Merci d'essayer ultérieuremennt."
+    },
+    "PROMOTIONS": {
+        "TITLE": "Promotions",
+        "NO_PROMOTION": "Pas de promotion actuellement"
+    },
+    "SHOP": {
+        "SHOP_BTN": "Le magasin",
+        "LOCATION_BTN": "Notre adresse",
+        "CONTACT_BTN": "Contact"
+    },
+    "SOCIAL_MEDIA": {
+        "SHARE": "Partager à vos amis"
+    }
+}

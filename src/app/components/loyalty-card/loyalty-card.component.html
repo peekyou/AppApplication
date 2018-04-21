@@ -5,10 +5,12 @@
         <app-logo></app-logo>
         <div class="points-container after-logo-padding-top-8" *ngIf="service.user">
             <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                GOAL<br/>
-                <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> PTS</span></span>
+                {{ 'LOYALTY.GOAL' | translate }}<br/>
+                <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>
             </div>
-            <app-circle-progress subtitle="POINTS OWNED" [title]="service.user.currentPoints" 
+            <app-circle-progress 
+                subtitle="{{ 'LOYALTY.POINTS_OWNED' | translate }}" 
+                [title]="service.user.currentPoints" 
                 [backgroundColor]="s.config.design ? s.config.design.rewardsWheelColor : '#FDB900'"
                 backgroundOpacity=1
                 backgroundStroke="#000000"
@@ -30,14 +32,14 @@
                 [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
             </app-circle-progress>
             <div class="badge to-goal-badge">
-                POINTS TO GOAL<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
-                <span class="sup"> PTS</span></span>           
+                {{ 'LOYALTY.POINTS_TO_GOAL' | translate }}<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
+                <span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>           
             </div>
             
             <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
                 <div fxFlex="50" class="achieve-text" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                    Achieve {{ s.config.discountPointsThreshold }} pts and<br />
-                    <span>win a voucher of</span>     
+                    {{ 'LOYALTY.ACHIEVEMENT' | translate:{points: s.config.discountPointsThreshold} }}<br />
+                    <span>{{ 'LOYALTY.VOUCHER' | translate }}</span>     
                 </div>
                 <div fxFlex="85px" class="badge voucher-badge">
                     <span class="sup">{{ s.config.discountCurrency }}</span>{{s.config.discountAmount}}       

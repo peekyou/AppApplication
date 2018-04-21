@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';
@@ -7,6 +8,7 @@ import 'rxjs/add/operator/switchMap';
 import { AuthService } from './components/+auth/auth.service';
 import { UserService } from './core/services/user.service';
 import { ConfigurationService } from './core/services/configuration.service';
+import { APP_CONFIG, AppConfig } from './app.config';
 
 @Component({
     selector: 'app',
@@ -19,11 +21,18 @@ import { ConfigurationService } from './core/services/configuration.service';
 export class AppComponent implements OnInit {
   
     constructor(
+        @Inject(APP_CONFIG) config: AppConfig,
         private route: ActivatedRoute,
         private router: Router,
         private authService: AuthService,
+        private translate: TranslateService,
         private userService: UserService,
-        public s: ConfigurationService) { }
+        public s: ConfigurationService) { 
+
+            // translate.addLangs(["en", "fr"]);
+            translate.setDefaultLang('en');
+            translate.use(config.Lang ? config.Lang : 'en');
+        }
 
     public ngOnInit() {
         this.route.paramMap
@@ -50,8 +59,10 @@ export class AppComponent implements OnInit {
     }
 
     public iOSNotStandalone () { 
-        //return true;
-        if (window.navigator.userAgent.indexOf('iPhone') != -1 && !(<any>window.navigator).standalone) {
+        // return true;
+        if ((window.navigator.userAgent.indexOf('iPhone') != -1 ||
+            window.navigator.userAgent.indexOf('iPad') != -1)
+            && !(<any>window.navigator).standalone) {
            return true; 
         }
         return false;

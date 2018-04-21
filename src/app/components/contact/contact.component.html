@@ -6,25 +6,31 @@
         [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
         <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
     </a>
-    <button *ngIf="s.config && s.config.email" mat-fab color="primary"
+    <button *ngIf="s.config && s.config.contactPage && s.config.contactPage.data2" mat-fab color="primary"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" (click)="openEmailDialog()">
         <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
     </button>
  
     <div *ngIf="s.config && s.config.contactPage && s.config.contactPage.timeTable && s.config.contactPage.timeTable.length > 0">
-        <h3>Opening hours</h3>
+        <h3>{{ 'CONTACT.TIMINGS' | translate }}</h3>
         <table class="mdl-data-table">
             <tbody>
                 <tr *ngFor="let weekDay of s.weekDays; let i = index">
                     <td class="day">{{weekDay.name}}</td>
                     <td [colSpan]="s.config.contactPage.timeTable[i].nonStop ? 2 : 1">
-                        <div>
+                        <div *ngIf="s.config.contactPage.timeTable[i].morningTime">
                             {{applyMask(s.config.contactPage.timeTable[i].morningTime)}}
+                        </div>
+                        <div *ngIf="!s.config.contactPage.timeTable[i].morningTime">
+                            {{ 'CONTACT.CLOSED' | translate }}
                         </div>
                     </td>
                     <td *ngIf="!s.config.contactPage.timeTable[i].nonStop">
-                        <div>
+                        <div *ngIf="s.config.contactPage.timeTable[i].afternoonTime">
                             {{applyMask(s.config.contactPage.timeTable[i].afternoonTime)}}
+                        </div>
+                        <div *ngIf="!s.config.contactPage.timeTable[i].afternoonTime">
+                            {{ 'CONTACT.CLOSED' | translate }}
                         </div>
                     </td>
                 </tr>

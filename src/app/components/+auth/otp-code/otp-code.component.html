@@ -1,0 +1,25 @@
+<div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>        
+
+<app-header title="{{ 'AUTH.LOGIN' | translate }}"></app-header>
+<app-logo></app-logo>
+
+<div class="content">
+    <div class="login-container">
+        <form class="login-form" [formGroup]="otpForm" (submit)="onOtpSubmit()">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Code" formControlName="otpCode">
+            </mat-form-field>
+            <mat-error *ngIf="codeError">
+                {{ 'AUTH.CODE_ERROR' | translate }}
+            </mat-error>
+            <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid"
+                    [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
+                {{ 'COMMON.SUBMIT' | translate }}
+            </button>
+            <button type="button" (click)="sendOptCode()" class="resend-btn"
+                    [disabled]="loading">
+                {{ 'AUTH.RESEND_CODE' | translate }}
+            </button>
+        </form>
+    </div>
+</div>

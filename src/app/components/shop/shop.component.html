@@ -5,11 +5,11 @@
     <div class="text-align-center">
         <button mat-raised-button [ngClass]="{'mat-primary': !isLocation, 'inactive': isLocation}" 
            (click)="isLocation = false" [style.backgroundColor]="!isLocation && s.config.design ? s.config.design.buttonsColor : null">
-            The shop
+           {{ 'SHOP.SHOP_BTN' | translate }}
         </button>
         <button mat-raised-button [ngClass]="{'mat-primary': isLocation, 'inactive': !isLocation}"
            (click)="isLocation = true" [style.backgroundColor]="isLocation && s.config.design ? s.config.design.buttonsColor : null">
-            Our location
+           {{ 'SHOP.LOCATION_BTN' | translate }}
         </button>
     </div>
     <div *ngIf="!isLocation">
@@ -34,7 +34,7 @@
                 <br />
                 <br />
                 <a routerLink="/contact" mat-raised-button color="primary" 
-                   [style.backgroundColor]="isLocation && s.config.design ? s.config.design.buttonsColor : null">Contact
+                   [style.backgroundColor]="isLocation && s.config.design ? s.config.design.buttonsColor : null">{{ 'SHOP.CONTACT_BTN' | translate }}                   
                 </a>
     
                 <br />

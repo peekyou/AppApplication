@@ -1,13 +1,13 @@
 <div fxLayout="row" *ngIf="success !== true">
-    <h1 mat-dialog-title fxFlex="93%">Contact by email</h1>
+    <h1 mat-dialog-title fxFlex="93%">{{ 'CONTACT.BY_EMAIL' | translate }}</h1>
     <span class="close-cross" fxFlex="7%" (click)="close()">&#10006;</span>
 </div>
 <div mat-dialog-content>
     <div *ngIf="success === true">
-        Email sent successfully
+        {{ 'CONTACT.EMAIL_SUCCESS' | translate }}
     </div>
     <div *ngIf="success === false">
-        An error occured while sending the email. Please try later.
+        {{ 'CONTACT.EMAIL_ERROR' | translate }}
     </div>
     <form [formGroup]="form" (submit)="submitEmail()" *ngIf="success === null">
         <mat-form-field class="full-width">
@@ -19,10 +19,10 @@
         </mat-form-field>
         <button class="full-width" mat-raised-button type="submit" color="primary" 
                 [disabled]="loading || form.invalid">
-            Submit
+            {{ 'COMMON.SUBMIT' | translate }}
         </button>
     </form>
 </div>
 <div mat-dialog-actions *ngIf="success !== null" class="success-btn">
-    <button mat-raised-button (click)="close()">Ok</button>
+    <button mat-raised-button (click)="close()">{{ 'COMMON.OK' | translate }}</button>
 </div>

@@ -3,6 +3,7 @@ import { SharedModule } from '../../core/shared/shared.module';
 
 //import { ReCaptchaModule } from 'angular2-recaptcha';
 import { LoginComponent } from './login/login.component';
+import { OtpCodeComponent } from './otp-code/otp-code.component';
 import { authRoutes } from './auth.routes';
 
 @NgModule({
@@ -11,7 +12,8 @@ import { authRoutes } from './auth.routes';
         authRoutes,
     ],
     declarations: [
-        LoginComponent
+        LoginComponent,
+        OtpCodeComponent
     ]
 })
 export class AuthModule { }
