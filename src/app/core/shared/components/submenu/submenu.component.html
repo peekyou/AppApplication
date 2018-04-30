@@ -2,7 +2,7 @@
     <div fxLayout="column" fxLayoutAlign="space-around center">
         <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
              style="padding-top:12px">
-            <a routerLink="review" (click)="close()">
+            <a routerLink="review" queryParamsHandling="merge" (click)="close()">
                 <!-- <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> -->
                 <img src="assets/images/review.png" width="32"/>                
             </a>
@@ -14,7 +14,7 @@
             </a>
         </div>
         <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="account" (click)="close()">
+            <a routerLink="account" queryParamsHandling="merge" (click)="close()">
                 <!-- <i class="fa fa-user fa-lg" aria-hidden="true"></i> -->
                 <img src="assets/images/account.png" width="32"/>                
             </a>

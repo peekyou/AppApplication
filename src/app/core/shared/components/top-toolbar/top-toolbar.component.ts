@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 export class TopToolbarComponent implements OnInit {
     @Input() title: string;
 
-    constructor(public location: Location,) {}
+    constructor(public location: Location) {}
 
     public ngOnInit() {
     }

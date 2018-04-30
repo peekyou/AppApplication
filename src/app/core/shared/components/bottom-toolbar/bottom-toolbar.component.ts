@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ConfigurationService } from '../../../services/configuration.service';
@@ -12,7 +12,8 @@ import { ConfigurationService } from '../../../services/configuration.service';
 export class BottomToolbarComponent implements OnInit {
     showSubMenu: boolean = false;
 
-    constructor(private dialog: MatDialog, public s: ConfigurationService, public router: Router) { }
+    constructor(private dialog: MatDialog, public s: ConfigurationService, public url: LocationStrategy) { 
+    }
 
     public ngOnInit() {
     }

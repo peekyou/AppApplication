@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
 import { HttpService } from '../../core/services/http.service';
+import { LocalForageService } from '../../core/services/local-forage.service';
 import { parseJwt } from '../../core/helpers/utils';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
@@ -13,7 +14,11 @@ export class AuthService {
     public token: string = null;
     public mobile: string;
 
-    constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpService) {
+    constructor(
+        @Inject(APP_CONFIG) private appConfig: AppConfig, 
+        private http: HttpService,
+        private localForage: LocalForageService) {
+
         if (appConfig.MerchantId) {
             this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId; 
         }
@@ -50,6 +55,8 @@ export class AuthService {
         this.mobile = null;
         this.permissions = [];
         localStorage.removeItem(this.tokenKey);
+        this.localForage.remove('mobile');
+        this.localForage.remove('paramtoken');
     }
 
     isAuthenticated(): boolean {
@@ -73,5 +80,26 @@ export class AuthService {
             this.permissions = [];
         }
     }
-}
+    
+    getMobile(): string {
+        return localStorage.getItem('mobile');
+    }
 
+    setMobile(value: any) {
+        this.mobile = value;
+        if (!value) {
+            localStorage.removeItem('mobile');
+        }
+        else {
+            localStorage.setItem('mobile', value);
+        }
+    }
+
+    getParamToken(): string {
+        return localStorage.getItem('paramtoken');
+    }
+
+    setParamToken(value: any) {
+        localStorage.setItem('paramtoken', value);
+    }
+}

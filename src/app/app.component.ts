@@ -19,7 +19,6 @@ import { APP_CONFIG, AppConfig } from './app.config';
     ]
 })
 export class AppComponent implements OnInit {
-  
     constructor(
         @Inject(APP_CONFIG) config: AppConfig,
         private route: ActivatedRoute,
@@ -35,30 +34,34 @@ export class AppComponent implements OnInit {
         }
 
     public ngOnInit() {
-        this.route.paramMap
-            .switchMap((params: ParamMap) => {
-                var param = params.get('id');
+        this.route.queryParams
+            .switchMap(params => {
+                var param = params['t'];
                 if (param) {
+                    this.authService.setParamToken(param);
                     if (this.authService.isAuthenticated()) {
                         return Observable.of(true);
                     }
-                    var codeLength = parseInt(param.charAt(0));
-                    var customerId = param.slice(1, param.length - codeLength);
-                    var code = param.slice(-codeLength);
-                    return this.authService.login(null, null, null, code, customerId);
+                    return this.login(param);
+                }
+                else {
+                    var token = this.authService.getParamToken();
+                    if (token) {
+                        return this.login(token);
+                    }
                 }
                 return Observable.of(null);
             })
             .subscribe(success => {
                 this.userService.launchTimer();
                 if (success) {
-                    this.router.navigate(['/']);
+                    this.router.navigate(['/'], { queryParamsHandling: "merge" });
                 }
             },
-            err => this.router.navigate(['/']));
+            err => this.router.navigate(['/'], { queryParamsHandling: "merge" }));
     }
 
-    public iOSNotStandalone () { 
+    public iOSNotStandalone() { 
         // return true;
         if ((window.navigator.userAgent.indexOf('iPhone') != -1 ||
             window.navigator.userAgent.indexOf('iPad') != -1)
@@ -66,5 +69,12 @@ export class AppComponent implements OnInit {
            return true; 
         }
         return false;
+    }
+
+    private login(token) {
+        var codeLength = parseInt(token.charAt(0));
+        var customerId = token.slice(1, token.length - codeLength);
+        var code = '0' + token.slice(-codeLength);
+        return this.authService.login(null, null, null, code, customerId);
     }
 }

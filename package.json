@@ -16,10 +16,10 @@
   "homepage": "https://github.com/gdi2290/angular-starter",
   "license": "MIT",
   "scripts": {
-    "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail --env.merchant test --env.displayname \"Test Shop\"",
+    "build:aot:prod": "npm run clean:dist && npm run clean:aot && cross-env BUILD_AOT=1 npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail --env.merchant test --env.displayname \"Appwards\"",
     "build:aot": "npm run build:aot:prod",
     "build:aot:dev": "cross-env BUILD_AOT=1 npm run build:dev",
-    "build:dev": "npm run clean:dist && npm run webpack -- --config config/webpack.dev.js --progress --profile",
+    "build:dev": "npm run clean:dist && npm run webpack -- --config config/webpack.dev.js --progress --profile --env.merchant test --env.displayname \"Appwards\"",
     "build:docker": "npm run build:prod && docker build -t angular2-webpack-start:latest .",
     "build:prod": "npm run clean:dist && npm run webpack -- --config config/webpack.prod.js  --progress --profile --bail",
     "build": "npm run build:dev",

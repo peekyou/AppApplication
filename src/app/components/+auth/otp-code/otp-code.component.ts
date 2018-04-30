@@ -48,6 +48,21 @@ export class OtpCodeComponent implements OnInit {
                 this.userService.launchTimer();
                 this.router.navigate(['/']);
             },
-            err => this.codeError = true);
+            err =>  {
+                this.codeError = true;
+                this.loading = false;
+            });
+    }
+
+    sendOptCode() {
+        this.loading = true;
+        this.authService
+            .sendOtpCode(formatPhone(this.authService.mobile))
+            .subscribe(res => {
+                this.loading = false;
+            },
+            err => {
+                this.loading = false;
+            });
     }
 }

@@ -1,6 +1,6 @@
 <div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>        
 
-<app-header title="{{ 'AUTH.LOGIN' | translate }}"></app-header>
+<app-header showBackButton="true" title="{{ 'AUTH.LOGIN' | translate }}"></app-header>
 <app-logo></app-logo>
 
 <div class="content">
@@ -12,7 +12,7 @@
             <mat-error *ngIf="codeError">
                 {{ 'AUTH.CODE_ERROR' | translate }}
             </mat-error>
-            <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid"
+            <button mat-raised-button type="submit" color="primary" [disabled]="otpForm.invalid || loading"
                     [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
                 {{ 'COMMON.SUBMIT' | translate }}
             </button>

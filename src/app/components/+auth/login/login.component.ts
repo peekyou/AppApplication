@@ -37,6 +37,14 @@ export class LoginComponent implements OnInit {
             if (authService.isAuthenticated()) {
                 router.navigate(['/']);
             }
+
+            // Redirect to otp page if the user has entered a mobile
+            // because iOS reload the app when it's minimized
+            var mobile = authService.getMobile();
+            if (mobile) {
+                this.authService.setMobile(mobile);
+                this.router.navigate(['/otp'], { queryParamsHandling: "merge" });
+            }
         }
 
     ngOnInit() {
@@ -50,8 +58,8 @@ export class LoginComponent implements OnInit {
             .sendOtpCode(mobile)
             .subscribe(res => {
                 this.loading = false;
-                this.authService.mobile = mobile;
-                this.router.navigate(['/otp'])
+                this.authService.setMobile(mobile);
+                this.router.navigate(['/otp'], { queryParamsHandling: "merge" });
             },
             err => {
                 this.loading = false;

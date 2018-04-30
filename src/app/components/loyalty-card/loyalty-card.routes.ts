@@ -5,7 +5,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 
 export const routes: Routes = [
     {
-        path: 'loyaltycard', canActivate: [AuthGuard], children: [
+        path: '', canActivate: [AuthGuard], children: [
             { path: '', component: LoyaltyCardComponent }
         ]
     },

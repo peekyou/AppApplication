@@ -1,4 +1,7 @@
 <div class="header" [ngClass]="{'fixed-height': fixedHeight}">
+    <div *ngIf="showBackButton" class="back-button">
+        <i class="fa fa-arrow-left" (click)="back()" aria-hidden="true"></i>
+    </div>
     <h2 *ngIf="title" class="header-title" [style.color]="s.config.design ? s.config.design.titlesColor : null">{{ title }}</h2>
     <div *ngIf="!title" class="picture">
         <!-- <img src="http://static.uberoom.com/images/user/products/add_ons/food/truffles_L.jpg" /> -->

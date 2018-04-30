@@ -2,30 +2,30 @@
     <div>
         <div fxLayout="row" fxLayoutAlign="center" class="container">
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
-                <a routerLink="loyaltycard">
-                    <img *ngIf="router.url !== '/loyaltycard'" src="assets/images/loyalty.png" width="32"/>
-                    <img *ngIf="router.url === '/loyaltycard'" src="assets/images/loyalty-active.png" width="32"/>
+                <a routerLink="/" queryParamsHandling="merge">
+                    <img *ngIf="url.path().split('?')[0] !== '/'" src="assets/images/loyalty.png" width="32"/>
+                    <img *ngIf="url.path().split('?')[0] === '/'" src="assets/images/loyalty-active.png" width="32"/>
                     <!-- <i class="fa fa-vcard-o fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
-                <a routerLink="promotion">
-                    <img *ngIf="router.url !== '/promotion'" src="assets/images/promotion.png" width="32"/>
-                    <img *ngIf="router.url === '/promotion'" src="assets/images/promotion-active.png" width="32"/>                    
+                <a routerLink="promotion" queryParamsHandling="merge">
+                    <img *ngIf="url.path().split('?')[0] !== '/promotion'" src="assets/images/promotion.png" width="32"/>
+                    <img *ngIf="url.path().split('?')[0] === '/promotion'" src="assets/images/promotion-active.png" width="32"/>                    
                     <!-- <i class="fa fa-percent fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
-                <a routerLink="shop">
-                    <img *ngIf="router.url !== '/shop'" src="assets/images/shop.png" width="32"/>
-                    <img *ngIf="router.url === '/shop'" src="assets/images/shop-active.png" width="32"/>
+                <a routerLink="shop" queryParamsHandling="merge">
+                    <img *ngIf="url.path().split('?')[0] !== '/shop'" src="assets/images/shop.png" width="32"/>
+                    <img *ngIf="url.path().split('?')[0] === '/shop'" src="assets/images/shop-active.png" width="32"/>
                     <!-- <i class="fa fa-align-justify fa-lg" aria-hidden="true"></i> -->
                 </a>
             </div>
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">
-                <a routerLink="contact">
-                    <img *ngIf="router.url !== '/contact'" src="assets/images/contact.png" width="32"/>
-                    <img *ngIf="router.url === '/contact'" src="assets/images/contact-active.png" width="32"/>                    
+                <a routerLink="contact" queryParamsHandling="merge">
+                    <img *ngIf="url.path().split('?')[0] !== '/contact'" src="assets/images/contact.png" width="32"/>
+                    <img *ngIf="url.path().split('?')[0] === '/contact'" src="assets/images/contact-active.png" width="32"/>                    
                 </a>
             </div>
             <div fxFlex (click)="showSubMenu = !showSubMenu">
