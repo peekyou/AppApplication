@@ -46,7 +46,7 @@
         <div *ngFor="let review of reviews.data; let i = index">
             <div class="review-card" fxLayout="row" fxLayout.xs="column">
                 <div fxFlex="50%" class="review-text line-breaker">
-                    <small>{{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</small>
+                    <span *ngIf="!s.config.anonymousReviews"><small>{{review.createdBy}} - </small></span><small>{{review.createdDate | date: 'dd-MM-yyyy HH:mm'}}</small>
                     <p>{{review.comment}}</p>
                 </div>
                 <div fxFlex="50%">

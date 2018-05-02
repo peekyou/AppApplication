@@ -7,6 +7,7 @@ export class MerchantConfiguration {
     rating1ResourceKey?: string;
     rating2ResourceKey?: string;
     rating3ResourceKey?: string;
+    anonymousReviews?: string;
     discountAmount: number;
     discountCurrency: string;
     discountPointsThreshold: number;
