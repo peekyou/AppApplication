@@ -6,6 +6,8 @@
     },
     "COMMON": {
         "SUBMIT": "Envoyer",
+        "OK": "OK",
+        "CANCEL": "Annuler",
         "FIRSTNAME": "Prénom",
         "LASTNAME": "Nom",
         "GENDER": "Sexe",
@@ -33,12 +35,15 @@
         "MOBILE_PLACEHOLDER": "Numéro de tél",
         "MOBILE_ERROR": "Numéro incorrect",
         "CODE_ERROR": "Code incorrect",
-        "RESEND_CODE": "Renvoyer le code"
+        "RESEND_CODE": "Renvoyer le code",
+        "UNREGISTERED_TITLE": "Demandez votre carte de fidélité",
+        "UNREGISTERED_CONTENT": "Ce numéro n'est pas enregistré. Rendez-vous dans votre magasin pour reçevoir votre carte de fidélité."
     },
     "ACCOUNT": {
+        "TITLE": "Mon compte",
         "CARD_NUMBER": "No carte",
         "INVALID_EMAIL": "Adresse email incorrecte",
-        "EDIT": "Modofier mon compte"
+        "EDIT": "Modifier mon compte"
     },
     "CONTACT": {
         "TIMINGS": "Heures d'ouverture",
@@ -48,9 +53,10 @@
         "EMAIL_ERROR": "Une erreur est survenue lors de l'envoi. Merci d'essayer ultérieuremennt."
     },
     "LOYALTY": {
-        "GOAL": "GOAL",
+        "TITLE": "Carte de fidélité",
+        "GOAL": "OBJECTIF",
         "PTS": "PTS",
-        "POINTS_TO_GOAL": "POINTS TO GOAL",
+        "POINTS_TO_GOAL": "POINTS RESTANTS",
         "POINTS_OWNED": "POINTS OBTENUS",
         "ACHIEVEMENT": "Atteignez {{points}} pts et",
         "VOUCHER": "gagnez un bon de"

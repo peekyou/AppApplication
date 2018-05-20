@@ -34,6 +34,7 @@ import { NoContentComponent } from './components/no-content';
 import { EmailDialogComponent } from './components/contact/email/email.component';
 import { SocialShareDialogComponent } from './core/shared/components/social-share/social-share.component';
 import { NewReviewDialogComponent } from './components/review/new-review/new-review.component';
+import { UnregisteredCustomerDialogComponent } from './components/+auth/unregistered-customer/unregistered-customer.component';
 
 import '../styles/styles.scss';
 
@@ -82,7 +83,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     entryComponents: [ 
         EmailDialogComponent,
         SocialShareDialogComponent,
-        NewReviewDialogComponent
+        NewReviewDialogComponent,
+        UnregisteredCustomerDialogComponent
     ],
     providers: [
         environment.ENV_PROVIDERS,

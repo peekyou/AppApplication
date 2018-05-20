@@ -35,9 +35,12 @@
         "MOBILE_PLACEHOLDER": "Your phone number",
         "MOBILE_ERROR": "Wrong mobile number",
         "CODE_ERROR": "Wrong code",
-        "RESEND_CODE": "Resend code"
+        "RESEND_CODE": "Resend code",
+        "UNREGISTERED_TITLE": "Ask your loyalty card",
+        "UNREGISTERED_CONTENT": "This number is not registered. Go to your store to receive your loyalty card."
     },
     "ACCOUNT": {
+        "TITLE": "My account",
         "CARD_NUMBER": "Card number",
         "INVALID_EMAIL": "Please enter a valid email address",
         "EDIT": "Edit my account"
@@ -50,6 +53,7 @@
         "EMAIL_ERROR": "An error occured while sending the email. Please try later"
     },
     "LOYALTY": {
+        "TITLE": "Rewards program",
         "GOAL": "GOAL",
         "PTS": "PTS",
         "POINTS_TO_GOAL": "POINTS TO GOAL",

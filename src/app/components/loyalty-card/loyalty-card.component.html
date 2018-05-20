@@ -1,7 +1,7 @@
 <div *ngIf="s.config" class="loyalty-container">
     <div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>
     <div class="content">
-        <app-header title="Rewards program"></app-header>
+        <app-header title="{{ 'LOYALTY.TITLE' | translate }}"></app-header>
         <app-logo></app-logo>
         <div class="points-container after-logo-padding-top-8" *ngIf="service.user">
             <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">

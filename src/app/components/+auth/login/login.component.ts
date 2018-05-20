@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ConfigurationService } from '../../../core/services/configuration.service';
+import { UnregisteredCustomerDialogComponent } from '../unregistered-customer/unregistered-customer.component';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../../core/services/user.service';
 import { styleBackgoundImage } from '../../../core/helpers/utils';
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     });
      
     constructor(
+        private dialog: MatDialog,
         private fb: FormBuilder, 
         private authService: AuthService,
         private router: Router, 
@@ -63,7 +66,19 @@ export class LoginComponent implements OnInit {
             },
             err => {
                 this.loading = false;
-                this.mobileError = true;
+                if (err.error && err.error.errorCode === 'UnregisteredCustomer') {
+                    this.openUnregisteredCustomerDialog();
+                }
+                else {
+                    this.mobileError = true;
+                }
             });
+    }
+
+    openUnregisteredCustomerDialog() {
+        this.dialog.open(UnregisteredCustomerDialogComponent, {
+            width: "250px",
+            autoFocus: false
+        });
     }
 }
