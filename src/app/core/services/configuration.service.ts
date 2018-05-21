@@ -107,13 +107,15 @@ export class ConfigurationService {
     }
 
     private calculateSecondaryColor(color: string): string {
-        var numbers = color.match(/\d+/g).map(Number);
-        var max = 255;
-        if (numbers.length >= 3) {
-            numbers[0] = numbers[0] + 15 > max ? numbers[0] - 15 : numbers[0] + 15;
-            numbers[1] = numbers[1] + 25 > max ? numbers[1] - 25 : numbers[1] + 25;
-            numbers[2] = numbers[2] + 10 > max ? numbers[2] - 10 : numbers[2] + 10;
-            return 'rgb(' + numbers[0] + ',' + numbers[1] + ',' + numbers[2] + ')';        
+        if (color) {
+            var numbers = color.match(/\d+/g).map(Number);
+            var max = 255;
+            if (numbers.length >= 3) {
+                numbers[0] = numbers[0] + 15 > max ? numbers[0] - 15 : numbers[0] + 15;
+                numbers[1] = numbers[1] + 25 > max ? numbers[1] - 25 : numbers[1] + 25;
+                numbers[2] = numbers[2] + 10 > max ? numbers[2] - 10 : numbers[2] + 10;
+                return 'rgb(' + numbers[0] + ',' + numbers[1] + ',' + numbers[2] + ')';        
+            }
         }
         return null;
     }
