@@ -27,7 +27,8 @@
         "GENDER_F": "Femme",
         "GENDER_M": "Homme",
         "ADDRESS": "Adresse",
-        "GET_CARD": "Obtenir ma carte"
+        "GET_CARD": "Obtenir ma carte",
+        "MOBILE_ALERT": "Veuillez utiliser votre téléphone"
     },
     "AUTH": {
         "LOGIN": "Se connecter",

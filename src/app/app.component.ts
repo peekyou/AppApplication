@@ -9,6 +9,7 @@ import { AuthService } from './components/+auth/auth.service';
 import { UserService } from './core/services/user.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { APP_CONFIG, AppConfig } from './app.config';
+import { isMobile } from './core/helpers/utils';
 
 @Component({
     selector: 'app',
@@ -19,6 +20,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
     ]
 })
 export class AppComponent implements OnInit {
+    isMobile: boolean;
+
     constructor(
         @Inject(APP_CONFIG) config: AppConfig,
         private route: ActivatedRoute,
@@ -28,6 +31,8 @@ export class AppComponent implements OnInit {
         private userService: UserService,
         public s: ConfigurationService) { 
 
+            this.isMobile = isMobile();
+            console.log(this.isMobile)
             // translate.addLangs(["en", "fr"]);
             translate.setDefaultLang('en');
             translate.use(config.Lang ? config.Lang : 'en');
