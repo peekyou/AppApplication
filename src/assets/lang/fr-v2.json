@@ -1,0 +1,85 @@
+{
+    "INSTALLATION_TUTO": {
+        "PRESS": "Appuyez",
+        "BELOW": "ci-dessous",
+        "ADD_HOME_SCREEN": "Puis \"Sur l'écran d'accueil\""
+    },
+    "COMMON": {
+        "SUBMIT": "Envoyer",
+        "OK": "OK",
+        "CANCEL": "Annuler",
+        "FIRSTNAME": "Prénom",
+        "LASTNAME": "Nom",
+        "GENDER": "Sexe",
+        "AGE": "Age",
+        "EMAIL": "Email",
+        "PHONE": "Téléphone",
+        "BIRTHDATE": "Date de naissance",
+        "COUNTRY": "Pays",
+        "EMIRATE": "Emirat",
+        "AREA": "Quartier",
+        "STATE": "Etat",
+        "CITY": "Ville",
+        "ZIP_CODE": "Code postal",
+        "ADDRESS_LINE_1": "Adresse",
+        "ADDRESS_LINE_2": "Adresse 2",
+        "LANGUAGES": "Langues",
+        "GENDER_F": "Femme",
+        "GENDER_M": "Homme",
+        "ADDRESS": "Adresse",
+        "GET_CARD": "Obtenir ma carte",
+        "MOBILE_ALERT": "Disponible uniquement sur mobile"
+    },
+    "AUTH": {
+        "LOGIN": "Se connecter",
+        "LOGOUT": "Déconnecter",
+        "MOBILE_PLACEHOLDER": "Numéro de tél",
+        "MOBILE_ERROR": "Numéro incorrect",
+        "CODE_ERROR": "Code incorrect",
+        "RESEND_CODE": "Renvoyer le code",
+        "UNREGISTERED_TITLE": "Demandez votre carte de fidélité",
+        "UNREGISTERED_CONTENT": "Ce numéro n'est pas enregistré. Rendez-vous dans votre magasin pour reçevoir votre carte de fidélité."
+    },
+    "ACCOUNT": {
+        "TITLE": "Mon compte",
+        "CARD_NUMBER": "No carte",
+        "INVALID_EMAIL": "Adresse email incorrecte",
+        "EDIT": "Modifier mon compte"
+    },
+    "CONTACT": {
+        "TIMINGS": "Heures d'ouverture",
+        "CLOSED": "Fermé",
+        "BY_EMAIL": "Contacter par email",
+        "EMAIL_SUCCESS": "Email envoyé",
+        "EMAIL_ERROR": "Une erreur est survenue lors de l'envoi. Merci d'essayer ultérieuremennt."
+    },
+    "LOYALTY": {
+        "TITLE": "Carte de fidélité",
+        "GOAL": "OBJECTIF",
+        "PTS": "PTS",
+        "POINTS_TO_GOAL": "POINTS RESTANTS",
+        "POINTS_OWNED": "POINTS OBTENUS",
+        "ACHIEVEMENT": "Atteignez {{points}} pts et",
+        "VOUCHER": "gagnez un bon de"
+    },
+    "REVIEWS": {
+        "TITLE": "Avis",
+        "SUBMIT_FIRST": "Soyez le premier à poster un avis !",
+        "LOGIN_SUBMIT_FIRST": "Obtenez votre carte de fidélité et soyez le premier à poster un avis !",
+        "RATE": "Votre note",
+        "COMMENT": "Commentaire",
+        "SUBMIT_ERROR": "Une erreur est survenue lors de l'envoi de votre avis. Merci d'essayer ultérieuremennt."
+    },
+    "PROMOTIONS": {
+        "TITLE": "Promotions",
+        "NO_PROMOTION": "Pas de promotion actuellement"
+    },
+    "SHOP": {
+        "SHOP_BTN": "Le magasin",
+        "LOCATION_BTN": "Notre adresse",
+        "CONTACT_BTN": "Contact"
+    },
+    "SOCIAL_MEDIA": {
+        "SHARE": "Partager à vos amis"
+    }
+}

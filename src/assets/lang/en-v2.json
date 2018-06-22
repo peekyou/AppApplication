@@ -1,0 +1,85 @@
+{
+    "INSTALLATION_TUTO": {
+        "PRESS": "Press",
+        "BELOW": "below",
+        "ADD_HOME_SCREEN": "And add to the screen"
+    },
+    "COMMON": {
+        "SUBMIT": "Submit",
+        "OK": "OK",
+        "CANCEL": "Cancel",
+        "FIRSTNAME": "First name",
+        "LASTNAME": "Last name",
+        "GENDER": "Gender",
+        "AGE": "Age",
+        "EMAIL": "Email",
+        "PHONE": "Phone",
+        "BIRTHDATE": "Birth date",
+        "COUNTRY": "Country",
+        "EMIRATE": "Emirate",
+        "AREA": "Area",
+        "STATE": "State",
+        "CITY": "City",
+        "ZIP_CODE": "Zip code",
+        "ADDRESS_LINE_1": "Address",
+        "ADDRESS_LINE_2": "Address 2",
+        "LANGUAGES": "Languages",
+        "GENDER_F": "Female",
+        "GENDER_M": "Male",
+        "ADDRESS": "Address",
+        "GET_CARD": "Get my card",
+        "MOBILE_ALERT": "Available only on mobile"
+    },
+    "AUTH": {
+        "LOGIN": "Log in",
+        "LOGOUT": "Log  out",
+        "MOBILE_PLACEHOLDER": "Your phone number",
+        "MOBILE_ERROR": "Wrong mobile number",
+        "CODE_ERROR": "Wrong code",
+        "RESEND_CODE": "Resend code",
+        "UNREGISTERED_TITLE": "Ask your loyalty card",
+        "UNREGISTERED_CONTENT": "This number is not registered. Go to your store to receive your loyalty card."
+    },
+    "ACCOUNT": {
+        "TITLE": "My account",
+        "CARD_NUMBER": "Card number",
+        "INVALID_EMAIL": "Please enter a valid email address",
+        "EDIT": "Edit my account"
+    },
+    "CONTACT": {
+        "TIMINGS": "Opening hours",
+        "CLOSED": "Closed",
+        "BY_EMAIL": "Contact by email",
+        "EMAIL_SUCCESS": "Email sent successfully",
+        "EMAIL_ERROR": "An error occured while sending the email. Please try later"
+    },
+    "LOYALTY": {
+        "TITLE": "Rewards program",
+        "GOAL": "GOAL",
+        "PTS": "PTS",
+        "POINTS_TO_GOAL": "POINTS TO GOAL",
+        "POINTS_OWNED": "POINTS OWNED",
+        "ACHIEVEMENT": "Achieve {{points}} pts and",
+        "VOUCHER": "win a voucher of"
+    },
+    "REVIEWS": {
+        "TITLE": "Reviews",
+        "SUBMIT_FIRST": "Be the first to post a review!",
+        "LOGIN_SUBMIT_FIRST": "Get your loyalty card and be first to post a review!",
+        "RATE": "Your rate",
+        "COMMENT": "Comment",
+        "SUBMIT_ERROR": "An error occured while sending the review. Please try later."
+    },
+    "PROMOTIONS": {
+        "TITLE": "Special offers",
+        "NO_PROMOTION": "No promotion as of now, stay tuned!"
+    },
+    "SHOP": {
+        "SHOP_BTN": "The shop",
+        "LOCATION_BTN": "Our location",
+        "CONTACT_BTN": "Contact"
+    },
+    "SOCIAL_MEDIA": {
+        "SHARE": "Share to your friends"
+    }
+}
