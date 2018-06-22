@@ -11,6 +11,7 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 export class AuthService {
     private permissions: string[];
     private tokenKey = 'cus_token';
+    private paramTokenKey = 'param_token';
     public token: string = null;
     public mobile: string;
 
@@ -20,7 +21,8 @@ export class AuthService {
         private localForage: LocalForageService) {
 
         if (appConfig.MerchantId) {
-            this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId; 
+            this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId;
+            this.paramTokenKey = this.paramTokenKey + '-' + appConfig.MerchantId;
         }
         this.token = localStorage.getItem(this.tokenKey);
         this.setPermissions();
@@ -96,10 +98,10 @@ export class AuthService {
     }
 
     getParamToken(): string {
-        return localStorage.getItem('paramtoken');
+        return localStorage.getItem(this.paramTokenKey);
     }
 
     setParamToken(value: any) {
-        localStorage.setItem('paramtoken', value);
+        localStorage.setItem(this.paramTokenKey, value);
     }
 }

@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
         public s: ConfigurationService) { 
 
             this.isMobile = isMobile();
-            console.log(this.isMobile)
             // translate.addLangs(["en", "fr"]);
             translate.setDefaultLang('en');
             translate.use(config.Lang ? config.Lang : 'en');

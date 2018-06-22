@@ -166,3 +166,20 @@ a {
         height: $bottom-toolbar-height;
     }
 }
+
+@media (max-width: 800px) {
+    .mobile-alert {
+        display: none;
+    }
+    .application {
+        display: block;
+    }
+}
+@media (min-width: 800px) {
+    .mobile-alert {
+        display: block;
+    }
+    .application {
+        display: none;
+    }
+}

@@ -1,8 +1,8 @@
-﻿<div *ngIf="!isMobile" class="mobile-alert">
+﻿<div class="mobile-alert">
     {{ 'COMMON.MOBILE_ALERT' | translate }}
 </div>
 
-<div *ngIf="isMobile">
+<div class="application">
     <div *ngIf="!s.config" class="app-loading">
         <style>
             .app-loading {
