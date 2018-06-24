@@ -41,19 +41,22 @@ export class UserService {
         });
     }
     
-    reloadUser(id: string = null) {
-        if (!id) {
-            id = this.authService.getUserId();
-        }
-
+    reloadUser() {
+        var id = this.authService.getUserId();
         if (id) {
             this.http.get(this.api + '/' + id + '/infos')
                 .subscribe(
-                (user: User) => {
-                    this.user = user;
-                },
-                    err => { console.log(err); }
+                    (user: User) => {
+                        this.user = user;
+                    },
+                    err => { 
+                        this.user = null;
+                        console.log(err);
+                    }
                 );
+        }
+        else {
+            this.user = null;
         }
     }
 

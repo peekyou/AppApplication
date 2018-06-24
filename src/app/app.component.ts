@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private translate: TranslateService,
-        private userService: UserService,
+        public userService: UserService,
         public s: ConfigurationService) { 
 
             this.isMobile = isMobile();
@@ -46,20 +46,24 @@ export class AppComponent implements OnInit {
                     if (this.authService.isAuthenticated()) {
                         return Observable.of(true);
                     }
-                    return this.login(param);
+                    return Observable.of(param);
                 }
                 else {
                     var token = this.authService.getParamToken();
                     if (token) {
-                        return this.login(token);
+                        return Observable.of(token);
                     }
                 }
                 return Observable.of(null);
             })
-            .subscribe(success => {
-                this.userService.launchTimer();
-                if (success) {
+            .subscribe(res => {
+                if (res === true) {
+                    this.userService.launchTimer();
                     this.router.navigate(['/'], { queryParamsHandling: "merge" });
+                }
+                else if (res) {
+                    // res = token
+                    this.login(res);
                 }
             },
             err => this.router.navigate(['/'], { queryParamsHandling: "merge" }));
@@ -79,6 +83,13 @@ export class AppComponent implements OnInit {
         var codeLength = parseInt(token.charAt(0));
         var customerId = token.slice(1, token.length - codeLength);
         var code = '0' + token.slice(-codeLength);
-        return this.authService.login(null, null, null, code, customerId);
+        this.authService.login(null, null, null, code, customerId)
+            .subscribe(
+                res => {
+                    this.userService.launchTimer();
+                    this.router.navigate(['/'], { queryParamsHandling: "merge" });
+                },
+                err => this.router.navigate(['/'], { queryParamsHandling: "merge" })
+            );
     }
 }

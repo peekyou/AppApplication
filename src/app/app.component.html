@@ -3,7 +3,7 @@
 </div>
 
 <div class="application">
-    <div *ngIf="!s.config" class="app-loading">
+    <div *ngIf="!s.config || userService.user === undefined" class="app-loading">
         <style>
             .app-loading {
                 display: flex;
@@ -49,7 +49,7 @@
         Loading<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
     </div>
 
-    <div class="app-container" *ngIf="s.config">
+    <div class="app-container" *ngIf="s.config && userService.user !== undefined">
         <div class="module-content">
             <router-outlet></router-outlet>
         </div>

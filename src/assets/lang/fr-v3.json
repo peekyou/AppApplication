@@ -60,7 +60,8 @@
         "POINTS_TO_GOAL": "POINTS RESTANTS",
         "POINTS_OWNED": "POINTS OBTENUS",
         "ACHIEVEMENT": "Atteignez {{points}} pts et",
-        "VOUCHER": "gagnez un bon de"
+        "VOUCHER": "gagnez un bon de",
+        "DELETED": "Veuillez contacter votre magasin"
     },
     "REVIEWS": {
         "TITLE": "Avis",

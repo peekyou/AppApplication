@@ -60,7 +60,8 @@
         "POINTS_TO_GOAL": "POINTS TO GOAL",
         "POINTS_OWNED": "POINTS OWNED",
         "ACHIEVEMENT": "Achieve {{points}} pts and",
-        "VOUCHER": "win a voucher of"
+        "VOUCHER": "win a voucher of",
+        "DELETED": "Please contact your shop"
     },
     "REVIEWS": {
         "TITLE": "Reviews",

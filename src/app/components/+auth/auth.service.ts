@@ -12,6 +12,7 @@ export class AuthService {
     private permissions: string[];
     private tokenKey = 'cus_token';
     private paramTokenKey = 'param_token';
+    private mobileKey = 'mobile';
     public token: string = null;
     public mobile: string;
 
@@ -23,6 +24,7 @@ export class AuthService {
         if (appConfig.MerchantId) {
             this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId;
             this.paramTokenKey = this.paramTokenKey + '-' + appConfig.MerchantId;
+            this.mobileKey = this.mobileKey + '-' + appConfig.MerchantId;
         }
         this.token = localStorage.getItem(this.tokenKey);
         this.setPermissions();
@@ -36,6 +38,8 @@ export class AuthService {
     }
 
     login(firstname: string, lastname: string, mobileNumber: string, otpCode: string, customerId: string = null): Observable<boolean> {
+        
+        console.log('login 1')
         return this.http.post(this.appConfig.ApiEndpoint + '/customers/register', {
                 firstname: firstname,
                 lastname: lastname,
@@ -45,6 +49,7 @@ export class AuthService {
                 customerId: customerId
             })
             .map(token => {
+                console.log('login 2')
                 this.token = token;
                 localStorage.setItem(this.tokenKey, token);
                 this.setPermissions();
@@ -57,8 +62,8 @@ export class AuthService {
         this.mobile = null;
         this.permissions = [];
         localStorage.removeItem(this.tokenKey);
-        this.localForage.remove('mobile');
-        this.localForage.remove('paramtoken');
+        localStorage.removeItem(this.paramTokenKey);
+        localStorage.removeItem(this.mobileKey);
     }
 
     isAuthenticated(): boolean {
@@ -84,16 +89,16 @@ export class AuthService {
     }
     
     getMobile(): string {
-        return localStorage.getItem('mobile');
+        return localStorage.getItem(this.mobileKey);
     }
 
     setMobile(value: any) {
         this.mobile = value;
         if (!value) {
-            localStorage.removeItem('mobile');
+            localStorage.removeItem(this.mobileKey);
         }
         else {
-            localStorage.setItem('mobile', value);
+            localStorage.setItem(this.mobileKey, value);
         }
     }
 

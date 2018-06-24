@@ -3,20 +3,20 @@
 
 <div class="panel with-toolbar-padding-bottom">
     <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">{{ 'ACCOUNT.TITLE' | translate }}</h2>        
-    <div class="text-align-center">
-        <app-qr-code style="margin-top:1em"></app-qr-code>
-
-        
-        <div class="user-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
-        <div [style.color]="s.config.design ? s.config.design.titlesColor : null">
-            <i class="fa fa-address-card-o" aria-hidden="true"></i>
-            {{ 'ACCOUNT.CARD_NUMBER' | translate }} <b>{{ service?.user?.cardNumber }}</b>
-        </div> 
-        <div *ngIf="service.user && service.user.mobileNumber" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <b>{{ service?.user?.mobileNumber }}</b>
+    
+    <div *ngIf="service.user">
+        <div class="text-align-center">
+            <app-qr-code style="margin-top:1em"></app-qr-code>
+            <div class="user-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
+            <div [style.color]="s.config.design ? s.config.design.titlesColor : null">
+                <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                {{ 'ACCOUNT.CARD_NUMBER' | translate }} <b>{{ service?.user?.cardNumber }}</b>
+            </div> 
+            <div *ngIf="service.user && service.user.mobileNumber" [style.color]="s.config.design ? s.config.design.titlesColor : null">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <b>{{ service?.user?.mobileNumber }}</b>
+            </div>
         </div>
-    </div>
 
         <div *ngIf="!editing">
             <table>
@@ -99,11 +99,16 @@
                 class="full-width" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
             {{ 'ACCOUNT.EDIT' | translate }}
         </button>
-
         <br /><br />
         <hr />
         <br />
-        <button mat-raised-button (click)="logout()" class="full-width">
-            <i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;{{ 'AUTH.LOGOUT' | translate }}
-        </button>
+    </div>
+            
+    <div class="no-card" *ngIf="!service.user" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : '#aaa'">
+        <h1>{{ 'LOYALTY.DELETED' | translate }}</h1>     
+    </div>
+
+    <button mat-raised-button (click)="logout()" class="full-width">
+        <i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;{{ 'AUTH.LOGOUT' | translate }}
+    </button>
 </div>

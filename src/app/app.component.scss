@@ -161,6 +161,17 @@ a {
     }
 }
 
+// Deleted user
+.no-card {
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin: 2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
 @media (max-width: 600px) {
     .mat-toolbar-row {
         height: $bottom-toolbar-height;

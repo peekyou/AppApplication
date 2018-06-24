@@ -3,47 +3,53 @@
     <div class="content">
         <app-header title="{{ 'LOYALTY.TITLE' | translate }}"></app-header>
         <app-logo></app-logo>
-        <div class="points-container after-logo-padding-top-8" *ngIf="service.user">
-            <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                {{ 'LOYALTY.GOAL' | translate }}<br/>
-                <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>
-            </div>
-            <app-circle-progress 
-                subtitle="{{ 'LOYALTY.POINTS_OWNED' | translate }}" 
-                [title]="service.user.currentPoints" 
-                [backgroundColor]="s.config.design ? s.config.design.rewardsWheelColor : '#FDB900'"
-                backgroundOpacity=1
-                backgroundStroke="#000000"
-                backgroundPadding="14"
-                radius=87
-                space=-9
-                maxPercent=100
-                unitsColor="#ffffff"
-                outerStrokeWidth=9
-                outerStrokeColor="#ffffff"
-                [innerStrokeColor]="s.config.design ? s.config.design.rewardsWheelSecondaryColor : '#ffdf72'"
-                innerStrokeWidth=9
-                titleColor="#ffffff"
-                titleFontSize="45"
-                subtitleColor="#ffffff"
-                subtitleFontSize=17
-                animationDuration=500
-                [showUnits]=false
-                [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
-            </app-circle-progress>
-            <div class="badge to-goal-badge">
-                {{ 'LOYALTY.POINTS_TO_GOAL' | translate }}<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
-                <span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>           
+        <div class="points-container after-logo-padding-top-8">
+            <div *ngIf="service.user">
+                <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">
+                    {{ 'LOYALTY.GOAL' | translate }}<br/>
+                    <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>
+                </div>
+                <app-circle-progress 
+                    subtitle="{{ 'LOYALTY.POINTS_OWNED' | translate }}" 
+                    [title]="service.user.currentPoints" 
+                    [backgroundColor]="s.config.design ? s.config.design.rewardsWheelColor : '#FDB900'"
+                    backgroundOpacity=1
+                    backgroundStroke="#000000"
+                    backgroundPadding="14"
+                    radius=87
+                    space=-9
+                    maxPercent=100
+                    unitsColor="#ffffff"
+                    outerStrokeWidth=9
+                    outerStrokeColor="#ffffff"
+                    [innerStrokeColor]="s.config.design ? s.config.design.rewardsWheelSecondaryColor : '#ffdf72'"
+                    innerStrokeWidth=9
+                    titleColor="#ffffff"
+                    titleFontSize="45"
+                    subtitleColor="#ffffff"
+                    subtitleFontSize=17
+                    animationDuration=500
+                    [showUnits]=false
+                    [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
+                </app-circle-progress>
+                <div class="badge to-goal-badge">
+                    {{ 'LOYALTY.POINTS_TO_GOAL' | translate }}<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
+                    <span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>           
+                </div>
+                
+                <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
+                    <div fxFlex="50" class="achieve-text" [style.color]="s.config.design ? s.config.design.titlesColor : null">
+                        {{ 'LOYALTY.ACHIEVEMENT' | translate:{points: s.config.discountPointsThreshold} }}<br />
+                        <span>{{ 'LOYALTY.VOUCHER' | translate }}</span>     
+                    </div>
+                    <div fxFlex="85px" class="badge voucher-badge">
+                        <span class="sup">{{ s.config.discountCurrency }}</span>{{s.config.discountAmount}}       
+                    </div>
+                </div>
             </div>
             
-            <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
-                <div fxFlex="50" class="achieve-text" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                    {{ 'LOYALTY.ACHIEVEMENT' | translate:{points: s.config.discountPointsThreshold} }}<br />
-                    <span>{{ 'LOYALTY.VOUCHER' | translate }}</span>     
-                </div>
-                <div fxFlex="85px" class="badge voucher-badge">
-                    <span class="sup">{{ s.config.discountCurrency }}</span>{{s.config.discountAmount}}       
-                </div>
+            <div class="no-card" *ngIf="service.user === null" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : '#aaa'">
+                <h1>{{ 'LOYALTY.DELETED' | translate }}</h1>     
             </div>
         </div>
     </div>
