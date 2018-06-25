@@ -38,8 +38,6 @@ export class AuthService {
     }
 
     login(firstname: string, lastname: string, mobileNumber: string, otpCode: string, customerId: string = null): Observable<boolean> {
-        
-        console.log('login 1')
         return this.http.post(this.appConfig.ApiEndpoint + '/customers/register', {
                 firstname: firstname,
                 lastname: lastname,
@@ -49,7 +47,6 @@ export class AuthService {
                 customerId: customerId
             })
             .map(token => {
-                console.log('login 2')
                 this.token = token;
                 localStorage.setItem(this.tokenKey, token);
                 this.setPermissions();

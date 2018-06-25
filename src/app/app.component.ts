@@ -62,8 +62,10 @@ export class AppComponent implements OnInit {
                     this.router.navigate(['/'], { queryParamsHandling: "merge" });
                 }
                 else if (res) {
-                    // res = token
                     this.login(res);
+                }
+                else {
+                    this.userService.user = null;
                 }
             },
             err => this.router.navigate(['/'], { queryParamsHandling: "merge" }));
