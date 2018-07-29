@@ -39,6 +39,6 @@ export class TimeTable {
 }
 
 export class WeekDay {
-    id: string;
+    id: number;
     name: string;
 }

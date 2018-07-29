@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
         public s: ConfigurationService) { 
 
             this.isMobile = isMobile();
-            // translate.addLangs(["en", "fr"]);
             translate.setDefaultLang('en');
             translate.use(config.Lang ? config.Lang : 'en');
         }
@@ -72,10 +71,10 @@ export class AppComponent implements OnInit {
     }
 
     public iOSNotStandalone() { 
-        // return true;
         if ((window.navigator.userAgent.indexOf('iPhone') != -1 ||
             window.navigator.userAgent.indexOf('iPad') != -1)
-            && !(<any>window.navigator).standalone) {
+            && !(<any>window.navigator).standalone
+            && window.location.href.indexOf('website-') == -1) {
            return true; 
         }
         return false;

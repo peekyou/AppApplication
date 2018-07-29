@@ -12,11 +12,17 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 @Injectable()
 export class ConfigurationService {
     private api: string;
+    private weekDaysLocale = {
+        'en': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        'fr': ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+        'ar': ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
+        'sa': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    }
     
     private interval: number = 5000; // 10000 = 10 secs
     public config: MerchantConfiguration;
 
-    public weekDays: WeekDay[];
+    private weekDays: WeekDay[] = [];
     public loader: Subscription;
     private timerSubscription: Subscription;        
     public configChanged: EventEmitter<MerchantConfiguration> = new EventEmitter();
@@ -25,22 +31,16 @@ export class ConfigurationService {
         @Inject(APP_CONFIG) private appConfig: AppConfig,
         private http: HttpService, 
         private localForage: LocalForageService) {
-
-        this.api = appConfig.ApiEndpoint + '/merchants';
-        this.weekDays = [
-            { id: '1', name: 'Sunday' },
-            { id: '2', name: 'Monday' },
-            { id: '3', name: 'Tuesday' },
-            { id: '4', name: 'Wednesday' },
-            { id: '5', name: 'Thursday' },
-            { id: '6', name: 'Friday' },
-            { id: '7', name: 'Saturday' }
-        ];
-                
-        let timer = TimerObservable.create(0, this.interval);
-        this.timerSubscription = timer.subscribe(t => {
-            this.loadConfiguration();
-        });
+            this.api = appConfig.ApiEndpoint + '/merchants';
+            var days = this.weekDaysLocale[appConfig.Lang];
+            for (var i = 0; i < days.length; i++) { 
+                this.weekDays.push({ id: i + 1, name: days[i] });
+            }
+                    
+            let timer = TimerObservable.create(0, this.interval);
+            this.timerSubscription = timer.subscribe(t => {
+                this.loadConfiguration();
+            });
     }
 
     //getConfiguration(): Observable<MerchantConfiguration> {

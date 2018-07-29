@@ -73,7 +73,8 @@
     },
     "PROMOTIONS": {
         "TITLE": "Promotions",
-        "NO_PROMOTION": "Pas de promotion actuellement"
+        "NO_PROMOTION": "Pas de promotion actuellement",
+        "UNTIL": "Jusqu'au"
     },
     "SHOP": {
         "SHOP_BTN": "Le magasin",

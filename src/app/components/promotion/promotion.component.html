@@ -18,7 +18,7 @@
                     {{ promotion.name }}
                 </div>
                 <div class="promotion-date" [style.color]="getTitlesColor(i) | safeStyle">
-                    Until {{ promotion.toDate | date: 'dd MMMM yyyy' }}
+                    {{ 'PROMOTIONS.UNTIL' | translate }} {{ promotion.toDate | date: 'dd MMMM yyyy' }}
                 </div>
                 <div class="promotion-details">
                     {{ promotion.details }}

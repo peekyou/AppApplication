@@ -73,7 +73,8 @@
     },
     "PROMOTIONS": {
         "TITLE": "Special offers",
-        "NO_PROMOTION": "No promotion as of now, stay tuned!"
+        "NO_PROMOTION": "No promotion as of now, stay tuned!",
+        "UNTIL": "Until"
     },
     "SHOP": {
         "SHOP_BTN": "The shop",
