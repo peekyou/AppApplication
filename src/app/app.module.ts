@@ -9,6 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StarRatingModule } from 'angular-star-rating';
 import { AgmCoreModule } from '@agm/core';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -78,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         SocialMediaModule,
         AccountModule,
         AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2tHPV7C3ehD5O6CFPryF94GJfwj9ARoc' }),
+        DeviceDetectorModule.forRoot(),
         RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
     ],
     entryComponents: [ 

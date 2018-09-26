@@ -315,7 +315,9 @@ module.exports = function (options) {
         // If a URL is already hashed by Webpack, then there is no concern
         // about it being stale, and the cache-busting can be skipped.
         dontCacheBustUrlsMatching: /\.\w{8}\./,
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
         filename: 'service-worker.js',
+        //importScripts: ['assets/push-listener.js'],
         logger(message) {
             if (message.indexOf('Total precache size is') === 0) {
                 // This message occurs for every build and is a bit too noisy.

@@ -6,6 +6,7 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { AuthHttpService } from './auth-http.service';
 import { AuthService } from '../../components/+auth/auth.service';
 import { User } from '../models/user';
+import { Device, PushSubscription } from '../models/device';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Injectable()
@@ -13,6 +14,7 @@ export class UserService {
     private api: string;
     public user: User;
     private timerSubscription: Subscription;     
+    private deviceIdKey = 'deviceId';
     private interval: number = 10000; // 10000 = 10 secs
 
     constructor(
@@ -50,7 +52,9 @@ export class UserService {
                         this.user = user;
                     },
                     err => { 
-                        this.user = null;
+                        if (!this.authService.isAuthenticated()){
+                            this.user = null;
+                        }
                         console.log(err);
                     }
                 );
@@ -63,6 +67,13 @@ export class UserService {
     logout() {
         this.authService.logout();
         this.user = null;
+        localStorage.removeItem(this.deviceIdKey);
+    }
+    
+    saveDeviceId(deviceId: string) {
+        if (deviceId) {
+            localStorage.setItem(this.deviceIdKey, deviceId);
+        }
     }
 
     save(user: User): Observable<number> {
@@ -75,5 +86,21 @@ export class UserService {
 
     sendEmail(fromEmail: string, content: string): Observable<boolean> {
         return this.http.post(this.appConfig.ApiEndpoint + '/email', { email: fromEmail, content: content });
+    }
+
+    saveDevice(device: Device): Observable<string> {
+        if (!localStorage.getItem(this.deviceIdKey)) {
+            return this.http.post(this.appConfig.ApiEndpoint + '/device', device);
+        }
+        return Observable.of('');
+    }
+    
+    savePushSubscription(subscription: PushSubscription) {
+        subscription.deviceId = localStorage.getItem(this.deviceIdKey);
+        this.http.post(this.appConfig.ApiEndpoint + '/push/subscription', subscription)
+            .subscribe(
+                res => {},
+                err => console.log(err)
+            );
     }
 }

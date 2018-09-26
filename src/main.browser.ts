@@ -18,7 +18,7 @@ export function main(): Promise<any> {
   return platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .then(environment.decorateModuleRef)
-    .then(registerSw)    
+    .then(registerSw)
     .catch((err) => console.error(err));
 }
 
