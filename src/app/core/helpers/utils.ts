@@ -41,11 +41,16 @@ export function iOS(): boolean {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(<any>window).MSStream;
 };
 
-export function styleBackgoundImage(config: MerchantConfiguration): any {
-    if (config.design && config.design.backgroundImage){
+export function styleBackgound(config: MerchantConfiguration): any {
+    if (config.design && config.design.backgroundImage) {
         var size = config.design.backgroundImageSize ? 'left top / ' + config.design.backgroundImageSize : '';
         return {
-            'background': 'linear-gradient(rgba(100, 100, 100, .5), rgba(100, 100, 100, .5)), url(' + config.design.backgroundImage.src + ') ' + size + ''
+            'background': 'url(' + config.design.backgroundImage.src + ') ' + size + ''
+        }
+    }
+    else if (config.design && config.design.rewardsWheelColor) {
+        return {
+            'background': config.design.rewardsWheelColor
         }
     }
     return { }

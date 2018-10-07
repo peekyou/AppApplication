@@ -5,7 +5,7 @@ import { slideInAnimation } from '../../animations';
 import { UserService } from '../../core/services/user.service';
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { User } from '../../core/models/user';
-import { styleBackgoundImage } from '../../core/helpers/utils';
+import { styleBackgound } from '../../core/helpers/utils';
 
 @Component({
     selector: 'loyalty-card',
@@ -16,10 +16,10 @@ import { styleBackgoundImage } from '../../core/helpers/utils';
 })
 export class LoyaltyCardComponent {
     Math: any;
-    styleBackgoundImage: any;
+    styleBackgound: any;
 
     constructor(public service: UserService, public s: ConfigurationService) {
         this.Math = Math;
-        this.styleBackgoundImage = styleBackgoundImage;
+        this.styleBackgound = styleBackgound;
     }
 }

@@ -56,8 +56,8 @@
     "LOYALTY": {
         "TITLE": "Carte de fidélité",
         "GOAL": "OBJECTIF",
-        "PTS": "PTS",
-        "POINTS_TO_GOAL": "POINTS RESTANTS",
+        "PTS": "POINTS",
+        "POINTS_TO_GOAL": "points restants pour obtenir un bon de",
         "POINTS_OWNED": "POINTS OBTENUS",
         "ACHIEVEMENT": "Atteignez {{points}} pts et",
         "VOUCHER": "gagnez un bon de",

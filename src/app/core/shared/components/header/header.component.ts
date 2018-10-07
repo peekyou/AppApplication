@@ -11,6 +11,7 @@ import { ConfigurationService } from '../../../services/configuration.service';
 })
 export class HeaderComponent {
     @Input() title: string;
+    @Input() color: string;
     @Input() fixedHeight: boolean = false;
     @Input() showBackButton: boolean = false;
 

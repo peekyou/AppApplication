@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
                 err => console.log(err)
             );
         this.userService.launchTimer();
-        this.router.navigate(['/loyaltycard'], { queryParamsHandling: "merge" });
+        // this.router.navigate(['/loyaltycard'], { queryParamsHandling: "merge" });
     }
 
     private suscribeToPushNotifications() {

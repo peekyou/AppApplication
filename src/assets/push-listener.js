@@ -1,49 +1,45 @@
-// This file is intentionally without code.
 // Push notif
 self.addEventListener('notificationclose', function(e) {
-    var notification = e.notification;
-    console.log('Notification: ', notification);
-    var primaryKey = notification.data.primaryKey;
-  
-    console.log('Closed notification: ' + primaryKey);
+  var notification = e.notification;
 });
 
 self.addEventListener('notificationclick', function(e) {
-  var notification = e.notification;
-  var action = e.action;
-  console.log('Notification clicked: ', e);
+var notification = e.notification;
+var action = e.action;
 
-  if (action === 'close') {
+if (action === 'close') {
     notification.close();
-  } else {
-    clients.openWindow('http://www.app-wards.com');
+} else if (notification.data && notification.data.applicationUrl) {
+    clients.openWindow(notification.data.applicationUrl + '/promotion');
     notification.close();
-  }
+}
 
-  // Close all other notifications
-  self.registration.getNotifications().then(function(notifications) {
+// Close all other notifications
+self.registration.getNotifications().then(function(notifications) {
     notifications.forEach(function(notification) {
-      notification.close();
+        notification.close();
     });
   });
 });
 
 self.addEventListener('push', function(e) {
-  var body;
-  if (e.data) {
-    body = e.data.text();
-  } else {
-    body = 'Push message no payload';
-  }
-
-  var options = {
-    body: body,
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: '2'
+try {
+    notificationData = e.data.json();
+    var icon = '';
+    if (notificationData.data && notificationData.data) { 
+        icon = notificationData.data.applicationUrl + '/icon/android-icon-192x192.png';
     }
-  };
-  e.waitUntil(
-    self.registration.showNotification('Push Notification', options)
-  );
+    var options = {
+        body: notificationData.body,
+        //image: 'https://customer.app-wards.com/test/icon/android-icon-192x192.png',
+        badge: icon,
+        icon: icon,
+        data: notificationData.data
+    };
+    e.waitUntil(
+        self.registration.showNotification(notificationData.title, options)
+    );
+  } catch (ex) { 
+      console.log(ex);
+  }
 });

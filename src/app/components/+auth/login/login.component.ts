@@ -7,7 +7,6 @@ import { ConfigurationService } from '../../../core/services/configuration.servi
 import { UnregisteredCustomerDialogComponent } from '../unregistered-customer/unregistered-customer.component';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../../core/services/user.service';
-import { styleBackgoundImage } from '../../../core/helpers/utils';
 import { formatPhone } from '../../../core/helpers/utils';
 
 @Component({
@@ -15,7 +14,6 @@ import { formatPhone } from '../../../core/helpers/utils';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    styleBackgoundImage: any;
     loading = false;
     mobileError: boolean = false;
     firstname = this.fb.control(null, Validators.required);
@@ -36,7 +34,6 @@ export class LoginComponent implements OnInit {
         private userService: UserService,
         public s: ConfigurationService) { 
 
-            this.styleBackgoundImage = styleBackgoundImage;
             if (authService.isAuthenticated()) {
                 router.navigate(['/']);
             }

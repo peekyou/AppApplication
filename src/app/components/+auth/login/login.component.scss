@@ -1,5 +1,7 @@
 :host {
-    display:block;
+    display: block;
+    height: 100vh;
+    background-color: #fff;
 }
 
 app-header, .content {
@@ -10,16 +12,6 @@ app-header, .content {
     height: 100%;
 }
 
-.background {
-    height: 100vh;
-    background: #FFF;
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
 .login-container {
     padding: 0 3rem;
     margin-top: 18rem;
@@ -28,21 +20,5 @@ app-header, .content {
         button {
             width: 100%;
         }
-    }
-
-    .resend-btn {
-        margin-top: 1rem;
-        background: none!important;
-        color: inherit;
-        border: none;
-        padding: 0 !important;
-        font: inherit;
-        cursor: pointer;
-        color: white;
-        font-weight: bold;
-    }
-
-    .resend-btn:disabled {
-        color: #ccc;
     }
 }

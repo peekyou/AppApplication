@@ -1,14 +1,14 @@
 <app-header fixedHeight="true"></app-header>
 <app-logo></app-logo>
 
-<app-spinner [loader]="loader"></app-spinner>
-
 <div class="with-toolbar-padding-bottom">
     <h2 class="after-logo-padding-top-3" [style.color]="s.config.design ? s.config.design.titlesColor : null">{{ 'PROMOTIONS.TITLE' | translate }}</h2>
     <div *ngIf="loader.closed && (!promotions || promotions.length === 0)" class="text-align-center">
         <h3>{{ 'PROMOTIONS.NO_PROMOTION' | translate }}</h3>
     </div>
-
+    
+    <app-spinner [loader]="loader"></app-spinner>
+    
     <div *ngIf="promotions && promotions.length > 0">
         <div *ngFor="let promotion of promotions; let i = index">
             <div class="triangle-theme" *ngIf="i % 2 == 1" [style.borderColor]="getBorderColor() | safeStyle">

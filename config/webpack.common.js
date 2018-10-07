@@ -317,7 +317,7 @@ module.exports = function (options) {
         dontCacheBustUrlsMatching: /\.\w{8}\./,
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
         filename: 'service-worker.js',
-        //importScripts: ['assets/push-listener.js'],
+        importScripts: ['assets/push-listener.js'],
         logger(message) {
             if (message.indexOf('Total precache size is') === 0) {
                 // This message occurs for every build and is a bit too noisy.

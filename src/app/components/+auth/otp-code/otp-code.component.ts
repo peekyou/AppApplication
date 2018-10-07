@@ -5,7 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ConfigurationService } from '../../../core/services/configuration.service';
 import { AuthService } from '../auth.service';
 import { UserService } from '../../../core/services/user.service';
-import { styleBackgoundImage } from '../../../core/helpers/utils';
+import { styleBackgound } from '../../../core/helpers/utils';
 import { formatPhone } from '../../../core/helpers/utils';
 
 @Component({
@@ -29,7 +29,7 @@ export class OtpCodeComponent implements OnInit {
         private userService: UserService,
         public s: ConfigurationService) { 
 
-            this.styleBackgoundImage = styleBackgoundImage;
+            this.styleBackgoundImage = styleBackgound;
             if (authService.isAuthenticated()) {
                 router.navigate(['/']);
             }

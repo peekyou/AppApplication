@@ -1,51 +1,24 @@
 <div *ngIf="s.config" class="loyalty-container">
-    <div class="background" [ngStyle]="styleBackgoundImage(s.config)"></div>
     <div class="content">
-        <app-header title="{{ 'LOYALTY.TITLE' | translate }}"></app-header>
-        <app-logo></app-logo>
-        <div class="points-container after-logo-padding-top-8">
-            <div *ngIf="service.user">
-                <div class="badge goal-badge" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                    {{ 'LOYALTY.GOAL' | translate }}<br/>
-                    <span class="sub-text">{{ s.config.discountPointsThreshold }}<span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>
-                </div>
-                <app-circle-progress 
-                    subtitle="{{ 'LOYALTY.POINTS_OWNED' | translate }}" 
-                    [title]="service.user.currentPoints" 
-                    [backgroundColor]="s.config.design ? s.config.design.rewardsWheelColor : '#FDB900'"
-                    backgroundOpacity=1
-                    backgroundStroke="#000000"
-                    backgroundPadding="14"
-                    radius=87
-                    space=-9
-                    maxPercent=100
-                    unitsColor="#ffffff"
-                    outerStrokeWidth=9
-                    outerStrokeColor="#ffffff"
-                    [innerStrokeColor]="s.config.design ? s.config.design.rewardsWheelSecondaryColor : '#ffdf72'"
-                    innerStrokeWidth=9
-                    titleColor="#ffffff"
-                    titleFontSize="45"
-                    subtitleColor="#ffffff"
-                    subtitleFontSize=17
-                    animationDuration=500
-                    [showUnits]=false
-                    [percent]="service.user.currentPoints / s.config.discountPointsThreshold * 100">
-                </app-circle-progress>
-                <div class="badge to-goal-badge">
-                    {{ 'LOYALTY.POINTS_TO_GOAL' | translate }}<br/><span class="sub-text">{{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }}
-                    <span class="sup"> {{ 'LOYALTY.PTS' | translate }}</span></span>           
-                </div>
-                
-                <div fxLayout="row wrap" class="achieve-container" fxLayoutAlign="center">
-                    <div fxFlex="50" class="achieve-text" [style.color]="s.config.design ? s.config.design.titlesColor : null">
-                        {{ 'LOYALTY.ACHIEVEMENT' | translate:{points: s.config.discountPointsThreshold} }}<br />
-                        <span>{{ 'LOYALTY.VOUCHER' | translate }}</span>     
+        <div fxLayout="column" *ngIf="service.user" class="text-align-center">
+            <div fxFlex="50%" [ngStyle]="styleBackgound(s.config)">
+                <app-header title="{{ 'LOYALTY.TITLE' | translate }}" [color]="s.config.design && (s.config.design.backgroundImage || s.config.design.rewardsWheelColor) ? '#ffffff' : '#000000'">
+                </app-header>
+                <div>
+                    <div id="circle">
+                        <div id="inner-circle">
+                            <div style="font-size: 3rem;padding-top: 1.5rem;">{{ service.user.currentPoints }}</div>
+                            <div style="font-size: 1.5rem;">{{ 'LOYALTY.PTS' | translate }}</div>
+                        </div>
                     </div>
-                    <div fxFlex="85px" class="badge voucher-badge">
-                        <span class="sup">{{ s.config.discountCurrency }}</span>{{s.config.discountAmount}}       
+                    <div class="points-goal">
+                        {{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }} {{ 'LOYALTY.POINTS_TO_GOAL' | translate }} {{ s.config.discountAmount }}{{ s.config.discountCurrency }}
                     </div>
                 </div>
+            </div>
+            <div fxFlex="50%">
+                <div class="customer-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
+                <app-qr-code></app-qr-code>
             </div>
         </div>
     </div>
