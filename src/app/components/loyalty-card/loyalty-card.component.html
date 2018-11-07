@@ -1,7 +1,7 @@
 <div *ngIf="s.config" class="loyalty-container">
     <div class="content">
         <div fxLayout="column" *ngIf="service.user" class="text-align-center">
-            <div fxFlex="50%" [ngStyle]="styleBackgound(s.config)">
+            <div fxFlex="50%" [ngStyle]="{'background': styleBackgound(s.config) }">
                 <app-header title="{{ 'LOYALTY.TITLE' | translate }}" [color]="s.config.design && (s.config.design.backgroundImage || s.config.design.rewardsWheelColor) ? '#ffffff' : '#000000'">
                 </app-header>
                 <div>
@@ -18,7 +18,7 @@
             </div>
             <div fxFlex="50%">
                 <div class="customer-name">{{ service?.user?.firstname }} {{ service?.user?.lastname }}</div>
-                <app-qr-code></app-qr-code>
+                <app-qr-code [id]="qrcodeFinal"></app-qr-code>
             </div>
         </div>
     </div>

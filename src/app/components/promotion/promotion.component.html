@@ -18,7 +18,7 @@
                     {{ promotion.name }}
                 </div>
                 <div class="promotion-date" [style.color]="getTitlesColor(i) | safeStyle">
-                    {{ 'PROMOTIONS.UNTIL' | translate }} {{ promotion.toDate | date: 'dd MMMM yyyy' }}
+                    {{ 'PROMOTIONS.UNTIL' | translate }} {{ promotion.toDate | localeDate }}
                 </div>
                 <div class="promotion-details">
                     {{ promotion.details }}

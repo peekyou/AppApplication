@@ -1,3 +1,5 @@
 <div *ngIf="url" class="qr-code">
-    <qr-code value="{{url}}" [size]="185"></qr-code>
+    <!-- <qr-code value="{{url}}" [size]="185"></qr-code> -->
+    <div [id]="id"></div>
+    <div #script style.display="none"></div>
 </div>

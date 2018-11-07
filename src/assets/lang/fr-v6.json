@@ -6,6 +6,7 @@
     },
     "COMMON": {
         "SUBMIT": "Envoyer",
+        "SAVE": "Sauvegarder",
         "OK": "OK",
         "CANCEL": "Annuler",
         "FIRSTNAME": "Prénom",

@@ -6,6 +6,7 @@
     },
     "COMMON": {
         "SUBMIT": "Submit",
+        "SAVE": "Save",
         "OK": "OK",
         "CANCEL": "Cancel",
         "FIRSTNAME": "First name",

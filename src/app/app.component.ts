@@ -12,7 +12,9 @@ import { Device, PushSubscription } from './core/models/device';
 import { ConfigurationService } from './core/services/configuration.service';
 import { APP_CONFIG, AppConfig } from './app.config';
 import { isMobile, subscribeUser } from './core/helpers/utils';
-
+import { TranslationService } from './core/services/translation.service';
+import { LoyaltyCardCacheService } from './components/loyalty-card/loyalty-card-cache.service';
+import { LoyaltyCardCache } from './components/loyalty-card/loyalty-card-cache';
 
 @Component({
     selector: 'app',
@@ -24,6 +26,9 @@ import { isMobile, subscribeUser } from './core/helpers/utils';
 })
 export class AppComponent implements OnInit {
     isMobile: boolean;
+    showLoadingLogo: boolean = false;
+    cache: LoyaltyCardCache;
+    url: string;
 
     constructor(
         @Inject(APP_CONFIG) config: AppConfig,
@@ -32,8 +37,19 @@ export class AppComponent implements OnInit {
         private authService: AuthService,
         private deviceService: DeviceDetectorService,
         private translate: TranslateService,
+        private translation: TranslationService,
+        private loyaltyCardCacheService: LoyaltyCardCacheService,
         public userService: UserService,
         public s: ConfigurationService) { 
+
+            var cache = loyaltyCardCacheService.getCache();
+            if (!cache || !cache.customerUrl) {
+                this.showLoadingLogo = true;
+                this.url = this.getUrl();
+            }
+            else {
+                this.loadCache(cache);
+            }
 
             this.isMobile = isMobile();
             translate.setDefaultLang('en');
@@ -41,6 +57,8 @@ export class AppComponent implements OnInit {
         }
 
     public ngOnInit() {
+        this.loadCacheLabels();
+
         this.route.queryParams
             .switchMap(params => {
                 var param = params['t'];
@@ -96,7 +114,8 @@ export class AppComponent implements OnInit {
     }
 
     private afterAuthentication() {
-        this.userService.saveDevice(this.getDevice())
+        if (window.location.href.indexOf('website-') == -1) {
+            this.userService.saveDevice(this.getDevice())
             .subscribe(
                 deviceId => {
                     this.userService.saveDeviceId(deviceId);
@@ -104,8 +123,12 @@ export class AppComponent implements OnInit {
                 },
                 err => console.log(err)
             );
+        }
+
         this.userService.launchTimer();
-        // this.router.navigate(['/loyaltycard'], { queryParamsHandling: "merge" });
+        if (this.router.url.indexOf('promotion') === -1) {
+            this.router.navigate(['/'], { queryParamsHandling: "merge" });
+        }
     }
 
     private suscribeToPushNotifications() {
@@ -160,5 +183,35 @@ export class AppComponent implements OnInit {
             os: deviceInfo.os,
             osVersion: deviceInfo.os_version
         };
+    }
+
+    private loadCacheLabels() {
+        this.translation.getMultiple([
+            'LOYALTY.TITLE',
+            'LOYALTY.PTS',
+            'LOYALTY.POINTS_TO_GOAL'], x => {
+                this.loyaltyCardCacheService.cache.title = x['LOYALTY.TITLE'];
+                this.loyaltyCardCacheService.cache.pointsLabel = x['LOYALTY.PTS'];
+                this.loyaltyCardCacheService.cache.pointsToGoalLabel = x['LOYALTY.POINTS_TO_GOAL'];
+        });
+    }
+
+    private loadCache(cache: LoyaltyCardCache) {
+        this.cache = cache;
+        var remainingPoints = 0;
+        if (cache.currentPoints >= 0) {
+            this.cache.remainingPoints = Math.max(0, cache.discountPointsThreshold - cache.currentPoints);
+        }
+    }
+
+    private getUrl(): string {
+        var url = window.location.href;
+        var to = url.lastIndexOf('/');
+        to = to == -1 ? url.length : to + 1;
+        url = url.substring(0, to);
+        if (!url.endsWith('/')) {
+            url = url + '/';
+        }
+        return url;
     }
 }

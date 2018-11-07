@@ -8,6 +8,7 @@ import { AuthService } from './components/+auth/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { PromotionService } from './components/promotion/promotion.service';
 import { ReviewService } from './components/review/review.service';
+import { LoyaltyCardCacheService } from './components/loyalty-card/loyalty-card-cache.service';
 import { SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { APP_CONFIG, appConfigFactory } from './app.config';
 
@@ -29,6 +30,7 @@ export const APP_PROVIDERS = [
     LocalForageService,
     PromotionService,
     ReviewService,
+    LoyaltyCardCacheService,
     { provide: SWIPER_CONFIG, useValue: DEFAULT_SWIPER_CONFIG },
     { provide: APP_CONFIG, useFactory: appConfigFactory }
 ];

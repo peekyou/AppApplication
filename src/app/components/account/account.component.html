@@ -84,13 +84,17 @@
                 <input matInput placeholder="City" [formControl]="city">
             </mat-form-field>
             <br /><br />
-            <button mat-raised-button type="submit" color="primary" [disabled]="loading || form.invalid"
-                    [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" style="width:50%">
-                {{ 'COMMON.SUBMIT' | translate }}
-            </button>
-            <button mat-raised-button type="button" (click)="cancelEdit()" style="width:50%">
-                {{ 'COMMON.CANCEL' | translate }}
-            </button>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <button fxFlex="45%" mat-raised-button type="submit" color="primary" 
+                        [disabled]="loading || form.invalid" style="margin-right:10px"
+                        [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
+                    {{ 'COMMON.SAVE' | translate }}
+                </button>
+                <button fxFlex="45%" mat-raised-button type="button" (click)="cancelEdit()" 
+                        style="margin-left:10px">
+                    {{ 'COMMON.CANCEL' | translate }}
+                </button>
+            </div>
         </form>
         
         <br /><br />

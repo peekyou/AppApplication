@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
-import { QRCodeModule } from 'angular2-qrcode';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppMaterialModules } from './material.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -27,7 +26,6 @@ const IMPORTS = [
     HttpClientModule,
     FlexLayoutModule,
     TranslateModule,    
-    QRCodeModule,
     SwiperModule,
     AppMaterialModules,
     PipesModule,

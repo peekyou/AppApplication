@@ -3,6 +3,7 @@ import { LocationStrategy } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ConfigurationService } from '../../../services/configuration.service';
+import { AuthService } from '../../../../components/+auth/auth.service';
 
 @Component({
     selector: 'app-bottom-toolbar',
@@ -12,7 +13,11 @@ import { ConfigurationService } from '../../../services/configuration.service';
 export class BottomToolbarComponent implements OnInit {
     showSubMenu: boolean = false;
 
-    constructor(private dialog: MatDialog, public s: ConfigurationService, public url: LocationStrategy) { 
+    constructor(
+        private dialog: MatDialog,
+        public auth: AuthService,
+        public s: ConfigurationService,
+        public url: LocationStrategy) { 
     }
 
     public ngOnInit() {

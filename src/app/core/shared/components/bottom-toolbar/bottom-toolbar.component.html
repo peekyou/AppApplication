@@ -1,4 +1,4 @@
-<div class="bottom-toolbar">
+<div class="bottom-toolbar" *ngIf="auth.isAuthenticated()">
     <div>
         <div fxLayout="row" fxLayoutAlign="center" class="container">
             <div fxFlex routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="showSubMenu = false">

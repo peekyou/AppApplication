@@ -44,14 +44,10 @@ export function iOS(): boolean {
 export function styleBackgound(config: MerchantConfiguration): any {
     if (config.design && config.design.backgroundImage) {
         var size = config.design.backgroundImageSize ? 'left top / ' + config.design.backgroundImageSize : '';
-        return {
-            'background': 'url(' + config.design.backgroundImage.src + ') ' + size + ''
-        }
+        return 'url(' + config.design.backgroundImage.src + ') ' + size + '';
     }
     else if (config.design && config.design.rewardsWheelColor) {
-        return {
-            'background': config.design.rewardsWheelColor
-        }
+        return config.design.rewardsWheelColor;
     }
     return { }
 }

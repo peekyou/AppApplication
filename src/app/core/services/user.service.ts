@@ -1,10 +1,12 @@
 ﻿import { Injectable, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 
 import { AuthHttpService } from './auth-http.service';
 import { AuthService } from '../../components/+auth/auth.service';
+import { LoyaltyCardCacheService } from '../../components/loyalty-card/loyalty-card-cache.service';
 import { User } from '../models/user';
 import { Device, PushSubscription } from '../models/device';
 import { APP_CONFIG, AppConfig } from '../../app.config';
@@ -13,13 +15,15 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 export class UserService {
     private api: string;
     public user: User;
-    private timerSubscription: Subscription;     
+    private timerSubscription: Subscription;
     private deviceIdKey = 'deviceId';
     private interval: number = 10000; // 10000 = 10 secs
 
     constructor(
-        @Inject(APP_CONFIG) private appConfig: AppConfig, 
-        private http: AuthHttpService, 
+        @Inject(APP_CONFIG) private appConfig: AppConfig,
+        private loyaltyCardCacheService: LoyaltyCardCacheService,
+        private http: AuthHttpService,
+        private router: Router, 
         private authService: AuthService) {
 
         this.api = appConfig.ApiEndpoint + '/customers';
@@ -50,24 +54,35 @@ export class UserService {
                 .subscribe(
                     (user: User) => {
                         this.user = user;
+
+                        if (!user) {
+                            this.logout();
+                            this.router.navigate(['/']);
+                        }
+                        else if (this.authService.isAuthenticated()) {
+                            this.loyaltyCardCacheService.cache.customerName = this.user.firstname + ' ' + this.user.lastname;
+                            this.loyaltyCardCacheService.cache.currentPoints = this.user.currentPoints;
+                            localStorage.setItem(this.loyaltyCardCacheService.loyaltyCacheKey, JSON.stringify(this.loyaltyCardCacheService.cache));
+                        }
                     },
                     err => { 
-                        if (!this.authService.isAuthenticated()){
-                            this.user = null;
+                        if (!this.authService.isAuthenticated()) {
+                            this.logout();
                         }
-                        console.log(err);
                     }
                 );
         }
         else {
-            this.user = null;
+            this.logout();
         }
     }
 
     logout() {
         this.authService.logout();
         this.user = null;
+        this.loyaltyCardCacheService.cache = {};
         localStorage.removeItem(this.deviceIdKey);
+        localStorage.removeItem(this.loyaltyCardCacheService.loyaltyCacheKey);
     }
     
     saveDeviceId(deviceId: string) {

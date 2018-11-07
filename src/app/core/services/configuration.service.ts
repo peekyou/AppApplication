@@ -7,7 +7,9 @@ import { HttpService } from './http.service';
 import { LocalForageService } from './local-forage.service';
 import { Page, WeekDay } from '../models/page';
 import { MerchantConfiguration } from '../models/merchantConfiguration';
+import { LoyaltyCardCacheService } from '../../components/loyalty-card/loyalty-card-cache.service';
 import { APP_CONFIG, AppConfig } from '../../app.config';
+import { styleBackgound } from '../../core/helpers/utils';
 
 @Injectable()
 export class ConfigurationService {
@@ -15,8 +17,13 @@ export class ConfigurationService {
     private weekDaysLocale = {
         'en': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         'fr': ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-        'ar': ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
-        'sa': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        'ar': ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت']
+    }
+
+    private monthNamesLocale = {
+        'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        'fr': ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        'ar': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     }
     
     private interval: number = 5000; // 10000 = 10 secs
@@ -29,8 +36,10 @@ export class ConfigurationService {
 
     constructor(
         @Inject(APP_CONFIG) private appConfig: AppConfig,
+        private loyaltyCardCacheService: LoyaltyCardCacheService,
         private http: HttpService, 
         private localForage: LocalForageService) {
+            
             this.api = appConfig.ApiEndpoint + '/merchants';
             var days = this.weekDaysLocale[appConfig.Lang];
             for (var i = 0; i < days.length; i++) { 
@@ -43,12 +52,12 @@ export class ConfigurationService {
             });
     }
 
-    //getConfiguration(): Observable<MerchantConfiguration> {
-    //    if (this.config) {
-    //        return Observable.of(this.config);
-    //    }
-    //    return this.http.get(this.api + '/' + AppSettings.MerchantId + '/configuration');
-    //}
+    getMonthLocale(month: number): string {
+       if (this.monthNamesLocale && this.monthNamesLocale[this.appConfig.Lang]) {
+           return this.monthNamesLocale[this.appConfig.Lang][month];
+       }
+       return this.monthNamesLocale['en'][month];
+    }
     
     private loadConfiguration() {
         this.localForage.get('merchant').then(merchant => {
@@ -64,10 +73,11 @@ export class ConfigurationService {
                 // Otherwise check if config needs to be refreshed
                 this.getMerchantTimestamp()
                     .subscribe(timestamp => {
-                        if (timestamp != null) {
-                            if ((!this.config.timestamp && timestamp) || (timestamp > this.config.timestamp)) {
-                                this.getMerchantConfiguration(timestamp);
-                            }
+                        if (timestamp != null && ((!this.config.timestamp && timestamp) || (timestamp > this.config.timestamp))) {
+                            this.getMerchantConfiguration(timestamp);
+                        }
+                        else {
+                            this.setLoyaltyCache();
                         }
                     },
                     err => console.log(err));
@@ -102,6 +112,7 @@ export class ConfigurationService {
             this.localForage.save('merchant', {
                 'conf': this.config
             });
+            this.setLoyaltyCache();
             this.configChanged.emit(this.config);
         }
     }
@@ -118,6 +129,14 @@ export class ConfigurationService {
             }
         }
         return null;
+    }
+
+    private setLoyaltyCache() {
+        this.loyaltyCardCacheService.cache.discountAmount = this.config.discountAmount;
+        this.loyaltyCardCacheService.cache.discountCurrency = this.config.discountCurrency;
+        this.loyaltyCardCacheService.cache.discountPointsThreshold = this.config.discountPointsThreshold;
+        this.loyaltyCardCacheService.cache.background = styleBackgound(this.config);
+        localStorage.setItem(this.loyaltyCardCacheService.loyaltyCacheKey, JSON.stringify(this.loyaltyCardCacheService.cache));
     }
 }
 

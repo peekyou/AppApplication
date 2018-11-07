@@ -11,6 +11,7 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 export class AuthService {
     private permissions: string[];
     private tokenKey = 'cus_token';
+    private urlKey = 'cus_url';
     private paramTokenKey = 'param_token';
     private mobileKey = 'mobile';
     public token: string = null;
@@ -25,6 +26,7 @@ export class AuthService {
             this.tokenKey = this.tokenKey + '-' + appConfig.MerchantId;
             this.paramTokenKey = this.paramTokenKey + '-' + appConfig.MerchantId;
             this.mobileKey = this.mobileKey + '-' + appConfig.MerchantId;
+            this.urlKey = this.urlKey + '-' + appConfig.MerchantId;
         }
         this.token = localStorage.getItem(this.tokenKey);
         this.setPermissions();
@@ -61,6 +63,7 @@ export class AuthService {
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem(this.paramTokenKey);
         localStorage.removeItem(this.mobileKey);
+        localStorage.removeItem(this.urlKey);
     }
 
     isAuthenticated(): boolean {
