@@ -49,11 +49,15 @@ export class AuthService {
                 customerId: customerId
             })
             .map(token => {
-                this.token = token;
-                localStorage.setItem(this.tokenKey, token);
-                this.setPermissions();
+                this.afterLogin(token);
                 return true;
             });
+    }
+
+    afterLogin(token: string) {
+        this.token = token;
+        localStorage.setItem(this.tokenKey, token);
+        this.setPermissions();
     }
 
     logout(): void {
@@ -78,7 +82,7 @@ export class AuthService {
         return null;
     }
 
-    setPermissions() {
+    private setPermissions() {
         if (this.token) {
             var claims = parseJwt(this.token);
             this.permissions = claims[this.appConfig.PermissionsClaim];

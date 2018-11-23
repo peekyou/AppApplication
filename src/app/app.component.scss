@@ -22,24 +22,40 @@ body {
     padding-top: 20%;
 }
 
-#installdiv {
+#installdiv-container {
     text-align: center;
     width: 70%;
-    bottom: $bottom-toolbar-height;
+    bottom: 35%;
     position: absolute;
     z-index: 1111111111;
 
-    div {
-        background-color: #fff;
+    #close {
+        z-index: inherit;
+        position: relative;
+        left: 111%;
+        top: 27px;
+        width: 15px;
+    }
+
+    #installdiv {
+        font-weight: bold;
+        border: 3px solid #fff;
+        background-color: #eee;
         padding: 1rem;
         position: relative;
-        left: 25%;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
+        left: 21%;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         -webkit-box-shadow: .1em .1em .4em rgba(0, 0, 0, 0.4);
         -mox-box-shadow: .1em .1em .1em .4em rgba(0, 0, 0, 0.4);
         box-shadow: .1em .1em .4em rbga(0, 0, 0, 0.4);
+
+        div {
+            font-weight: normal;
+            font-family: "Calibri", Arial;
+            margin-bottom: 10px;
+        }
     }
 }
 
@@ -100,7 +116,7 @@ a {
 }
 
 .error {
-    color: red;
+    color: #f44336;
 }
 
 .line-breaker, .mat-checkbox-label {
@@ -113,6 +129,10 @@ a {
 
 .mat-raised-button.mat-primary, .mat-fab.mat-primary, .social-share-dialog .mat-dialog-container {
     background-color: $theme-color;
+}
+
+.mat-autocomplete-panel {
+    max-height: 200px !important;
 }
 
 @media screen and (orientation:landscape) {

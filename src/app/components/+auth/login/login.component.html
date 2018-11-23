@@ -22,5 +22,11 @@
                 {{ 'AUTH.LOGIN' | translate }}
             </button>
         </form>
+        <div class="register" *ngIf="s.config.allowCustomerRegistration">
+                {{ 'AUTH.NOT_REGISTERED' | translate }} 
+            <a routerLink="/registration">
+                {{ 'AUTH.GET_LOYALTY_CARD' | translate }}
+            </a>
+        </div>
     </div>
 </div>

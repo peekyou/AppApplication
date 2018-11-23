@@ -1,8 +1,8 @@
-﻿<div class="mobile-alert">
+﻿<div class="mobile-alert" *ngIf="showOnlyMobileScreen">
     {{ 'COMMON.MOBILE_ALERT' | translate }}
 </div>
 
-<div class="application">
+<div  [ngClass]="{'application': showOnlyMobileScreen}">
     <div *ngIf="!s.config || userService.user === undefined" class="app-loading">
     <!-- <div class="app-loading"> -->
         <div id="waiting">
@@ -39,12 +39,17 @@
         <app-bottom-toolbar></app-bottom-toolbar>
     </div>
 
-    <div id="installdiv" *ngIf="iOSNotStandalone()">
-        <div>
-            {{ 'INSTALLATION_TUTO.PRESS' | translate }}&nbsp;
-            <img src="/assets/images/iOS_home.jpg" width="30"/> {{ 'INSTALLATION_TUTO.BELOW' | translate }}<br />
-            {{ 'INSTALLATION_TUTO.ADD_HOME_SCREEN' | translate }}&nbsp;
-            <img src="/assets/images/iOS_add_home_screen.jpg" width="30"/>
+    <div id="installdiv-container" *ngIf="showInstallationTuto">
+        <div id="close" (click)="showInstallationTuto = false">×</div>
+        <div id="installdiv" [ngStyle]="{'background': styleBackgound(s.config, true) }">
+            <div>{{ 'INSTALLATION_TUTO.INSTALL_IPHONE' | translate }}</div>
+            <span [ngStyle]="{'color': styleTutoColor(s.config) }">{{ 'INSTALLATION_TUTO.PRESS' | translate }} {{ 'INSTALLATION_TUTO.BELOW' | translate }}</span>
+            <br>
+            <img src="/assets/images/iOS_home.png" width="30" style="margin-bottom:9px;"/>
+            <br>
+            <span [ngStyle]="{'color': styleTutoColor(s.config) }">{{ 'INSTALLATION_TUTO.ADD_HOME_SCREEN' | translate }}</span>
+            <br>
+            <img src="/assets/images/iOS_add_home_screen.png" width="30" style="margin-left:-5px;"/>
         </div>
     </div>
 </div>

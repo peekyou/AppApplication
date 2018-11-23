@@ -10,6 +10,8 @@ import { MerchantConfiguration } from '../models/merchantConfiguration';
 import { LoyaltyCardCacheService } from '../../components/loyalty-card/loyalty-card-cache.service';
 import { APP_CONFIG, AppConfig } from '../../app.config';
 import { styleBackgound } from '../../core/helpers/utils';
+import { CustomerCustomFields } from '../../core/models/customerCustomFields';
+import { Product } from '../../core/models/product';
 
 @Injectable()
 export class ConfigurationService {
@@ -28,6 +30,8 @@ export class ConfigurationService {
     
     private interval: number = 5000; // 10000 = 10 secs
     public config: MerchantConfiguration;
+    public customerCustomFields: CustomerCustomFields[] = [];
+    public products: Product[];
 
     private weekDays: WeekDay[] = [];
     public loader: Subscription;
@@ -50,6 +54,9 @@ export class ConfigurationService {
             this.timerSubscription = timer.subscribe(t => {
                 this.loadConfiguration();
             });
+
+            this.getCustomerCustomFields();
+            this.getProducts(null, null);
     }
 
     getMonthLocale(month: number): string {
@@ -137,6 +144,23 @@ export class ConfigurationService {
         this.loyaltyCardCacheService.cache.discountPointsThreshold = this.config.discountPointsThreshold;
         this.loyaltyCardCacheService.cache.background = styleBackgound(this.config);
         localStorage.setItem(this.loyaltyCardCacheService.loyaltyCacheKey, JSON.stringify(this.loyaltyCardCacheService.cache));
+    }
+
+    public getCustomerCustomFields() {
+        this.http
+            .get(this.api + '/' + this.appConfig.MerchantId + '/customfields')
+            .subscribe(response => {
+                if (response) {
+                    this.customerCustomFields = response;
+                }
+            });
+    }
+
+    public getProducts(page: number, count: number) {
+        this.http.get(this.appConfig.ApiEndpoint + '/products/merchant/' + this.appConfig.MerchantId)
+        .subscribe(response => {
+            this.products = response;
+        });
     }
 }
 

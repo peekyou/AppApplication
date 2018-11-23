@@ -57,7 +57,7 @@ export class UserService {
 
                         if (!user) {
                             this.logout();
-                            this.router.navigate(['/']);
+                            this.router.navigate(['/loyaltycard']);
                         }
                         else if (this.authService.isAuthenticated()) {
                             this.loyaltyCardCacheService.cache.customerName = this.user.firstname + ' ' + this.user.lastname;
@@ -89,6 +89,14 @@ export class UserService {
         if (deviceId) {
             localStorage.setItem(this.deviceIdKey, deviceId);
         }
+    }
+
+    create(user: User): Observable<any> {
+        return this.http.post(this.api + '/' + this.appConfig.MerchantId, user)
+            .map(res => {
+                this.user = user;
+                return res;
+            });
     }
 
     save(user: User): Observable<number> {

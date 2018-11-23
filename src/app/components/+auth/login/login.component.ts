@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         public s: ConfigurationService) { 
 
             if (authService.isAuthenticated()) {
-                router.navigate(['/']);
+                router.navigate(['/loyaltycard']);
             }
 
             // Redirect to otp page if the user has entered a mobile

@@ -30,8 +30,8 @@ export class OtpCodeComponent implements OnInit {
         public s: ConfigurationService) { 
 
             this.styleBackgoundImage = styleBackgound;
-            if (authService.isAuthenticated()) {
-                router.navigate(['/']);
+            if (authService.isAuthenticated() || !this.authService.mobile) {
+                router.navigate(['/loyaltycard']);
             }
         }
 
@@ -46,7 +46,7 @@ export class OtpCodeComponent implements OnInit {
             res => {
                 this.loading = false;
                 this.userService.launchTimer();
-                this.router.navigate(['/']);
+                this.router.navigate(['/loyaltycard']);
             },
             err =>  {
                 this.codeError = true;

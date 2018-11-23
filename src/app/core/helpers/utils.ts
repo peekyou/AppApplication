@@ -41,15 +41,22 @@ export function iOS(): boolean {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(<any>window).MSStream;
 };
 
-export function styleBackgound(config: MerchantConfiguration): any {
-    if (config.design && config.design.backgroundImage) {
+export function styleBackgound(config: MerchantConfiguration, onlyColor: boolean = false): any {
+    if (config && config.design && config.design.backgroundImage && !onlyColor) {
         var size = config.design.backgroundImageSize ? 'left top / ' + config.design.backgroundImageSize : '';
         return 'url(' + config.design.backgroundImage.src + ') ' + size + '';
     }
-    else if (config.design && config.design.rewardsWheelColor) {
+    else if (config && config.design && config.design.rewardsWheelColor) {
         return config.design.rewardsWheelColor;
     }
     return { }
+}
+
+export function styleTutoColor(config: MerchantConfiguration): any {
+    if (config && config.design && config.design.rewardsWheelColor) {
+        return "#ffffff";
+    }
+    return "#000000"
 }
 
 export function formatPhone(phoneNumber: string): string {
@@ -65,7 +72,16 @@ export function isMobile() {
   return check;
 };
 
-
+export function iOSNotStandalone() { 
+    if ((window.navigator.userAgent.indexOf('iPhone') != -1 ||
+        window.navigator.userAgent.indexOf('iPad') != -1)
+        && !(<any>window.navigator).standalone
+        && window.location.href.indexOf('website-') == -1
+        && window.location.href.indexOf('registration') === -1) {
+        return true; 
+    }
+    return false;
+}
 
 export function urlB64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -80,4 +96,24 @@ export function urlB64ToUint8Array(base64String) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
+}
+
+export function getBaseUrl(): string {
+    var url = window.location.href;
+    var to = url.lastIndexOf('/');
+    to = to == -1 ? url.length : to + 1;
+    url = url.substring(0, to);
+    if (!url.endsWith('/')) {
+        url = url + '/';
+    }
+    return url;
+}
+
+export function getTokenFromUrl(): string {
+    var url = window.location.href;
+    var split = url.split('t=');
+    if (split.length > 1) {
+        return split[1];
+    }
+    return null;
 }

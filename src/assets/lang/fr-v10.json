@@ -1,8 +1,9 @@
 {
     "INSTALLATION_TUTO": {
-        "PRESS": "Appuyez",
-        "BELOW": "ci-dessous",
-        "ADD_HOME_SCREEN": "Puis \"Sur l'écran d'accueil\""
+        "INSTALL_IPHONE": "Pour installer l'application",
+        "PRESS": "APPUYEZ",
+        "BELOW": "CI-DESSOUS",
+        "ADD_HOME_SCREEN": "PUIS « SUR L'ÉCRAN D'ACCUEIL »"
     },
     "COMMON": {
         "SUBMIT": "Envoyer",
@@ -14,7 +15,7 @@
         "GENDER": "Sexe",
         "AGE": "Age",
         "EMAIL": "Email",
-        "PHONE": "Téléphone",
+        "PHONE": "No téléphone",
         "BIRTHDATE": "Date de naissance",
         "COUNTRY": "Pays",
         "EMIRATE": "Emirat",
@@ -22,12 +23,14 @@
         "STATE": "Etat",
         "CITY": "Ville",
         "ZIP_CODE": "Code postal",
+        "CITY_ZIP_CODE": "Code postal/Ville",
         "ADDRESS_LINE_1": "Adresse",
         "ADDRESS_LINE_2": "Adresse 2",
         "LANGUAGES": "Langues",
         "GENDER_F": "Femme",
         "GENDER_M": "Homme",
         "ADDRESS": "Adresse",
+        "FAVORITE_PRODUCT": "Produit favori",
         "GET_CARD": "Obtenir ma carte",
         "MOBILE_ALERT": "Disponible uniquement sur mobile"
     },
@@ -38,6 +41,8 @@
         "MOBILE_ERROR": "Numéro incorrect",
         "CODE_ERROR": "Code incorrect",
         "RESEND_CODE": "Renvoyer le code",
+        "NOT_REGISTERED": "Pas encore inscrit ?",
+        "GET_LOYALTY_CARD": "Obtenez votre carte de fidélité",
         "UNREGISTERED_TITLE": "Demandez votre carte de fidélité",
         "UNREGISTERED_CONTENT": "Ce numéro n'est pas enregistré. Rendez-vous dans votre magasin pour reçevoir votre carte de fidélité."
     },
@@ -84,5 +89,8 @@
     },
     "SOCIAL_MEDIA": {
         "SHARE": "Partager à vos amis"
+    },
+    "REGISTRATION": {
+        "TITLE": "Inscription à la carte de fidélité"
     }
 }

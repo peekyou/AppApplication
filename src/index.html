@@ -26,7 +26,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/icon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/icon/favicon-16x16.png">
-  <link rel="manifest" href="/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest.json">
+  <link rel="manifest" id="manifest-file">
   
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="/<%= htmlWebpackPlugin.options.metadata.merchant %>/icon/ms-icon-144x144.png">
@@ -107,6 +107,7 @@
         }
         // End config
         
+        var manifest='/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest.json';if((window.navigator.userAgent.indexOf('iPhone')!=-1||window.navigator.userAgent.indexOf('iPad')!=-1)){manifest='/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest-ios.json';}document.querySelector('#manifest-file').setAttribute('href', manifest);
         function loadingLoyalty(elementId) {
             var cache = localStorage.getItem('loyaltycache-' + window.AppConfig.MerchantId);
             if (cache) {
@@ -131,20 +132,7 @@
                 document.getElementById("logo-lading").style.display = 'flex';
             }
         }
-
-        function qrCode(elementId, text) {
-            elementId = elementId ? elementId : 'qrcode'; 
-            new QRCode(document.getElementById(elementId), {
-                text: text,
-                width: 160,
-                height: 160,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.L
-            });
-        }
-
-        loadingLoyalty();
+        function qrCode(e,t){e=e?e:'qrcode';new QRCode(document.getElementById(e), {text: t,width: 160,height: 160,colorDark : "#000000",colorLight : "#ffffff",correctLevel : QRCode.CorrectLevel.L});}loadingLoyalty();
     </script>
   <!-- Scripts will be injected by webpack here -->
 </body>

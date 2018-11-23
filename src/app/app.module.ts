@@ -29,6 +29,7 @@ import { ContactModule } from './components/contact';
 import { ReviewModule } from './components/review';
 import { SocialMediaModule } from './components/social-media';
 import { AccountModule } from './components/account';
+import { RegistrationModule } from './components/registration';
 import { NoContentComponent } from './components/no-content';
 
 // Modals
@@ -46,7 +47,7 @@ const PROVIDERS = [
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, "/assets/lang/", "-v6.json");
+    return new TranslateHttpLoader(http, "/assets/lang/", "-v10.json");
 }
 
 @NgModule({
@@ -78,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         ReviewModule,
         SocialMediaModule,
         AccountModule,
+        RegistrationModule,
         AgmCoreModule.forRoot({ apiKey: 'AIzaSyD2tHPV7C3ehD5O6CFPryF94GJfwj9ARoc' }),
         DeviceDetectorModule.forRoot(),
         RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })

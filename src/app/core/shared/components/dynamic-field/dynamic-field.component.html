@@ -1,0 +1,31 @@
+<mat-form-field class="full-width" *ngIf="field.fieldType == 'text'" >
+    <input matInput (blur)="onBlur()" [formControl]="formControl"
+        [required]="field.mandatory" placeholder="{{ field.resourceKey }}">
+</mat-form-field>
+      
+<!-- <app-autocomplete *ngIf="field.fieldType == 'autocomplete'" [source]="field.valuesList | lookup" 
+    name="customfield" [id]="fieldName" [formControl]="formControl" small="true" 
+    [required]="field.mandatory" openOnFocus="true">
+</app-autocomplete>
+ -->
+<mat-form-field *ngIf="field.fieldType == 'select' && !field.multiselect">
+    <mat-select placeholder="{{ field.resourceKey }}" [formControl]="formControl">
+        <mat-option *ngFor="let val of field.valuesList" [value]="val">
+            {{ val }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<div *ngIf="field.fieldType == 'radio'">
+    <label [ngClass]="{'error': formControl.invalid && formControl.dirty}" [for]="fieldName">{{ field.resourceKey }}<span *ngIf="field.mandatory">*</span>
+    </label>
+    <br>
+    <mat-radio-group [formControl]="formControl">
+        <mat-radio-button *ngFor="let val of field.valuesList; let i = index" [value]="val"
+            [ngStyle]="{'margin-left': i > 0 ? '15px' : '0', 'margin-top': '7px'}">{{ val }}</mat-radio-button>
+    </mat-radio-group>
+</div>
+
+<div *ngIf="field.fieldType == 'checkbox'" style="margin-top: 20px;">
+    <mat-checkbox [formControl]="formControl">{{ field.resourceKey }}</mat-checkbox>
+</div>

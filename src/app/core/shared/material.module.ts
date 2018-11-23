@@ -30,7 +30,8 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MAT_DATE_LOCALE
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -82,6 +83,8 @@ import { PortalModule } from '@angular/cdk/portal';
         PlatformModule,
         PortalModule
     ],
-    declarations: []
+    declarations: [],
+    providers: [{ provide: MAT_DATE_LOCALE, useValue: (<any>window).AppConfig.Lang == 'fr' ? 'fr-FR' : 'en-US' }]
+    
 })
 export class AppMaterialModules { }

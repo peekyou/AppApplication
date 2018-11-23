@@ -1,5 +1,6 @@
 ﻿import { Page } from './page';
-import { Picture } from './picture'; 
+import { Picture } from './picture';
+import { Address } from './user';
 
 export class MerchantConfiguration {
     timestamp?: number;
@@ -27,6 +28,9 @@ export class MerchantConfiguration {
     instagram?: string;
     whatsApp?: string;
     design?: MerchantDesign;
+    address?: Address;
+    allowCustomerRegistration?: boolean;
+    showCustomerAddressLine?: boolean;
 }
 
 export class MerchantDesign {

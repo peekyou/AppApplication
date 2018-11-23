@@ -1,8 +1,9 @@
 {
     "INSTALLATION_TUTO": {
-        "PRESS": "Press",
-        "BELOW": "below",
-        "ADD_HOME_SCREEN": "And add to the screen"
+        "INSTALL_IPHONE": "To install the application",
+        "PRESS": "PRESS",
+        "BELOW": "BELOW",
+        "ADD_HOME_SCREEN": "AND “ADD TO HOME SCREEN”"
     },
     "COMMON": {
         "SUBMIT": "Submit",
@@ -14,7 +15,7 @@
         "GENDER": "Gender",
         "AGE": "Age",
         "EMAIL": "Email",
-        "PHONE": "Phone",
+        "PHONE": "Phone number",
         "BIRTHDATE": "Birth date",
         "COUNTRY": "Country",
         "EMIRATE": "Emirate",
@@ -22,12 +23,14 @@
         "STATE": "State",
         "CITY": "City",
         "ZIP_CODE": "Zip code",
+        "CITY_ZIP_CODE": "Zip code postal/City",
         "ADDRESS_LINE_1": "Address",
         "ADDRESS_LINE_2": "Address 2",
         "LANGUAGES": "Languages",
         "GENDER_F": "Female",
         "GENDER_M": "Male",
         "ADDRESS": "Address",
+        "FAVORITE_PRODUCT": "Favorite product",
         "GET_CARD": "Get my card",
         "MOBILE_ALERT": "Available only on mobile"
     },
@@ -38,6 +41,8 @@
         "MOBILE_ERROR": "Wrong mobile number",
         "CODE_ERROR": "Wrong code",
         "RESEND_CODE": "Resend code",
+        "NOT_REGISTERED": "Not registered?",
+        "GET_LOYALTY_CARD": "Get your loyalty card",
         "UNREGISTERED_TITLE": "Ask your loyalty card",
         "UNREGISTERED_CONTENT": "This number is not registered. Go to your store to receive your loyalty card."
     },
@@ -84,5 +89,8 @@
     },
     "SOCIAL_MEDIA": {
         "SHARE": "Share to your friends"
+    },
+    "REGISTRATION": {
+        "TITLE": "Registration to loyalty card"
     }
 }

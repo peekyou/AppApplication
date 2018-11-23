@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SubMenuComponent } from './components/submenu/submenu.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SocialShareDialogComponent } from './components/social-share/social-share.component';
+import { DynamicFieldComponent } from './components/dynamic-field/dynamic-field.component';
 import { PipesModule } from '../../pipes'
 import { DirectivesModule } from '../../directives';
 
@@ -40,7 +41,8 @@ const DECLARATIONS = [
     HeaderComponent,
     SubMenuComponent,
     LogoComponent,
-    SocialShareDialogComponent
+    SocialShareDialogComponent,
+    DynamicFieldComponent
 ];
 
 @NgModule({

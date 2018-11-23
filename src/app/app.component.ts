@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ import { isMobile, subscribeUser } from './core/helpers/utils';
 import { TranslationService } from './core/services/translation.service';
 import { LoyaltyCardCacheService } from './components/loyalty-card/loyalty-card-cache.service';
 import { LoyaltyCardCache } from './components/loyalty-card/loyalty-card-cache';
+import { getBaseUrl, getTokenFromUrl, styleBackgound, styleTutoColor, iOSNotStandalone } from './core/helpers/utils';
 
 @Component({
     selector: 'app',
@@ -25,10 +26,13 @@ import { LoyaltyCardCache } from './components/loyalty-card/loyalty-card-cache';
     ]
 })
 export class AppComponent implements OnInit {
-    isMobile: boolean;
+    showInstallationTuto: boolean;
     showLoadingLogo: boolean = false;
     cache: LoyaltyCardCache;
     url: string;
+    showOnlyMobileScreen: boolean = true;
+    styleBackgound: any;
+    styleTutoColor: any;
 
     constructor(
         @Inject(APP_CONFIG) config: AppConfig,
@@ -42,64 +46,41 @@ export class AppComponent implements OnInit {
         public userService: UserService,
         public s: ConfigurationService) { 
 
+            this.styleBackgound = styleBackgound;
+            this.styleTutoColor = styleTutoColor;
+            this.showInstallationTuto = iOSNotStandalone();
             var cache = loyaltyCardCacheService.getCache();
             if (!cache || !cache.customerUrl) {
                 this.showLoadingLogo = true;
-                this.url = this.getUrl();
+                this.url = getBaseUrl();
             }
             else {
                 this.loadCache(cache);
             }
 
-            this.isMobile = isMobile();
+            // this.showOnlyMobileScreen = window.location.href.indexOf('registration') === -1;
             translate.setDefaultLang('en');
             translate.use(config.Lang ? config.Lang : 'en');
+            // alert('URL: ' + window.location);
         }
 
     public ngOnInit() {
         this.loadCacheLabels();
 
-        this.route.queryParams
-            .switchMap(params => {
-                var param = params['t'];
-                if (param) {
-                    this.authService.setParamToken(param);
-                    if (this.authService.isAuthenticated()) {
-                        return Observable.of(true);
-                    }
-                    return Observable.of(param);
-                }
-                else {
-                    var token = this.authService.getParamToken();
-                    if (token) {
-                        return Observable.of(token);
-                    }
-                }
-                var isAuthenticated = this.authService.isAuthenticated();
-                return Observable.of(isAuthenticated ? true : null);
-            })
-            .subscribe(res => {
-                if (res === true) {
-                    this.afterAuthentication();
-                }
-                else if (res) {
-                    this.login(res);
-                }
-                else {
-                    this.userService.user = null;
-                }
-            },
-            err => this.router.navigate(['/'], { queryParamsHandling: "merge" }));
-    }
-
-    public iOSNotStandalone() { 
-        if ((window.navigator.userAgent.indexOf('iPhone') != -1 ||
-            window.navigator.userAgent.indexOf('iPad') != -1)
-            && !(<any>window.navigator).standalone
-            && window.location.href.indexOf('website-') == -1) {
-           return true; 
+        if (this.authService.isAuthenticated()) {
+            this.afterAuthentication();
         }
-        return false;
+        else {
+            var token = getTokenFromUrl();
+            token = token ? token : this.authService.getParamToken();
+            if (token) {
+                this.authService.setParamToken(token);
+                this.login(token);
+            }
+            else {
+                this.userService.user = null;
+            }
+        }
     }
 
     private login(token) {
@@ -109,7 +90,7 @@ export class AppComponent implements OnInit {
         this.authService.login(null, null, null, code, customerId)
             .subscribe(
                 res => this.afterAuthentication(),
-                err => this.router.navigate(['/'], { queryParamsHandling: "merge" })
+                err => this.router.navigate(['/loyaltycard'], { queryParamsHandling: "preserve" })
             );
     }
 
@@ -127,7 +108,7 @@ export class AppComponent implements OnInit {
 
         this.userService.launchTimer();
         if (this.router.url.indexOf('promotion') === -1) {
-            this.router.navigate(['/'], { queryParamsHandling: "merge" });
+            this.router.navigate(['/loyaltycard'], { queryParamsHandling: "preserve" });
         }
     }
 
@@ -202,16 +183,5 @@ export class AppComponent implements OnInit {
         if (cache.currentPoints >= 0) {
             this.cache.remainingPoints = Math.max(0, cache.discountPointsThreshold - cache.currentPoints);
         }
-    }
-
-    private getUrl(): string {
-        var url = window.location.href;
-        var to = url.lastIndexOf('/');
-        to = to == -1 ? url.length : to + 1;
-        url = url.substring(0, to);
-        if (!url.endsWith('/')) {
-            url = url + '/';
-        }
-        return url;
     }
 }

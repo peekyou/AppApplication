@@ -18,12 +18,15 @@ export class AccountComponent {
     
     firstname = this.fb.control(null, Validators.required);
     lastname = this.fb.control(null, Validators.required);
-    email = this.fb.control(null, this.customEmailValidator);
-    birthdate = this.fb.control(null);
+    email = this.fb.control(null, Validators.email);
+    birthdate = this.fb.control(null, Validators.required);
     address1 = this.fb.control(null);
     address2 = this.fb.control(null);
     city = this.fb.control(null);
-    receiveSms = this.fb.control(null);
+    customField1 = this.fb.control(null, (c) => this.customFieldValidator(c, 1));
+    customField2 = this.fb.control(null, (c) => this.customFieldValidator(c, 2));
+    customField3 = this.fb.control(null, (c) => this.customFieldValidator(c, 3));
+    customField4 = this.fb.control(null, (c) => this.customFieldValidator(c, 4));
 
     form = this.fb.group({
         firstname: this.firstname,
@@ -33,7 +36,10 @@ export class AccountComponent {
         address1: this.address1,
         address2: this.address2,
         city: this.city,
-        receiveSms: this.receiveSms
+        customField1: this.customField1,
+        customField2: this.customField2,
+        customField3: this.customField3,
+        customField4: this.customField4
     });
     
     constructor(
@@ -56,7 +62,6 @@ export class AccountComponent {
             this.lastname.setValue(user.lastname);
             this.email.setValue(user.email);
             this.birthdate.setValue(user.birthdate);
-            this.receiveSms.setValue(user.receiveSms);
             if (user.address) {
                 this.city.setValue(user.address.city);
                 this.address1.setValue(user.address.addressLine1);
@@ -67,7 +72,7 @@ export class AccountComponent {
 
     logout() {
         this.service.logout();
-        this.router.navigate(['/']);
+        this.router.navigate(['/loyaltycard']);
     }
 
     saveUser() {
@@ -76,17 +81,20 @@ export class AccountComponent {
         this.user.lastname = this.lastname.value;
         this.user.email = this.email.value;
         this.user.birthdate = this.birthdate.value;
-        this.user.receiveSms = this.receiveSms.value;
-        if (this.city.value || this.address1.value || this.address2.value) {
-            this.user.address = {
-                country: {
-                    id: 'AE'
-                },
-                city: this.city.value,
-                addressLine1: this.address1.value,
-                addressLine2: this.address2.value
-            };
-        }
+        this.user.customField1 = this.customField1.value;
+        this.user.customField2 = this.customField2.value;
+        this.user.customField3 = this.customField3.value;
+        this.user.customField4 = this.customField4.value;
+        // if (this.city.value || this.address1.value || this.address2.value) {
+        //     this.user.address = {
+        //         country: {
+        //             id: 'AE'
+        //         },
+        //         city: this.city.value,
+        //         addressLine1: this.address1.value,
+        //         addressLine2: this.address2.value
+        //     };
+        // }
 
         this.service
             .save(this.user)
@@ -105,5 +113,15 @@ export class AccountComponent {
             return null;
         }
         return Validators.email(control);
+    }
+
+    private customFieldValidator(control: AbstractControl, index:  number): ValidationErrors {
+        if (this.s.customerCustomFields && this.s.customerCustomFields.length > index - 1) {
+            var field = this.s.customerCustomFields[index - 1];
+            if (field && field.mandatory && field.fieldType != 'checkbox') {
+                return Validators.required(control);
+            }
+        }
+        return null;
     }
 }

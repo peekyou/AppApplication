@@ -3,6 +3,7 @@ import { AuthHttpService } from './core/services/auth-http.service';
 import { TranslationService } from './core/services/translation.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { UserService } from './core/services/user.service';
+import { LookupService } from './core/services/lookup.service';
 import { LocalForageService } from './core/services/local-forage.service';
 import { AuthService } from './components/+auth/auth.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -13,6 +14,7 @@ import { SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { APP_CONFIG, appConfigFactory } from './app.config';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+    autoplay: true,
     direction: 'horizontal',
     slidesPerView: 'auto',
     resistanceRatio: 0,
@@ -27,6 +29,7 @@ export const APP_PROVIDERS = [
     TranslationService,
     ConfigurationService,
     UserService,
+    LookupService,
     LocalForageService,
     PromotionService,
     ReviewService,

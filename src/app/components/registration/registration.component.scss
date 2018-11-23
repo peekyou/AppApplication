@@ -1,0 +1,27 @@
+@import '../../../styles/variables';
+
+:host {
+    display: block;
+    height: 100vh;
+    background-color: #fff;
+    max-width: 500px;
+    margin: auto;
+}
+
+.with-toolbar-padding-bottom {
+    background-color: #fff;
+
+    .registration-container {
+        border: 1px solid $theme-color;
+        padding: 25px;
+        border-radius: 10px;
+
+        h2 {
+            margin: 0;
+        }
+
+        form {
+            margin-top: 2rem;
+        }
+    }
+}
