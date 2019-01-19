@@ -117,8 +117,11 @@
                     </app-dynamic-field>
                 </div>
             </div>
-            <br /><br />
-            <div fxLayout="row" fxLayoutAlign="center">
+            <mat-slide-toggle style="margin-top:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
+                <span *ngIf="!pushEnabled">{{ 'ACCOUNT.PUSH_DISABLED' | translate }}</span>
+                <span *ngIf="pushEnabled">{{ 'ACCOUNT.PUSH_ENABLED' | translate }}</span>
+            </mat-slide-toggle>
+            <div fxLayout="row" fxLayoutAlign="center" style="margin:1.5rem 0">
                 <button fxFlex="45%" mat-raised-button type="submit" color="primary" 
                         [disabled]="loading || form.invalid" style="margin-right:10px"
                         [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
@@ -131,14 +134,21 @@
             </div>
         </form>
         
-        <br /><br />
-        <button *ngIf="!editing" mat-raised-button color="primary" (click)="editing = !editing"
-                class="full-width" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
-            {{ 'ACCOUNT.EDIT' | translate }}
-        </button>
-        <br /><br />
-        <hr />
-        <br />
+        <div style="margin:1.5rem 0" *ngIf="!editing">
+            <mat-slide-toggle style="margin-bottom:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
+                <span *ngIf="!pushEnabled">{{ 'ACCOUNT.PUSH_DISABLED' | translate }}</span>
+                <span *ngIf="pushEnabled">{{ 'ACCOUNT.PUSH_ENABLED' | translate }}</span>
+            </mat-slide-toggle>
+            <div class="error" *ngIf="notificationsDenied" style="margin-bottom:1rem">
+                {{ 'ACCOUNT.PUSH_DENIED' | translate }}
+            </div>
+            <button mat-raised-button color="primary" (click)="editing = !editing"
+                    class="full-width" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
+                {{ 'ACCOUNT.EDIT' | translate }}
+            </button>
+        </div>
+        <hr>
+        <br>
     </div>
             
     <div class="no-card" *ngIf="!service.user" [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : '#aaa'">

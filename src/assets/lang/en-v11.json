@@ -50,7 +50,10 @@
         "TITLE": "My account",
         "CARD_NUMBER": "Card number",
         "INVALID_EMAIL": "Please enter a valid email address",
-        "EDIT": "Edit my account"
+        "EDIT": "Edit my account",
+        "PUSH_ENABLED": "Push notifications enabled",
+        "PUSH_DISABLED": "Push notifications disabled",
+        "PUSH_DENIED": "Notifications permission is denied, please grant the permission to activate"
     },
     "CONTACT": {
         "TIMINGS": "Opening hours",

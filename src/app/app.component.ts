@@ -8,10 +8,12 @@ import 'rxjs/add/operator/switchMap';
 
 import { AuthService } from './components/+auth/auth.service';
 import { UserService } from './core/services/user.service';
+import { PushNotificationService } from './core/services/push-notification.service';
 import { Device, PushSubscription } from './core/models/device';
 import { ConfigurationService } from './core/services/configuration.service';
 import { APP_CONFIG, AppConfig } from './app.config';
-import { isMobile, subscribeUser } from './core/helpers/utils';
+import { isMobile } from './core/helpers/utils';
+import { subscribeUser } from './core/helpers/push-manager';
 import { TranslationService } from './core/services/translation.service';
 import { LoyaltyCardCacheService } from './components/loyalty-card/loyalty-card-cache.service';
 import { LoyaltyCardCache } from './components/loyalty-card/loyalty-card-cache';
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private deviceService: DeviceDetectorService,
+        private notificationService: PushNotificationService,
         private translate: TranslateService,
         private translation: TranslationService,
         private loyaltyCardCacheService: LoyaltyCardCacheService,
@@ -96,10 +99,10 @@ export class AppComponent implements OnInit {
 
     private afterAuthentication() {
         if (window.location.href.indexOf('website-') == -1) {
-            this.userService.saveDevice(this.getDevice())
+            this.notificationService.saveDevice(this.getDevice())
             .subscribe(
                 deviceId => {
-                    this.userService.saveDeviceId(deviceId);
+                    this.notificationService.saveDeviceId(deviceId);
                     this.suscribeToPushNotifications();
                 },
                 err => console.log(err)
@@ -107,7 +110,7 @@ export class AppComponent implements OnInit {
         }
 
         this.userService.launchTimer();
-        if (this.router.url.indexOf('promotion') === -1) {
+        if (window.location.href.indexOf('promotion') === -1) {
             this.router.navigate(['/loyaltycard'], { queryParamsHandling: "preserve" });
         }
     }
@@ -116,31 +119,16 @@ export class AppComponent implements OnInit {
         if (this.authService.isAuthenticated()) {
             subscribeUser()
             .then(sub => {
-                this.savePushSubscription(sub);
+                this.notificationService.savePushSubscription(sub);
             }).catch(e => {
                 if ((<any>Notification).permission === 'denied') {
                     console.warn('Permission for notifications was denied');
-                    this.savePushSubscription(null);
+                    this.notificationService.savePushSubscription(null);
                 } else {
                     console.error('Unable to subscribe to push', e);
                 }
             });
         }
-    }
-
-    private savePushSubscription(sub) {
-        var param: PushSubscription = {
-            notificationGranted: false,
-            customerId: this.authService.getUserId()
-        };
-        if (sub) {
-            var obj = JSON.parse(JSON.stringify(sub));
-            param.endpoint = obj.endpoint;
-            param.auth = obj.keys.auth;
-            param.p256dh = obj.keys.p256dh;
-            param.notificationGranted = true;
-        }
-        this.userService.savePushSubscription(param);
     }
 
     private getDevice() : Device {

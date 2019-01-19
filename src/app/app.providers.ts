@@ -3,6 +3,7 @@ import { AuthHttpService } from './core/services/auth-http.service';
 import { TranslationService } from './core/services/translation.service';
 import { ConfigurationService } from './core/services/configuration.service';
 import { UserService } from './core/services/user.service';
+import { PushNotificationService } from './core/services/push-notification.service';
 import { LookupService } from './core/services/lookup.service';
 import { LocalForageService } from './core/services/local-forage.service';
 import { AuthService } from './components/+auth/auth.service';
@@ -29,6 +30,7 @@ export const APP_PROVIDERS = [
     TranslationService,
     ConfigurationService,
     UserService,
+    PushNotificationService,
     LookupService,
     LocalForageService,
     PromotionService,

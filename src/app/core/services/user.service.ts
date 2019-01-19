@@ -16,7 +16,6 @@ export class UserService {
     private api: string;
     public user: User;
     private timerSubscription: Subscription;
-    private deviceIdKey = 'deviceId';
     private interval: number = 10000; // 10000 = 10 secs
 
     constructor(
@@ -81,16 +80,9 @@ export class UserService {
         this.authService.logout();
         this.user = null;
         this.loyaltyCardCacheService.cache = {};
-        localStorage.removeItem(this.deviceIdKey);
         localStorage.removeItem(this.loyaltyCardCacheService.loyaltyCacheKey);
     }
     
-    saveDeviceId(deviceId: string) {
-        if (deviceId) {
-            localStorage.setItem(this.deviceIdKey, deviceId);
-        }
-    }
-
     create(user: User): Observable<any> {
         return this.http.post(this.api + '/' + this.appConfig.MerchantId, user)
             .map(res => {
@@ -109,21 +101,5 @@ export class UserService {
 
     sendEmail(fromEmail: string, content: string): Observable<boolean> {
         return this.http.post(this.appConfig.ApiEndpoint + '/email', { email: fromEmail, content: content });
-    }
-
-    saveDevice(device: Device): Observable<string> {
-        if (!localStorage.getItem(this.deviceIdKey)) {
-            return this.http.post(this.appConfig.ApiEndpoint + '/device', device);
-        }
-        return Observable.of('');
-    }
-    
-    savePushSubscription(subscription: PushSubscription) {
-        subscription.deviceId = localStorage.getItem(this.deviceIdKey);
-        this.http.post(this.appConfig.ApiEndpoint + '/push/subscription', subscription)
-            .subscribe(
-                res => {},
-                err => console.log(err)
-            );
     }
 }

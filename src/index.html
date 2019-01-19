@@ -102,12 +102,12 @@
             UserIdClaim: 'http://appwards.com/claims/profile/UserId',
 
             Lang: 'fr',
-            ApiEndpoint: 'http://localhost/SoApp/SoAppService.svc/json',
+            ApiEndpoint: 'http://localhost:8181/SoApp/SoAppService.svc/json',
             MerchantId: '7D280115C08D468B988E4D9A15344214'
         }
         // End config
         
-        var manifest='/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest.json';if((window.navigator.userAgent.indexOf('iPhone')!=-1||window.navigator.userAgent.indexOf('iPad')!=-1)){manifest='/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest-ios.json';}document.querySelector('#manifest-file').setAttribute('href', manifest);
+        if((window.navigator.userAgent.indexOf('iPhone')==-1&&window.navigator.userAgent.indexOf('iPad')==-1)){document.querySelector('#manifest-file').setAttribute('href', '/<%= htmlWebpackPlugin.options.metadata.merchant %>/manifest.json');}
         function loadingLoyalty(elementId) {
             var cache = localStorage.getItem('loyaltycache-' + window.AppConfig.MerchantId);
             if (cache) {

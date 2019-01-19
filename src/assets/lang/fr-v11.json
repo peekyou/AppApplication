@@ -50,7 +50,10 @@
         "TITLE": "Mon compte",
         "CARD_NUMBER": "No carte",
         "INVALID_EMAIL": "Adresse email incorrecte",
-        "EDIT": "Modifier mon compte"
+        "EDIT": "Modifier mon compte",
+        "PUSH_ENABLED": "Push notifications activées",
+        "PUSH_DISABLED": "Push notifications désactivées",
+        "PUSH_DENIED": "La permission des notifications a été refusée. Veuillez autoriser pour les activer"
     },
     "CONTACT": {
         "TIMINGS": "Heures d'ouverture",

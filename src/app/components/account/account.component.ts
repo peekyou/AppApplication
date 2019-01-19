@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { ConfigurationService } from '../../core/services/configuration.service';
+import { PushNotificationService } from '../../core/services/push-notification.service';
 import { UserService } from '../../core/services/user.service';
 import { User } from '../../core/models/user';
+import { getSubscription, subscribeUser } from '../../core/helpers/push-manager';
 
 @Component({
     selector: 'account',
@@ -15,6 +17,8 @@ export class AccountComponent {
     user: User;
     editing = false;
     loading = false;
+    pushEnabled: boolean;
+    notificationsDenied: boolean = false;
     
     firstname = this.fb.control(null, Validators.required);
     lastname = this.fb.control(null, Validators.required);
@@ -45,9 +49,11 @@ export class AccountComponent {
     constructor(
         public service: UserService, 
         public s: ConfigurationService,
+        private notificationService: PushNotificationService,
         private router: Router, 
         private fb: FormBuilder) {
 
+        this.getPushSubscription();
         service.getUser()
             .subscribe(
                 user => this.init(user),
@@ -106,6 +112,40 @@ export class AccountComponent {
 
     cancelEdit() {
         this.editing = false;
+    }
+
+    getPushSubscription() {
+        console.log((<any>Notification).permission)
+        getSubscription()
+        .then(sub => {
+            this.pushEnabled = sub !== null;
+        });
+    }
+
+    pushSubscriptionChanged(checked) {
+        this.pushEnabled = checked;
+        if (this.pushEnabled) {
+            subscribeUser()
+            .then(sub => this.notificationService.savePushSubscription(sub))
+            .catch(e => {
+                if ((<any>Notification).permission === 'denied') {
+                    console.warn('Permission for notifications was denied');
+                    this.pushEnabled = false;
+                    this.notificationsDenied = true;
+                    this.notificationService.savePushSubscription(null);
+                }
+            });
+        }
+        else {
+            getSubscription()
+            .then(sub => {
+                if (sub) {
+                    return sub.unsubscribe();
+                }
+            })
+            .catch(e => console.log('Error unsubscribing', e))
+            .then(() => this.notificationService.savePushSubscription(null));
+        }
     }
 
     private customEmailValidator(control: AbstractControl): ValidationErrors {
