@@ -11,6 +11,7 @@ import { LoyaltyCardCacheService } from '../../components/loyalty-card/loyalty-c
 import { APP_CONFIG, AppConfig } from '../../app.config';
 import { styleBackgound } from '../../core/helpers/utils';
 import { CustomerCustomFields } from '../../core/models/customerCustomFields';
+import { LoyaltyProgramPoints } from '../../core/models/loyaltyPrograms';
 import { Product } from '../../core/models/product';
 
 @Injectable()
@@ -108,13 +109,20 @@ export class ConfigurationService {
     private setConfiguration(configuration: MerchantConfiguration) {
         if (configuration) {
             this.config = configuration;
-            this.config.discountPointsThresholdArray = [];
-            for (var i = 1; i <= configuration.discountPointsThreshold; i++) {
-                this.config.discountPointsThresholdArray.push(i);
+            for (var i = 0; configuration.loyaltyPrograms && i < configuration.loyaltyPrograms.length; i++) {
+                if ((<LoyaltyProgramPoints>configuration.loyaltyPrograms[i]).rewards) {
+                    (<LoyaltyProgramPoints>configuration.loyaltyPrograms[i]).rewards.sort(function(a,b) {
+                        return (a.pointsThreshold > b.pointsThreshold) ? 1 : ((b.pointsThreshold > a.pointsThreshold) ? -1 : 0);
+                    });
+                }
             }
-
+            
             if (this.config.design) {
                 this.config.design.rewardsWheelSecondaryColor = this.calculateSecondaryColor(this.config.design.rewardsWheelColor);
+            }
+
+            if (this.config.snapchat) {
+                this.config.snapchatLink = 'snapchat://add/' + this.config.snapchat;
             }
             this.localForage.save('merchant', {
                 'conf': this.config

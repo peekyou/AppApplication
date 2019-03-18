@@ -117,7 +117,7 @@
                     </app-dynamic-field>
                 </div>
             </div>
-            <mat-slide-toggle style="margin-top:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
+            <mat-slide-toggle *ngIf="!isIOS" style="margin-top:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
                 <span *ngIf="!pushEnabled">{{ 'ACCOUNT.PUSH_DISABLED' | translate }}</span>
                 <span *ngIf="pushEnabled">{{ 'ACCOUNT.PUSH_ENABLED' | translate }}</span>
             </mat-slide-toggle>
@@ -135,7 +135,7 @@
         </form>
         
         <div style="margin:1.5rem 0" *ngIf="!editing">
-            <mat-slide-toggle style="margin-bottom:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
+            <mat-slide-toggle *ngIf="!isIOS" style="margin-bottom:1rem" color="primary" [checked]="pushEnabled" (change)="pushSubscriptionChanged($event.checked)">
                 <span *ngIf="!pushEnabled">{{ 'ACCOUNT.PUSH_DISABLED' | translate }}</span>
                 <span *ngIf="pushEnabled">{{ 'ACCOUNT.PUSH_ENABLED' | translate }}</span>
             </mat-slide-toggle>

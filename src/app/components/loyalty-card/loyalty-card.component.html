@@ -11,8 +11,24 @@
                             <div style="font-size: 1.5rem;">{{ 'LOYALTY.PTS' | translate }}</div>
                         </div>
                     </div>
-                    <div class="points-goal">
-                        {{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }} {{ 'LOYALTY.POINTS_TO_GOAL' | translate }} {{ s.config.discountAmount }}{{ s.config.discountCurrency }}
+                    <div *ngIf="!s.config.loyaltyPrograms || s.config.loyaltyPrograms.length == 0" class="points-goal">
+                        {{ Math.max(0, s.config.discountPointsThreshold - service?.user?.currentPoints) }} {{ 'LOYALTY.POINTS_TO_GOAL' | translate }} {{ s.config.discountAmount }} {{ s.config.discountCurrency }}
+                    </div>
+                    <div *ngIf="s.config.loyaltyPrograms && s.config.loyaltyPrograms.length > 0" class="loyalty-programs">
+                        <div *ngFor="let reward of getRewards() | slice:0:show let i=index">
+                            <div *ngIf="reward.gift">
+                                {{ 'LOYALTY.BIRTHDAY' | translate:{gift: reward.gift} }}
+                            </div>
+                            <div *ngIf="reward.reward">
+                                <b>{{ reward.threshold }} {{ 'LOYALTY.POINTS' | translate }}</b>{{ reward.reward }}
+                            </div>
+                            <div *ngIf="i == 2 && show == 3" class="show-more">
+                                <a (click)="show = getRewards().length">{{ 'LOYALTY.SHOW_MORE' | translate }}</a>
+                            </div>
+                        </div>
+                        <div *ngIf="show == getRewards().length" class="show-more">
+                            <a (click)="show = 3">{{ 'LOYALTY.SHOW_LESS' | translate }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -156,9 +156,11 @@ export class AppComponent implements OnInit {
 
     private loadCacheLabels() {
         this.translation.getMultiple([
+            'LOYALTY.POINTS',
             'LOYALTY.TITLE',
             'LOYALTY.PTS',
             'LOYALTY.POINTS_TO_GOAL'], x => {
+                this.loyaltyCardCacheService.cache.loyaltyPointsLabel = x['LOYALTY.POINTS'];
                 this.loyaltyCardCacheService.cache.title = x['LOYALTY.TITLE'];
                 this.loyaltyCardCacheService.cache.pointsLabel = x['LOYALTY.PTS'];
                 this.loyaltyCardCacheService.cache.pointsToGoalLabel = x['LOYALTY.POINTS_TO_GOAL'];

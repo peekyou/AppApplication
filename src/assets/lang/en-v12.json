@@ -66,11 +66,15 @@
         "TITLE": "Rewards program",
         "GOAL": "GOAL",
         "PTS": "POINTS",
+        "POINTS": "POINTS = ",
         "POINTS_TO_GOAL": "points remaining to get a voucher of",
         "POINTS_OWNED": "POINTS OWNED",
         "ACHIEVEMENT": "Achieve {{points}} pts and",
         "VOUCHER": "win a voucher of",
-        "DELETED": "Please contact your shop"
+        "DELETED": "Please contact your shop",
+        "SHOW_MORE": "Show more >>",
+        "SHOW_LESS": "Show less <<",
+        "BIRTHDAY": "Get one {{gift}} free on your birthday"
     },
     "REVIEWS": {
         "TITLE": "Reviews",

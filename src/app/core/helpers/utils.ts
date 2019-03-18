@@ -72,6 +72,10 @@ export function iOSNotStandalone() {
     return false;
 }
 
+export function isIOS() { 
+    return window.navigator.userAgent.indexOf('iPhone') != -1 || window.navigator.userAgent.indexOf('iPad') != -1
+}
+
 export function getBaseUrl(): string {
     var url = window.location.href;
     var to = url.lastIndexOf('/');

@@ -3,6 +3,7 @@ export class LoyaltyCardCache {
     currentPoints?: number;
     pointsLabel?: string;
     pointsToGoalLabel?: string;
+    loyaltyPointsLabel?: string;
     discountPointsThreshold?: number;
     discountAmount?: number;
     discountCurrency?: string;

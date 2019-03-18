@@ -7,6 +7,7 @@ import { PushNotificationService } from '../../core/services/push-notification.s
 import { UserService } from '../../core/services/user.service';
 import { User } from '../../core/models/user';
 import { getSubscription, subscribeUser } from '../../core/helpers/push-manager';
+import { isIOS } from '../../core/helpers/utils';
 
 @Component({
     selector: 'account',
@@ -17,6 +18,7 @@ export class AccountComponent {
     user: User;
     editing = false;
     loading = false;
+    isIOS = false;
     pushEnabled: boolean;
     notificationsDenied: boolean = false;
     
@@ -53,6 +55,7 @@ export class AccountComponent {
         private router: Router, 
         private fb: FormBuilder) {
 
+        this.isIOS = isIOS();
         this.getPushSubscription();
         service.getUser()
             .subscribe(
@@ -115,11 +118,12 @@ export class AccountComponent {
     }
 
     getPushSubscription() {
-        console.log((<any>Notification).permission)
-        getSubscription()
-        .then(sub => {
-            this.pushEnabled = sub !== null;
-        });
+        if (!this.isIOS) {
+            getSubscription()
+            .then(sub => {
+                this.pushEnabled = sub !== null;
+            });
+        }
     }
 
     pushSubscriptionChanged(checked) {

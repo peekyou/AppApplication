@@ -1,6 +1,7 @@
 ﻿import { Page } from './page';
 import { Picture } from './picture';
 import { Address } from './user';
+import { LoyaltyProgram } from './loyaltyPrograms';
 
 export class MerchantConfiguration {
     timestamp?: number;
@@ -12,7 +13,6 @@ export class MerchantConfiguration {
     discountAmount: number;
     discountCurrency: string;
     discountPointsThreshold: number;
-    discountPointsThresholdArray: number[];
     callText: string;
     email: string;
     appWardsApplicationUrl: string;
@@ -27,10 +27,13 @@ export class MerchantConfiguration {
     linkedIn?: string;
     instagram?: string;
     whatsApp?: string;
+    snapchat?: string;
+    snapchatLink?: string;
     design?: MerchantDesign;
     address?: Address;
     allowCustomerRegistration?: boolean;
     showCustomerAddressLine?: boolean;
+    loyaltyPrograms?: LoyaltyProgram[];
 }
 
 export class MerchantDesign {

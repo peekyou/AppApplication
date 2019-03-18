@@ -20,8 +20,8 @@
                             <div id="loyalty-subtitle" style="font-size: 1.5rem;">{{ cache.pointsLabel }}</div>
                         </div>
                     </div>
-                    <div id="loyalty-remaining-points" style="width: 60%;margin: auto;padding-bottom: 15px;padding-top: 2.2rem;font-size: 16px;">
-                        {{ cache.remainingPoints + ' ' + cache.pointsToGoalLabel + ' ' + cache.discountAmount +  cache.discountCurrency }}
+                    <div id="loyalty-remaining-points" style="width: 90%;margin: auto;padding-bottom: 15px;padding-top: 2.2rem;font-size: 16px;">
+                        <span *ngIf="cache.discountAmount > 0">{{ cache.remainingPoints + ' ' + cache.pointsToGoalLabel + ' ' + cache.discountAmount +  cache.discountCurrency }}</span>
                     </div>
                 </div>
                 <div id="cusname" style="margin-top: 1.2rem;font-weight: bold;font-size: 17px;">

@@ -4,12 +4,16 @@
     height: 100vh;
 }
 
-.points-goal {
+.points-goal, .loyalty-programs {
     width: 60%;
     margin: auto;
     padding-bottom: 15px;
     padding-top: 2.2rem;
     color: #fff;
+}
+
+.loyalty-programs {
+    width: 90%;
 }
 
 .customer-name {
@@ -40,4 +44,10 @@
     left: 50%;
     margin: -70px 0px 0px -70px;
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.show-more a {
+    color: bisque;
+    font-weight: bold;
+    text-decoration: underline;
 }

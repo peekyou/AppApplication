@@ -66,11 +66,15 @@
         "TITLE": "Carte de fidélité",
         "GOAL": "OBJECTIF",
         "PTS": "POINTS",
+        "POINTS": "POINTS = ",
         "POINTS_TO_GOAL": "points restants pour obtenir un bon de",
         "POINTS_OWNED": "POINTS OBTENUS",
         "ACHIEVEMENT": "Atteignez {{points}} pts et",
         "VOUCHER": "gagnez un bon de",
-        "DELETED": "Veuillez contacter votre magasin"
+        "DELETED": "Veuillez contacter votre magasin",
+        "SHOW_MORE": "Afficher plus >>",
+        "SHOW_LESS": "Afficher moins <<",
+        "BIRTHDAY": "{{gift}} gratuit(e) le jour de votre anniversaire !"
     },
     "REVIEWS": {
         "TITLE": "Avis",
