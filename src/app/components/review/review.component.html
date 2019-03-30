@@ -31,15 +31,15 @@
 
             <div fxLayout="row">
                 <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating1"></star-rating-comp>
-                <label>{{ s.config.rating1ResourceKey }}</label>
+                <label>{{ s.config.merchants[0].rating1ResourceKey }}</label>
             </div>
             <div fxLayout="row">
                 <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating2"></star-rating-comp>
-                <label>{{ s.config.rating2ResourceKey }}</label>
+                <label>{{ s.config.merchants[0].rating2ResourceKey }}</label>
             </div>
             <div fxLayout="row">
                 <star-rating-comp [readOnly]="true" starType="svg" showHalfStars="true" [rating]="averageRating3"></star-rating-comp>
-                <label>{{ s.config.rating3ResourceKey }}</label>
+                <label>{{ s.config.merchants[0].rating3ResourceKey }}</label>
             </div>
         </div>
 
@@ -52,15 +52,15 @@
                 <div fxFlex="50%">
                     <div fxLayout="row">
                         <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating1"></star-rating-comp>
-                        <label>{{ s.config.rating1ResourceKey }}</label>
+                        <label>{{ s.config.merchants[0].rating1ResourceKey }}</label>
                     </div>
                     <div fxLayout="row">
                         <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating2"></star-rating-comp>
-                        <label>{{ s.config.rating2ResourceKey }}</label>
+                        <label>{{ s.config.merchants[0].rating2ResourceKey }}</label>
                     </div>
                     <div fxLayout="row">
                         <star-rating-comp [readOnly]="true" starType="svg" [rating]="review.rating3"></star-rating-comp>
-                        <label>{{ s.config.rating3ResourceKey }}</label>
+                        <label>{{ s.config.merchants[0].rating3ResourceKey }}</label>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@
                 <div class="promotion-title">
                     {{ promotion.name }}
                 </div>
+                <div *ngIf="multipleMerchants">{{ promotion.merchantName }}</div>
                 <div class="promotion-date" [style.color]="getTitlesColor(i) | safeStyle">
                     {{ 'PROMOTIONS.UNTIL' | translate }} {{ promotion.toDate | localeDate }}
                 </div>

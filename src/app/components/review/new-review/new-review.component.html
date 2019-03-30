@@ -5,26 +5,17 @@
     </div>
     <form [formGroup]="form" (submit)="onSubmit()">
         <div fxLayout="row">            
-            <label fxFlex>{{ s.config.rating1ResourceKey }}</label>
+            <label fxFlex>{{ s.config.merchants[0].rating1ResourceKey }}</label>
             <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating1"></star-rating-comp>
         </div>
         <div fxLayout="row">
-            <label fxFlex>{{ s.config.rating2ResourceKey }}</label>
+            <label fxFlex>{{ s.config.merchants[0].rating2ResourceKey }}</label>
             <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating2"></star-rating-comp>
         </div>
         <div fxLayout="row">
-            <label fxFlex>{{ s.config.rating3ResourceKey }}</label>
+            <label fxFlex>{{ s.config.merchants[0].rating3ResourceKey }}</label>
             <star-rating-comp fxFlex starType="svg" size="medium" formControlName="rating3"></star-rating-comp>
         </div>
-        <!-- <div class="full-width rev-rating">
-            <star-rating-comp labelPosition="left" [labelText]="s.config.rating1ResourceKey" starType="svg" formControlName="rating1"></star-rating-comp>
-        </div>
-        <div class="full-width rev-rating">
-            <star-rating-comp labelPosition="left" [labelText]="s.config.rating2ResourceKey" starType="svg" formControlName="rating2"></star-rating-comp>
-        </div>
-        <div class="full-width rev-rating">
-            <star-rating-comp labelPosition="left" [labelText]="s.config.rating3ResourceKey" starType="svg" formControlName="rating3"></star-rating-comp>
-        </div> -->
         <mat-form-field class="full-width">
             <textarea matInput placeholder="{{ 'REVIEWS.COMMENT' | translate }}" rows="4" formControlName="comment" required></textarea>
         </mat-form-field>

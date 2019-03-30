@@ -1,4 +1,4 @@
-﻿import { MerchantConfiguration } from '../models/merchantConfiguration';
+﻿import { MerchantsConfiguration } from '../models/merchantConfiguration';
 
 let serviceWorkerRegistration = null;
 export { serviceWorkerRegistration };
@@ -30,7 +30,7 @@ export function iOS(): boolean {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(<any>window).MSStream;
 };
 
-export function styleBackgound(config: MerchantConfiguration, onlyColor: boolean = false): any {
+export function styleBackgound(config: MerchantsConfiguration, onlyColor: boolean = false): any {
     if (config && config.design && config.design.backgroundImage && !onlyColor) {
         var size = config.design.backgroundImageSize ? 'left top / ' + config.design.backgroundImageSize : '';
         return 'url(' + config.design.backgroundImage.src + ') ' + size + '';
@@ -41,7 +41,7 @@ export function styleBackgound(config: MerchantConfiguration, onlyColor: boolean
     return { }
 }
 
-export function styleTutoColor(config: MerchantConfiguration): any {
+export function styleTutoColor(config: MerchantsConfiguration): any {
     if (config && config.design && config.design.rewardsWheelColor) {
         return "#ffffff";
     }

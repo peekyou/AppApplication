@@ -1,58 +1,70 @@
 <app-header fixedHeight="true"></app-header>
 <app-logo></app-logo>
 
-<div class="with-toolbar-padding-bottom text-align-center contact-panel after-logo-padding-top-3">
-    <a mat-fab color="primary" href="tel:{{s.config.contactPage.data1}}"
+<div *ngIf="selectedMerchant" class="with-toolbar-padding-bottom text-align-center contact-panel after-logo-padding-top-3">
+    <div *ngIf="s.config.merchants.length > 1" class="text-align-center">
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedMerchant">
+                <mat-option *ngFor="let merchant of s.config.merchants" [value]="merchant">
+                    {{ merchant.displayName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <a mat-fab color="primary" href="tel:{{selectedMerchant.contactPage.data1}}"
         [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null">
         <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
     </a>
-    <button *ngIf="s.config && s.config.contactPage && s.config.contactPage.data2" mat-fab color="primary"
+    <button *ngIf="s.config && selectedMerchant.contactPage && selectedMerchant.contactPage.data2" mat-fab color="primary"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" (click)="openEmailDialog()">
         <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
     </button>
 
     <div>
-        <a *ngIf="s.config && s.config.facebook" mat-mini-fab color="primary" [href]="s.config.facebook"
+        <a *ngIf="selectedMerchant.facebook" mat-mini-fab color="primary" [href]="selectedMerchant.facebook"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
             <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
         </a>
-        <a *ngIf="s.config && s.config.instagram" mat-mini-fab color="primary" [href]="s.config.instagram"
+        <a *ngIf="selectedMerchant.instagram" mat-mini-fab color="primary" [href]="selectedMerchant.instagram"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
             <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
         </a>
-        <a *ngIf="s.config && s.config.snapchatLink" mat-mini-fab color="primary" [href]="s.config.snapchatLink"
-            [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
-            <i class="fa fa-snapchat-ghost fa-lg" aria-hidden="true"></i>
-        </a>
-        <a *ngIf="s.config && s.config.twitter" mat-mini-fab color="primary" [href]="s.config.twitter"
+        <div *ngIf="selectedMerchant.snapchatLink">
+            <a mat-mini-fab color="primary" [href]="selectedMerchant.snapchatLink"
+                [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
+                <i class="fa fa-snapchat-ghost fa-lg" aria-hidden="true"></i>
+            </a>
+            <div>@{{ selectedMerchant.snapchat }}</div>
+        </div>
+        <a *ngIf="selectedMerchant.twitter" mat-mini-fab color="primary" [href]="selectedMerchant.twitter"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
             <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
         </a>
-        <a *ngIf="s.config && s.config.linkedIn" mat-mini-fab color="primary" [href]="s.config.linkedIn"
+        <a *ngIf="selectedMerchant.linkedIn" mat-mini-fab color="primary" [href]="selectedMerchant.linkedIn"
             [style.backgroundColor]="s.config.design ? s.config.design.buttonsColor : null" target="_blank">
             <i class="fa fa-linkedin fa-lg" aria-hidden="true"></i>
         </a>
     </div>
  
-    <div *ngIf="s.config && s.config.contactPage && s.config.contactPage.timeTable && s.config.contactPage.timeTable.length > 0">
+    <div *ngIf="s.config && selectedMerchant.contactPage && selectedMerchant.contactPage.timeTable && selectedMerchant.contactPage.timeTable.length > 0">
         <h3>{{ 'CONTACT.TIMINGS' | translate }}</h3>
         <table class="mdl-data-table">
             <tbody>
                 <tr *ngFor="let weekDay of s.weekDays; let i = index">
                     <td class="day">{{weekDay.name}}</td>
-                    <td [colSpan]="s.config.contactPage.timeTable[i].nonStop ? 2 : 1">
-                        <div *ngIf="s.config.contactPage.timeTable[i].morningTime">
-                            {{applyMask(s.config.contactPage.timeTable[i].morningTime)}}
+                    <td [colSpan]="selectedMerchant.contactPage.timeTable[i].nonStop ? 2 : 1">
+                        <div *ngIf="selectedMerchant.contactPage.timeTable[i].morningTime">
+                            {{applyMask(selectedMerchant.contactPage.timeTable[i].morningTime)}}
                         </div>
-                        <div *ngIf="!s.config.contactPage.timeTable[i].morningTime">
+                        <div *ngIf="!selectedMerchant.contactPage.timeTable[i].morningTime">
                             {{ 'CONTACT.CLOSED' | translate }}
                         </div>
                     </td>
-                    <td *ngIf="!s.config.contactPage.timeTable[i].nonStop">
-                        <div *ngIf="s.config.contactPage.timeTable[i].afternoonTime">
-                            {{applyMask(s.config.contactPage.timeTable[i].afternoonTime)}}
+                    <td *ngIf="!selectedMerchant.contactPage.timeTable[i].nonStop">
+                        <div *ngIf="selectedMerchant.contactPage.timeTable[i].afternoonTime">
+                            {{applyMask(selectedMerchant.contactPage.timeTable[i].afternoonTime)}}
                         </div>
-                        <div *ngIf="!s.config.contactPage.timeTable[i].afternoonTime">
+                        <div *ngIf="!selectedMerchant.contactPage.timeTable[i].afternoonTime">
                             {{ 'CONTACT.CLOSED' | translate }}
                         </div>
                     </td>

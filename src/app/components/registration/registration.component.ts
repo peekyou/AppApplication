@@ -92,7 +92,7 @@ export class RegistrationComponent {
         this.service.user.mobileNumber = this.form.value.mobile;
         this.service.user.birthdate = this.form.value.birthdate;
         this.service.user.favoriteProducts = [this.form.value.favoriteProduct];
-        if (this.s.config.address && Address.combineCityZipCode(this.s.config.address.country.id)) {
+        if (this.s.config.merchants[0].address && Address.combineCityZipCode(this.s.config.merchants[0].address.country.id)) {
             var cityZipCode = this.getCityZipCode(this.form.value.cityZipCode);
             this.service.user.address.city = cityZipCode[0];
             this.service.user.address.zipCode = cityZipCode[1];
@@ -101,10 +101,10 @@ export class RegistrationComponent {
             this.service.user.address.city = Lookup.getValue(this.form.value.city);
         }
         
-        this.service.user.customField1 = CustomerCustomFields.getValue(this.form.value.customField1),
-        this.service.user.customField2 = CustomerCustomFields.getValue(this.form.value.customField2),
-        this.service.user.customField3 = CustomerCustomFields.getValue(this.form.value.customField3),
-        this.service.user.customField4 = CustomerCustomFields.getValue(this.form.value.customField4),
+        this.service.user.customField1 = CustomerCustomFields.getValue(this.form.value.customField1);
+        this.service.user.customField2 = CustomerCustomFields.getValue(this.form.value.customField2);
+        this.service.user.customField3 = CustomerCustomFields.getValue(this.form.value.customField3);
+        this.service.user.customField4 = CustomerCustomFields.getValue(this.form.value.customField4);
 
         this.loader = this.service
             .create(this.service.user)
@@ -131,11 +131,11 @@ export class RegistrationComponent {
     }
 
     private customAddressValidator(control: AbstractControl, name: string): ValidationErrors {
-        if (this.s.config && this.s.config.address && this.s.config.address.country) {
+        if (this.s.config && this.s.config.merchants[0].address && this.s.config.merchants[0].address.country) {
             switch (name) {
                 case 'address1': return null; // Check merchant conf for showAddressLine
-                case 'city': return Address.showCity(this.s.config.address.country.id) ? Validators.required(control) : null;
-                case 'cityZipCode': return Address.combineCityZipCode(this.s.config.address.country.id) ? Validators.required(control) : null;
+                case 'city': return Address.showCity(this.s.config.merchants[0].address.country.id) ? Validators.required(control) : null;
+                case 'cityZipCode': return Address.combineCityZipCode(this.s.config.merchants[0].address.country.id) ? Validators.required(control) : null;
             }
         }
         return null;

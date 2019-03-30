@@ -32,7 +32,8 @@
         "ADDRESS": "Adresse",
         "FAVORITE_PRODUCT": "Produit favori",
         "GET_CARD": "Obtenir ma carte",
-        "MOBILE_ALERT": "Disponible uniquement sur mobile"
+        "MOBILE_ALERT": "Disponible uniquement sur mobile",
+        "OR": "OU"
     },
     "AUTH": {
         "LOGIN": "Se connecter",

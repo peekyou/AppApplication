@@ -26,7 +26,7 @@ export class QrCodeComponent implements AfterViewInit {
 
         if (this.authService.isAuthenticated()) {
             if (conf.config) {
-                this.url = conf.config.appWardsBackOfficeUrl + "/customers/" + authService.getUserId();
+                this.url = authService.getUserId();
                 this.loyaltyCardCacheService.cache.customerUrl = this.url;
             }
             else {

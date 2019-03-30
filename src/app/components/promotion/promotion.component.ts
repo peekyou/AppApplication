@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 import { ConfigurationService } from '../../core/services/configuration.service';
 import { PromotionService } from './promotion.service';
@@ -14,12 +14,21 @@ import { Promotion } from './promotion';
 export class PromotionComponent {
     loader: Subscription;
     promotions: Promotion[];
+    multipleMerchants: boolean = false;
     
     constructor(public s: ConfigurationService, service: PromotionService) {
         this.loader = service
             .getAll()
             .subscribe(
-                promotions => this.promotions = promotions,
+                promotions => {
+                    this.promotions = promotions;
+                    for (var i = 0; this.promotions.length > 1 && i < this.promotions.length - 1; i++) {
+                        if (this.promotions[i].merchantName != this.promotions[i + 1].merchantName) {
+                            this.multipleMerchants = true;
+                            break;
+                        }
+                    }
+                },
                 err => console.log(err)
             );
     }

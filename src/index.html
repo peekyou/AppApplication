@@ -87,7 +87,7 @@
                         <div id="loyalty-subtitle" style="font-size: 1.5rem;"></div>
                     </div>
                 </div>
-                <div id="loyalty-remaining-points" style="width: 90%;margin: auto;padding-bottom: 15px;padding-top: 2.2rem;font-size: 16px;"></div>
+                <div id="loyalty-remaining-points" style="width: 60%;margin: auto;padding-bottom: 15px;padding-top: 2.2rem;font-size: 16px;"></div>
             </div>
             <div id="cusname" style="margin-top: 1.2rem;font-weight: bold;font-size: 17px;"></div>
             <div id="qrcode"></div>
@@ -103,7 +103,7 @@
 
             Lang: 'fr',
             ApiEndpoint: 'http://localhost:8181/SoApp/SoAppService.svc/json',
-            MerchantId: 'F837BBC102B142FCA742A27F8F130CE7'
+            MerchantId: 'BA777F74F4F344A68EC6436096528DC3'
         }
         // End config
         
@@ -124,7 +124,7 @@
                 document.getElementById("loyalty-subtitle").innerText = cache.pointsLabel;
                 document.getElementById("loyalty-points").innerText = cache.currentPoints ? cache.currentPoints : 0;
                 if (cache.discountAmount > 0) {
-                    document.getElementById("loyalty-remaining-points").innerText = remainingPoints + ' ' + cache.pointsToGoalLabel + ' ' + cache.discountAmount +  cache.discountCurrency;
+                    document.getElementById("loyalty-remaining-points").innerText = remainingPoints + ' ' + cache.pointsToGoalLabel + ' ' + cache.discountAmount + ' ' + cache.discountCurrency;
                 }
                 document.getElementById("cusname").innerText = cache.customerName ? cache.customerName : '';
                 qrCode('qrcode', cache.customerUrl);

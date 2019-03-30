@@ -5,7 +5,7 @@ export class LoyaltyCardCache {
     pointsToGoalLabel?: string;
     loyaltyPointsLabel?: string;
     discountPointsThreshold?: number;
-    discountAmount?: number;
+    discountAmount?: number | string;
     discountCurrency?: string;
     customerName?: string;
     customerUrl?: string;

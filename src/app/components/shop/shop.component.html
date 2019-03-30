@@ -1,7 +1,16 @@
 <app-header fixedHeight="true"></app-header>
 <app-logo></app-logo>
 
-<div *ngIf="s.config" class="with-toolbar-padding-bottom margin-top panel after-logo-padding-top-1">
+<div *ngIf="selectedMerchant" class="with-toolbar-padding-bottom margin-top panel after-logo-padding-top-1">
+    <div *ngIf="s.config.merchants.length > 1" class="text-align-center">
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedMerchant">
+                <mat-option *ngFor="let merchant of s.config.merchants" [value]="merchant">
+                    {{ merchant.displayName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
     <div class="text-align-center">
         <button mat-raised-button [ngClass]="{'mat-primary': !isLocation, 'inactive': isLocation}" 
            (click)="isLocation = false" [style.backgroundColor]="!isLocation && s.config.design ? s.config.design.buttonsColor : null">
@@ -13,38 +22,38 @@
         </button>
     </div>
     <div *ngIf="!isLocation">
-        <app-shop-page *ngFor="let page of s.config.customPages" [page]="page"></app-shop-page>    
+        <app-shop-page *ngFor="let page of selectedMerchant.customPages" [page]="page"></app-shop-page>    
     </div>
-    <app-shop-page [page]="s.config.locationPage" *ngIf="isLocation">
-            <div class="text-align-center">
-                <p *ngIf="s.config.locationPage && s.config.locationPage.address">
-                    <span *ngIf="s.config.locationPage.address.country">{{ s.config.locationPage.address.country.name }}<br /></span>
-                    <span *ngIf="s.config.locationPage.address.state && s.config.locationPage.address.state != s.config.locationPage.address.city">
-                        {{ s.config.locationPage.address.state }}<br />
-                    </span>
-                    <span *ngIf="s.config.locationPage.address.city">{{ s.config.locationPage.address.city }}<br /></span>
-                    <span *ngIf="s.config.locationPage.address.zipCode">{{ s.config.locationPage.address.zipCode }}<br /></span>
-                    <span *ngIf="s.config.locationPage.address.area">{{ s.config.locationPage.address.area }}<br /></span>
-                    <span *ngIf="s.config.locationPage.address.addressLine1">{{ s.config.locationPage.address.addressLine1 }}<br /></span>
-                    <span *ngIf="s.config.locationPage.address.addressLine2">{{ s.config.locationPage.address.addressLine2 }}<br /></span>
-                </p>
-                <a *ngIf="s.config.contactPage && s.config.contactPage.data1" href="tel:{{s.config.contactPage.data1}}">
-                    <i class="fa fa-phone fa-lg" aria-hidden="true"></i> {{s.config.contactPage.data1}}
-                </a>
-                <br />
-                <br />
-                <a routerLink="/contact" mat-raised-button color="primary" 
-                   [style.backgroundColor]="isLocation && s.config.design ? s.config.design.buttonsColor : null">{{ 'SHOP.CONTACT_BTN' | translate }}                   
-                </a>
-    
-                <br />
-                <br />
-                <div *ngIf="s.config.locationPage && s.config.locationPage.address">
-                    <agm-map [latitude]="s.config.locationPage.address.latitude" [zoom]="17"
-                        [longitude]="s.config.locationPage.address.longitude">
-                        <agm-marker [latitude]="s.config.locationPage.address.latitude" [longitude]="s.config.locationPage.address.longitude"></agm-marker>
-                    </agm-map>
-                </div>
+    <app-shop-page [page]="selectedMerchant.locationPage" *ngIf="isLocation">
+        <div class="text-align-center">
+            <p *ngIf="selectedMerchant.locationPage && selectedMerchant.locationPage.address">
+                <span *ngIf="selectedMerchant.locationPage.address.country">{{ selectedMerchant.locationPage.address.country.name }}<br /></span>
+                <span *ngIf="selectedMerchant.locationPage.address.state && selectedMerchant.locationPage.address.state != selectedMerchant.locationPage.address.city">
+                    {{ selectedMerchant.locationPage.address.state }}<br />
+                </span>
+                <span *ngIf="selectedMerchant.locationPage.address.city">{{ selectedMerchant.locationPage.address.city }}<br /></span>
+                <span *ngIf="selectedMerchant.locationPage.address.zipCode">{{ selectedMerchant.locationPage.address.zipCode }}<br /></span>
+                <span *ngIf="selectedMerchant.locationPage.address.area">{{ selectedMerchant.locationPage.address.area }}<br /></span>
+                <span *ngIf="selectedMerchant.locationPage.address.addressLine1">{{ selectedMerchant.locationPage.address.addressLine1 }}<br /></span>
+                <span *ngIf="selectedMerchant.locationPage.address.addressLine2">{{ selectedMerchant.locationPage.address.addressLine2 }}<br /></span>
+            </p>
+            <a *ngIf="selectedMerchant.contactPage && selectedMerchant.contactPage.data1" href="tel:{{selectedMerchant.contactPage.data1}}">
+                <i class="fa fa-phone fa-lg" aria-hidden="true"></i> {{selectedMerchant.contactPage.data1}}
+            </a>
+            <br />
+            <br />
+            <a routerLink="/contact" mat-raised-button color="primary" 
+                [style.backgroundColor]="isLocation && s.config.design ? s.config.design.buttonsColor : null">{{ 'SHOP.CONTACT_BTN' | translate }}                   
+            </a>
+
+            <br />
+            <br />
+            <div *ngIf="selectedMerchant.locationPage && selectedMerchant.locationPage.address">
+                <agm-map [latitude]="selectedMerchant.locationPage.address.latitude" [zoom]="17"
+                    [longitude]="selectedMerchant.locationPage.address.longitude">
+                    <agm-marker [latitude]="selectedMerchant.locationPage.address.latitude" [longitude]="selectedMerchant.locationPage.address.longitude"></agm-marker>
+                </agm-map>
             </div>
-        </app-shop-page>
+        </div>
+    </app-shop-page>
 </div>
